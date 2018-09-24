@@ -1,2 +1,2 @@
 # BrewingJava
-Systems and Architecture of E-commerce
+System and Architecture of E-commerce
