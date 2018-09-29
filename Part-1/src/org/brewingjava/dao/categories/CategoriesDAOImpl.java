@@ -2,7 +2,6 @@ package org.brewingjava.dao.categories;
 
 import java.io.FileNotFoundException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -20,9 +19,6 @@ public class CategoriesDAOImpl implements CategoriesDAO {
 	static String[] sqlArr = new String[10];
 	static String xml = null;
 	SqlReaderUtil SqlReader = new SqlReaderUtil();
-	
-//	static String sql = "select bookid, title, price, author, category from book;";
-//	static String username = "root", password = "admin", url = "jdbc:mysql://localhost/bookstore";
 
 	ArrayList<Categories> cList = new ArrayList<>();
 	
@@ -42,9 +38,6 @@ public class CategoriesDAOImpl implements CategoriesDAO {
 
 		try {
 			Connection connection = dbConnection.getDataSource().getConnection();
-//			Class.forName("com.mysql.jdbc.Driver");
-//			Connection connection = DriverManager.getConnection(url, username, password);
-
 			Statement stmt = connection.createStatement();
 			ResultSet rs = stmt.executeQuery(sqlArr[0]);
 			while (rs.next()) {
