@@ -6,6 +6,6 @@
 <meta charset="ISO-8859-1">
 </head>
 <body>
-<%request.getRequestDispatcher("ShowCategories").include(request,response);%>
+<%request.getRequestDispatcher("/ShowCategories").include(request,response);%>
 </body>
 </html>

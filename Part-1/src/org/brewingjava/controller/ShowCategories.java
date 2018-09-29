@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.brewingjava.dao.categories.CategoriesDAOImpl;
 import org.brewingjava.model.Categories;
+import org.brewingjava.util.MyBatisConnectionFactory;
 
 /**
  * Servlet implementation class ShowDetails
@@ -27,10 +28,12 @@ public class ShowCategories extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		CategoriesDAOImpl cdao = new CategoriesDAOImpl();
-		ArrayList<Categories> categories = new ArrayList<>();
-		categories = cdao.getCategories();
-		System.out.println(categories);
+		CategoriesDAOImpl cdao = new CategoriesDAOImpl(MyBatisConnectionFactory.getSqlSessionFactory());
+		
+		List<Categories> categories = new ArrayList<>();
+		
+		categories = cdao.selectAll();
+		System.out.println("in servlet" +categories);
 		request.setAttribute("Categories", categories);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("Homepage.jsp");
 		dispatcher.forward(request, response);

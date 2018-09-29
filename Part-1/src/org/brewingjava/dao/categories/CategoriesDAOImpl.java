@@ -1,42 +1,37 @@
 package org.brewingjava.dao.categories;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 import org.brewingjava.model.Categories;
 
 public class CategoriesDAOImpl implements CategoriesDAO {
 
-	static String username = "root", password = "admin", url = "jdbc:mysql://localhost/part0";
-	static String sql = "select bookid, title, price, author, category from book;";
-	ArrayList<Categories> cList = new ArrayList<>();
+	private SqlSessionFactory sqlSessionFactory = null;
 
-	@Override
-	public ArrayList<Categories> getCategories() {
+	public CategoriesDAOImpl(SqlSessionFactory sqlSessionFactory) {
+		this.sqlSessionFactory = sqlSessionFactory;
+	}
+
+	/**
+	 * Returns the data of table 'Book' from the db
+	 * 
+	 * @return the data of table 'Book' from the db
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Categories> selectAll() {
+		List<Categories> cat = null;
+		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection(url, username, password);
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				int bookid = rs.getInt("bookid");
-				String title = rs.getString("title");
-				float price = rs.getFloat("price");
-				String author = rs.getString("author");
-				String category = rs.getString("category");
-
-				Categories cat = new Categories(bookid, title, price, author, category);
-				cList.add(cat);
-			}
+			cat = session.selectList("Categories.selectAll");
 		} catch (Exception e) {
-			System.out.println("Unable to load Driver");
+			System.out.println("Error fetching data");
 			e.printStackTrace();
+		} finally {
+			session.close();
 		}
-		return cList;
+		System.out.println("Complete table Data- " + cat);
+		return cat;
 	}
 }

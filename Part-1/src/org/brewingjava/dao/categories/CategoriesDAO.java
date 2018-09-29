@@ -7,6 +7,6 @@ import org.brewingjava.model.Categories;
 
 public interface CategoriesDAO {
 	
-	public ArrayList<Categories> getCategories();
+	public List<Categories> selectAll();
 
 }

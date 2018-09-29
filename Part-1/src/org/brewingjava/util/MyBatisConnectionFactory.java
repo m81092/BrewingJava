@@ -15,7 +15,7 @@ public class MyBatisConnectionFactory {
     static {
         try {
  
-            String resource = "org/brewingjava/util/config.xml";
+            String resource = "org/brewingjava/resources/config.xml";
             Reader reader = Resources.getResourceAsReader(resource);
  
             if (sqlSessionFactory == null) {

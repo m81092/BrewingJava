@@ -8,15 +8,6 @@ public class Categories {
 	private String author;
 	private String category;
 
-	public Categories(int bookid, String title, float price, String author, String category) {
-		
-		this.bookid = bookid;
-		this.title = title;
-		this.price = price;
-		this.author = author;
-		this.category = category;
-	}
-
 	public int getBookid() {
 		return bookid;
 	}
