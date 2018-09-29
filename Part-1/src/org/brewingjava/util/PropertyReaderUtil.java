@@ -40,7 +40,8 @@ public class PropertyReaderUtil {
            //check file exists
 
            System.out.println("file is here"+new File(".").getAbsoluteFile());
-           try (FileInputStream fis = new FileInputStream("E:\\softwares\\eclipse-jee-photon-R-win32-x86_64\\eclipse\\db.properties")) {
+           // TODO: Need to add relative file path
+           try (FileInputStream fis = new FileInputStream("C:/Users/VRUSHALI/git/BrewingJava/Part-1/WebContent/WEB-INF/db.properties")) {
 
                   try {
 System.out.println("got the file");
