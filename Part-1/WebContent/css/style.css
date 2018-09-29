@@ -1,0 +1,34 @@
+@charset "ISO-8859-1";
+
+.header {
+	background-color: #b5c7e5;
+	padding-bottom: 60px;
+    background: #eee;
+    height: 85px;
+    outline-style: inset;
+    outline-color: #a8a8ad;
+}
+
+.main {
+	background-color: #b5c7e5;
+	padding-right: 20px;
+	padding-top: 10px;
+    background: #eee;
+    height: 400px;
+    width: 200px;
+    outline-style: inset;
+    outline-color: #a8a8ad;    
+    position: relative;
+}
+
+.image {
+	position: absolute;
+	left: 300px; 
+}
+
+.feature {
+	position: absolute;
+	left: 300px;
+	top: 200px;
+	width: 200px;
+}
