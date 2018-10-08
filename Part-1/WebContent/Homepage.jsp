@@ -24,7 +24,7 @@
 		<a href="">Health</a><br> <a href="">Science and Nature</a><br>
 		<a href="">Poetry</a>
 		<div class="feature">
-			<h4>Some of our featured books</h4>
+			<h4>Some of our featured books</h4>			
 		</div>
 	</div>
 </body>

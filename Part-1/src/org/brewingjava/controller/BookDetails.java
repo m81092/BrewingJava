@@ -3,38 +3,33 @@ package org.brewingjava.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.brewingjava.dao.categories.CategoriesDAOImpl;
-import org.brewingjava.model.Categories;
-import org.brewingjava.util.MyBatisConnectionFactory;
+import org.brewingjava.dao.categories.BookDAOImpl;
+import org.brewingjava.model.Book;
 
 /**
  * Servlet implementation class ShowDetails
  */
-@WebServlet("/ShowCategories")
-public class ShowCategories extends HttpServlet {
+@WebServlet("/BookDetails")
+public class BookDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		
-		CategoriesDAOImpl cdao = new CategoriesDAOImpl(MyBatisConnectionFactory.getSqlSessionFactory());
+		BookDAOImpl cdao = new BookDAOImpl();
+		List<Book> blist = new ArrayList<>();
 		
-		List<Categories> categories = new ArrayList<>();
-		
-		categories = cdao.selectAll();
-		System.out.println("in servlet" +categories);
-		request.setAttribute("Categories", categories);
+		blist = cdao.selectAll();
+		System.out.println("in servlet" +blist);
+		request.setAttribute("Categories", blist);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("Homepage.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -43,7 +38,7 @@ public class ShowCategories extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		doGet(request, response);
 	}
 

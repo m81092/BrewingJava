@@ -1,12 +1,21 @@
 package org.brewingjava.model;
 
-public class Categories {
+public class Book {
 
 	private int bookid;
 	private String title;
 	private float price;
 	private String author;
 	private String category;
+
+	public Book(int bookid, String title, float price, String author, String category) {
+
+		this.bookid = bookid;
+		this.title = title;
+		this.price = price;
+		this.author = author;
+		this.category = category;
+	}
 
 	public int getBookid() {
 		return bookid;
