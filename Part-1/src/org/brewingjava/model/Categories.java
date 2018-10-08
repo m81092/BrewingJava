@@ -1,5 +1,8 @@
 package org.brewingjava.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Categories {
 
 	private int bookid;

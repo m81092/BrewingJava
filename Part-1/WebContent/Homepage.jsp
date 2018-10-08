@@ -11,7 +11,10 @@
 </head>
 <body>
 <h4>Welcome to Bookworm, place where Canada shops</h4>
-<a href="ShowCategories">View Categories</a><br><br>
+<form action="${pageContext.request.contextPath}/ShowCategories" method=get>
+<input type="submit" value="ok">
+</form>
+<!-- <a href="ShowCategories">View Categories</a><br><br> -->
 <table border="1">
 	<c:forEach var="items" items="${Categories}">
 	<tr>

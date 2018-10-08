@@ -12,7 +12,7 @@ import org.brewingjava.model.Categories;
 
 public class CategoriesDAOImpl implements CategoriesDAO {
 
-	static String username = "root", password = "admin", url = "jdbc:mysql://localhost/part0";
+	static String username = "root", password = "root", url = "jdbc:mysql://localhost:3306/books";
 	static String sql = "select bookid, title, price, author, category from book;";
 	ArrayList<Categories> cList = new ArrayList<>();
 
