@@ -8,69 +8,67 @@ import java.util.Properties;
 
 public class PropertyReaderUtil {
 
-    
+	private static boolean debugOnOff = false;
 
-    private static boolean debugOnOff = false;
+	private static PropertyReaderUtil instance;
 
-    private static PropertyReaderUtil instance;
+	private PropertyReaderUtil() {
+	}
 
-   
+	public static PropertyReaderUtil getInstance() {
 
-    private PropertyReaderUtil() {}
+		if (instance == null)
 
-   
+			instance = new PropertyReaderUtil();
 
-    public static PropertyReaderUtil getInstance() {
+		return instance;
 
-           if (instance == null)
+	}
 
-                  instance = new PropertyReaderUtil();
+	public String getPropertyValue(String propertiesFile, String propertyKey)
+			throws FileNotFoundException, IOException {
 
-           return instance;
+		Properties prop = new Properties();
 
-    }
+		String value = "";
+		String path = "";
+		// check file exists
+		//make changes in your system with your own path
+		if (propertiesFile == "db.properties") {
+			path = "C:\\Users\\VRUSHALI\\git\\BrewingJava\\Part-1\\WebContent\\resources\\db.properties";
+		} else if (propertiesFile == "queries.properties") {
+			path = "C:\\Users\\VRUSHALI\\git\\BrewingJava\\Part-1\\WebContent\\resources\\queries.properties";
+		}
 
-   
+		System.out.println("file is here" + new File(".").getAbsoluteFile());
+		try (FileInputStream fis = new FileInputStream(path)) {
 
-    public String getPropertyValue(String propertiesFile, String propertyKey) throws FileNotFoundException, IOException {
+			try {
+				System.out.println("got the file");
+				prop.load(fis);
 
-           Properties prop = new Properties();
+				value = prop.getProperty(propertyKey);
 
-           String value = "";
-           //check file exists
+				debugOnOff = Boolean.valueOf(prop.getProperty("DEBUG"));
 
-           System.out.println("file is here"+new File(".").getAbsoluteFile());
-           // TODO: Need to add relative file path
-           try (FileInputStream fis = new FileInputStream("C:/Users/VRUSHALI/git/BrewingJava/Part-1/WebContent/WEB-INF/db.properties")) {
+			} catch (IOException e) {
 
-                  try {
-System.out.println("got the file");
-                        prop.load(fis);
+				e.printStackTrace();
 
-                        value = prop.getProperty(propertyKey);
+			}
 
-                        debugOnOff = Boolean.valueOf(prop.getProperty("DEBUG"));
+		}
 
-                  } catch (IOException e) {
+		//debug works as logger so use it to save your time
+		//Make an entry in DB.properties file for debug
+		if (debugOnOff) {
 
-                        e.printStackTrace();
+			System.out.println(String.format("Key : %s ; Value : %s", propertyKey, value));
 
-                  }
+		}
 
-           }
+		return value;
 
-          
-
-           if (debugOnOff) {
-
-                  System.out.println(String.format("Key : %s ; Value : %s", propertyKey, value));
-
-           }
-
-          
-
-           return value;
-
-    }
+	}
 
 }

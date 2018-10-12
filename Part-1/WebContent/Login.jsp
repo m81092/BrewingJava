@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
+<head><link href="css/styleLogin.css" rel="stylesheet" type="text/css"/></head>
 <title>BookWorm</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -12,6 +13,7 @@
 body {font-family: "Roboto", sans-serif}
 .w3-bar-block .w3-bar-item{padding:16px;font-weight:bold}
 </style>
+
 <body>
 
 <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
@@ -58,36 +60,37 @@ body {font-family: "Roboto", sans-serif}
 
 <div class="w3-container" style="padding:32px">
 
-<h3>Let's see what we got for you !!</h3>
+<h3>Welcome</h3>
+<h4>Log in to your BookWorm account</h4>
 
-<h4></h4><p>Based on your recent click</p></h4>
+<form action="" method="post">
+<div class="container">
+    <label for="uname"><b>Your username</b></label><br>
+    <input type="text" placeholder="Enter username " name="uname" required><br>
+    <label for="psw"><b>Your password</b></label><br>
+    <input type="password" placeholder="Enter Password" name="pass" required>
+    <label><br>
+    <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label><br>
+    <button type="submit">Login</button>
+    <span class="pass"><a href="#">Forgot password?</a></span>
+  </div>
+</form>
+
+ <div id=container-1><h4>Are you new here....</h4><button type="submit">Create an Account Here</button>
+  </div>
+  
 <br>
-<table class="booktable" border="3" >
-			<tr><td>Author</td><td>BookID</td><td>Category</td><td>Price</td><td>Title</td>
-	
-				<c:forEach var="items" items="${allBook}">
-					<tr>
-						<td>${items.author}</td>
-					
-						<td>${items.bookid}</td>
-					
-						<td>${items.category}</td>
-					
-						<td>${items.price}</td>
-					
-						<td>${items.title}</td>
-					</tr>
-				</c:forEach>
-			</table>
 <h2>Beautiful Book Quotes...!!</h2>
 <div class="w3-container w3-sand w3-leftbar">
 <p><i>Make it as simple as possible, but not simpler.</i><br>
 Albert Einstein</p>
 </div>
+
 </div>
 
 <footer class="w3-container w3-theme" style="padding:22px">
-  <p>Copyright © 2018 Brewing Java Corporation</p>
+  <p>Footer information goes here</p>
 </footer>
      
 </div>
