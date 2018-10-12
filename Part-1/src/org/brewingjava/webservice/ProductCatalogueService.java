@@ -24,6 +24,17 @@ public class ProductCatalogueService {
 		ProductService ps = new ProductServiceImpl();
 		return ps.getAllBooks();
 	}
+	
+	@GET
+	@Path("/BookInfo")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Books getBookInfo(@QueryParam("id") String id) {
+		System.out.println("Service: Fetching Book Info");
+		System.out.println(id);
+		ProductService ps = new ProductServiceImpl();
+		return ps.getBookInfo(id);		//We have to handle the null value if book is not their.
+	}
 
 //Another way to hit WebService through POST method (Keep it in code)
 	/*

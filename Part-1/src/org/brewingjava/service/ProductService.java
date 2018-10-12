@@ -8,5 +8,5 @@ public interface ProductService {
 
 	//All the methods are implemented in Class ProductServiceImpl**
 	public ArrayList<Books> getAllBooks();
-
+	public Books getBookInfo(String id);
 }

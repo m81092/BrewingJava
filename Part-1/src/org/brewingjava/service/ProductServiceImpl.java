@@ -16,5 +16,12 @@ public class ProductServiceImpl implements ProductService {
 
 		return bookList;
 	}
+	
+	public Books getBookInfo(String id) {
+		Books book;
+		BookDAO dao = new BookDAOImpl();
+		book = dao.getBookInfo(id);
+		return book;
+	}
 
 }

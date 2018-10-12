@@ -43,4 +43,30 @@ public class BookDAOImpl implements BookDAO {
 		}
 		return cList;
 	}
+
+	@Override
+	public Books getBookInfo(String id) {
+		Books book=null;
+		try {
+			String QueryId = "BOOK_INFO";
+			Connection connection = dbConnection.getDataSource().getConnection();
+			String query = PropertyReaderUtil.getInstance().getPropertyValue(QUERIES_PROERTIES_FILE, QueryId);
+			query = String.format(query, id);
+			Statement stmt = connection.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				int bookid = rs.getInt("bookid");
+				String title = rs.getString("title");
+				float price = rs.getFloat("price");
+				String author = rs.getString("author");
+				String category = rs.getString("category");
+				book = new Books(bookid, title, price, author, category);
+			}
+		} catch (Exception e) {
+			System.out.println("Unable to load Driver");
+			e.printStackTrace();
+		}
+		return book;
+	}
+	
 }
