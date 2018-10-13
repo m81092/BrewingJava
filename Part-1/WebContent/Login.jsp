@@ -63,11 +63,11 @@ body {font-family: "Roboto", sans-serif}
 <h3>Welcome</h3>
 <h4>Log in to your BookWorm account</h4>
 
-<form action="" method="post">
+<form action="LoginServlet" method="post">
 <div class="container">
-    <label for="uname"><b>Your username</b></label><br>
-    <input type="text" placeholder="Enter username " name="uname" required><br>
-    <label for="psw"><b>Your password</b></label><br>
+    <label for="name"><b>Your username</b></label><br>
+    <input type="text" placeholder="Enter username " name="name" required><br>
+    <label for="pass"><b>Your password</b></label><br>
     <input type="password" placeholder="Enter Password" name="pass" required>
     <label><br>
     <input type="checkbox" checked="checked" name="remember"> Remember me
