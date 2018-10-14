@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import = "java.util.*" %>
 <!DOCTYPE html>
 <html>
 <title>BookWorm</title>
@@ -12,12 +13,13 @@
 body {font-family: "Roboto", sans-serif}
 .w3-bar-block .w3-bar-item{padding:16px;font-weight:bold}
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <body>
 
-<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
+	<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
   <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img src="https://www.w3schools.com/images/w3schools.png" style="width:80%;"></a>
   <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
-  <a class="w3-bar-item w3-button w3-teal" href="#">Home</a>
+  <a class="w3-bar-item w3-button w3-teal" href="Welcome.jsp">Home</a>
   <a class="w3-bar-item w3-button" href="#">About Us</a>
   <a class="w3-bar-item w3-button" href="#">Team</a>
   <a class="w3-bar-item w3-button" href="#">Contact US</a>
@@ -58,21 +60,38 @@ body {font-family: "Roboto", sans-serif}
 
 <div class="w3-container" style="padding:32px">
 
-<h3>What is BookWorm?</h3>
-<ul class="w3-leftbar w3-theme-border" style="list-style:none">
- <li>Smaller and faster than other CSS frameworks.</li>
- <li>Easier to learn, and easier to use than other CSS frameworks.</li>
- <li>Uses standard CSS only (No jQuery or JavaScript library).</li>
- <li>Speeds up mobile HTML apps.</li>
- <li>Provides CSS equality for all devices. PC, laptop, tablet, and mobile:</li>
-</ul>
+<h3>Let's see what we got for you !!</h3>
+
+<h4></h4><p>Based on your recent click</p></h4>
+
+<h4></h4><p>Book Details</p></h4>
 <br>
+<table class="booktable" border="3" >
+			<tr><td>Author</td><td>ID</td><td>Title</td><td>Category</td><td>Price</td>
+	
+				<c:forEach var="items" items="${Bookdetails}">
+					<tr>
+						<%-- <td>${items.author}</td> --%>
+						<td>${items.author}</td>
+					
+						<td>${items.bookid}</td>
+					
+						<td>${items.title}</td>
+						
+						<td>${items.category}</td>
+						
+						<td>${items.price}</td>
+						
+
+					</tr>
+				</c:forEach>
+			</table>
+			
 <h2>Beautiful Book Quotes...!!</h2>
 <div class="w3-container w3-sand w3-leftbar">
 <p><i>Make it as simple as possible, but not simpler.</i><br>
 Albert Einstein</p>
 </div>
-
 </div>
 
 <footer class="w3-container w3-theme" style="padding:22px">
@@ -116,6 +135,32 @@ function myAccordion(id) {
         x.previousElementSibling.className.replace(" w3-theme", "");
     }
 }
+
+    var idList = new Array();
+$('.submitbutton').click(function(e) {
+	
+    var _bookId = $(this).parent().find('.bookId').val();
+    var _bookName = $(this).parent().find('.title').val();
+    console.log(_bookName);
+   
+    //DO your AJAX call here
+    idList.push(_bookId);
+    console.log(idList.length);
+    var i;
+    for (i = 0; i < idList.length; i++) { 
+
+        console.log(idList[i]);
+    }
+
+    document.getElementById("idList").value=idList;
+    document.location.href ="Homepage.jsp?idList="+idList; 
+    //idList = '@Session["idList"]'
+   
+    
+    alert(_bookName+' Added to cart ');
+    return false;
+});
+
 </script>
      
 </body>

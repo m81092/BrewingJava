@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import = "java.util.*" %>
+<%@ page import = "org.brewingjava.model.Books" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <title>BookWorm</title>
@@ -56,45 +59,49 @@ body {font-family: "Roboto", sans-serif}
 </header>
 
 <div class="w3-container" style="padding:32px">
-
-	<c:if test="${param.id!=null}">
-		<c:set var="list2" value=""/>
-		<c:forEach var="items" items="${CartList}">
-			<c:if test="${items.bookid!=param.id}">
-				<c:if test="${list2!=''}">
-					<c:set var="list2" value="${list2},"/>
-				</c:if>
-				<c:set var="list2" value="${list2}${items}"/>
-			</c:if>
-		</c:forEach>
-		<c:set var="CartList" value="${list2}" scope="session"/>						
-	</c:if>
+<%
+	ArrayList<Books> CartList = session.getAttribute("CartList")!=null? (ArrayList<Books>)session.getAttribute("CartList") :new ArrayList<Books>();
+	if(request.getParameter("id")!=null){
+		int id = Integer.parseInt(request.getParameter("id"));
+		ArrayList<Books> temp = new ArrayList<Books>();
+		for(Books book: CartList){
+			if(book.getBookid()!=id)
+				temp.add(book);
+		}
+		session.setAttribute("CartList", temp);
+		CartList = session.getAttribute("CartList")!=null? (ArrayList<Books>)session.getAttribute("CartList") :new ArrayList<Books>();
+	}
+	
+%>
 	<h3>Shopping Cart</h3>
-	<c:choose>
-		<c:when test="${CartList.size()>0}">
+		<%
+			if(!CartList.isEmpty()){
+		%>
 			<p>You currently have following books in your cart:</p>
 			<br>
 			<form action="#">
 				<table class="booktable" border="3" >
 							<tr><th>Title</th><th>Price</th><th></th></tr>
-								
-								<c:forEach var="items" items="${CartList}">
-									<c:set var="total" value="${total+items.price}"/>
-									<tr>
-										<td>${items.title}</td><td>${items.price}</td><td><a href="ShoppingCart.jsp?id=${items.bookid}">Remove</a></td>	
+								<% float total=0;
+								for(Books book: CartList){ 
+									total+=book.getPrice();
+								%>
+								<tr>
+										<td><%=book.getTitle() %></td><td><%=book.getPrice() %></td><td><a href="ShoppingCart.jsp?id=<%=book.getBookid()%>">Remove</a></td>	
 									</tr>
 									
-								</c:forEach>
-							<tr><th>Total</th><th><c:out value="${total}"></c:out></th></tr>
+							<%} %>	
+							<tr><th>Total</th><th><%=total%></th></tr>
 				</table>
-				<button type="submit" value="${total}" >Proceed TO Checkout</button>
+				<button type="submit" value="<%=total%>" >Proceed TO Checkout</button>
 			</form>
-		</c:when>
-		<c:otherwise>
-			<h4>Your Cart is Empty!!</h4>
-		</c:otherwise>
-	</c:choose>
-	<a href="#"><i> <----Continue Shopping</i></a>
+		<%
+			}
+			else{
+		%>
+				<h4>Your Cart is Empty!!</h4>
+		<%} %>
+	<a href="Welcome.jsp"><i><----Continue Shopping</i></a>
 	<div class="w3-container w3-sand w3-leftbar">
 	<p><i>Make it as simple as possible, but not simpler.</i><br>
 	Albert Einstein</p>
@@ -145,4 +152,4 @@ function myAccordion(id) {
 </script>
      
 </body>
-</html> 
+</html>

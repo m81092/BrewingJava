@@ -7,9 +7,12 @@ public class Books {
 	private float price;
 	private String author;
 	private String category;
+	private String status;
 	
+	
+
 	public Books() {
-		bookid=0;
+		
 	}
 
 	public Books(int bookid, String title, float price, String author, String category) {
@@ -61,6 +64,14 @@ public class Books {
 		this.category = category;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 	@Override
 	public String toString() {
 		return "Categories [bookid=" + bookid + ", title=" + title + ", price=" + price + ", author=" + author

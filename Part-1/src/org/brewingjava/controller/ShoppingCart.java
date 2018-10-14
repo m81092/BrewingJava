@@ -31,20 +31,21 @@ public class ShoppingCart extends HttpServlet {
 		String baseURI = "http://localhost:8080/Part-1";
 		Client client = ClientBuilder.newClient();
 		HttpSession session = request.getSession();
-		ArrayList idList = new ArrayList<>();
-		idList.add(1627794247);
+		ArrayList<Books> idList = new ArrayList<Books>();
 		if(session.getAttribute("idList")!=null) {
-			idList = (ArrayList) session.getAttribute("idList");
-			session.setAttribute("idList", "");
+			idList = (ArrayList<Books>) session.getAttribute("idList");
+			System.out.println(idList);
+			session.removeAttribute("idList");
 		}
 		WebTarget target;
-		String res2;
+		String result;
 		List<Books> allBooksList = new ArrayList<Books>();
 		try {
 			for(int j=0;j<idList.size();j++) {
-				target = client.target(baseURI).path("/REST/WebService/BookInfo").queryParam("bookId", idList.get(j));
-				res2 = target.request(MediaType.APPLICATION_JSON).get().readEntity(String.class);
-				JSONArray jsonArr = new JSONArray(res2);
+				target = client.target(baseURI).path("/REST/WebService/BookInfo").queryParam("bookId", idList.get(j).getBookid());
+				result = target.request(MediaType.APPLICATION_JSON).get().readEntity(String.class);
+				System.out.println(result);
+				JSONArray jsonArr = new JSONArray(result);
 				for (int i = 0; i < jsonArr.length(); i++) {
 					JSONObject jsonObj = jsonArr.getJSONObject(i);
 					Books bookVo = new Books();
@@ -56,7 +57,7 @@ public class ShoppingCart extends HttpServlet {
 					allBooksList.add(bookVo);
 				}
 			}
-			List CartList =  session.getAttribute("CartList")!=null ? (ArrayList)session.getAttribute("CartList") : new ArrayList<>();
+			List<Books> CartList =  session.getAttribute("CartList")!=null ? (ArrayList<Books>)session.getAttribute("CartList") : new ArrayList<Books>();
 			for(Books book:allBooksList) {
 				CartList.add(book);
 			}

@@ -72,7 +72,7 @@ public class DBConnection {
 
 		gPool = new GenericObjectPool();
 
-		gPool.setMaxActive(5);
+		gPool.setMaxActive(20);
 
 		// Creates a ConnectionFactory Object Which Will Be Use by the Pool to Create
 		// the Connection Object!

@@ -1,6 +1,7 @@
 package org.brewingjava.webservice;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -15,16 +16,26 @@ import org.brewingjava.service.ProductServiceImpl;
 @Path("/WebService")
 public class ProductCatalogueService {
 	@GET
-	@Path("/Categories")
+	@Path("/AllBooks")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<Books> getAllCategories(@QueryParam("category") String category) {
-		System.out.println("in side ");
-		System.out.println(category);
+	public ArrayList<Books> getAllCategories() {
+		System.out.println("in side Web services");
 		ProductService ps = new ProductServiceImpl();
 		return ps.getAllBooks();
 	}
-	
+
+	@GET
+	@Path("/Categories")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Books> getBookByCategory(@QueryParam("category") String category) {
+		System.out.println("in side Web services ");
+		System.out.println("Webservice received category : " +category);
+		ProductService ps = new ProductServiceImpl();
+		return ps.getBooksByCategory(category);
+		}
+
 	@GET
 	@Path("/BookInfo")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -35,6 +46,7 @@ public class ProductCatalogueService {
 		ProductService ps = new ProductServiceImpl();
 		return ps.getBookInfo(id);		//We have to handle the null value if book is not their.
 	}
+
 
 //Another way to hit WebService through POST method (Keep it in code)
 	/*
