@@ -7,5 +7,5 @@ import org.brewingjava.model.Books;
 public abstract interface BookDAO {
 	
 	public ArrayList<Books> getAllBooks();
-	public Books getBookInfo(String id);
+	public Books getBookInfo(int id);
 }

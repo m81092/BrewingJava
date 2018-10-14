@@ -29,7 +29,7 @@ public class ProductCatalogueService {
 	@Path("/BookInfo")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<Books> getBookInfo(@QueryParam("Bookid") String id) {
+	public ArrayList<Books> getBookInfo(@QueryParam("bookId") int id) {
 		System.out.println("Service: Fetching Book Info");
 		System.out.println(id);
 		ProductService ps = new ProductServiceImpl();

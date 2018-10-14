@@ -17,7 +17,7 @@ public class ProductServiceImpl implements ProductService {
 		return bookList;
 	}
 	
-	public ArrayList<Books> getBookInfo(String id) {
+	public ArrayList<Books> getBookInfo(int id) {
 		ArrayList<Books> bookList = new ArrayList<Books>();
 		BookDAO dao = new BookDAOImpl();
 		Books book = dao.getBookInfo(id);

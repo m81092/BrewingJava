@@ -45,7 +45,7 @@ public class BookDAOImpl implements BookDAO {
 	}
 
 	@Override
-	public Books getBookInfo(String id) {
+	public Books getBookInfo(int id) {
 		Books book=new Books();
 		try {
 			String QueryId = "BOOK_INFO";
