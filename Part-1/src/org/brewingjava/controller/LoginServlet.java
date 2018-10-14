@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.brewingjava.dao.AccountInfoDao;
+import org.brewingjava.dao.AccountInfoDAOImpl;
 
 /**
  * Servlet implementation class LoginServlet
@@ -19,7 +19,7 @@ import org.brewingjava.dao.AccountInfoDao;
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	AccountInfoDao dao;
+	AccountInfoDAOImpl dao;
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -35,23 +35,16 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String name = req.getParameter("name");
 		String pass = req.getParameter("pass");
-		dao = new AccountInfoDao();
+		dao = new AccountInfoDAOImpl();
 		
 		boolean success = dao.validateLogin(name, pass);
 		
 		if(success) {
-			RequestDispatcher dispatcher = req.getRequestDispatcher("Homepage.jsp");
+			RequestDispatcher dispatcher = req.getRequestDispatcher("Checkout.jsp");
 			dispatcher.include(req, resp);
 		} else {
-			resp.setContentType("text/html");
-			PrintWriter out = resp.getWriter();
-			out.println("<html>");
-			out.println("<body>");
-			out.println("Login Failed <br/>");
-			out.println("<a href='login.jsp'>Click Here</a>");
-			out.println("to login <br/>");
-			out.println("</body>");
-			out.println("</html>");
+			RequestDispatcher dispatcher = req.getRequestDispatcher("Login.jsp");
+			dispatcher.include(req, resp);
 		}	
 	}
 }

@@ -1,42 +1,54 @@
-package org.brewingjava.model;
-
-public class AccountInfo {
-
-	private String username;
-	private String password;
-	private String billingAddress;
-	private String shippingAddress;
-	
-	public AccountInfo(String username, String password, String billingAddress, String shippingAddress) {
-		super();
-		this.username = username;
-		this.password = password;
-		this.billingAddress = billingAddress;
-		this.shippingAddress = shippingAddress;
-	}
-	
-	public String getUsername() {
-		return username;
-	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getBillingAddress() {
-		return billingAddress;
-	}
-	public void setBillingAddress(String billingAddress) {
-		this.billingAddress = billingAddress;
-	}
-	public String getShippingAddress() {
-		return shippingAddress;
-	}
-	public void setShippingAddress(String shippingAddress) {
-		this.shippingAddress = shippingAddress;
-	}
-}
+package org.brewingjava.model; 
+ 
+public class AccountInfo { 
+ 
+	private String username; 
+	private byte[] password; 
+	private String billing; 
+	private String shipping; 
+	private byte[] salt; 
+ 
+	public AccountInfo() { 
+	} 
+ 
+	public String getUsername() { 
+		return username; 
+	} 
+ 
+	public void setUsername(String username) { 
+		this.username = username; 
+	} 
+ 
+	public byte[] getPassword() { 
+		return password; 
+	} 
+ 
+	public void setPassword(byte[] password) { 
+		this.password = password; 
+	} 
+ 
+	public String getBilling() { 
+		return billing; 
+	} 
+ 
+	public void setBilling(String billing) { 
+		this.billing = billing; 
+	} 
+ 
+	public String getShipping() { 
+		return shipping; 
+	} 
+ 
+	public void setShipping(String shipping) { 
+		this.shipping = shipping; 
+	} 
+ 
+	public byte[] getSalt() { 
+		return salt; 
+	} 
+ 
+	public void setSalt(byte[] salt) { 
+		this.salt = salt; 
+	} 
+ 
+} 
