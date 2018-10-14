@@ -3,10 +3,16 @@ package org.brewingjava.model;
 public class AccountInfo {
 
 	private String username;
-	private byte[] password;
+	private String password;
 	private String billing;
 	private String shipping;
-	private byte[] salt;
+
+	public AccountInfo(String username, String password, String billing, String shipping, byte[] salt) {
+		this.username = username;
+		this.password = password;
+		this.billing = billing;
+		this.shipping = shipping;
+	}
 
 	public AccountInfo() {
 	}
@@ -19,11 +25,11 @@ public class AccountInfo {
 		this.username = username;
 	}
 
-	public byte[] getPassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	public void setPassword(byte[] password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
@@ -41,14 +47,6 @@ public class AccountInfo {
 
 	public void setShipping(String shipping) {
 		this.shipping = shipping;
-	}
-
-	public byte[] getSalt() {
-		return salt;
-	}
-
-	public void setSalt(byte[] salt) {
-		this.salt = salt;
 	}
 
 }

@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- All of the below code is referenced unless specified from https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_examples_material  -->
 <!DOCTYPE html>
 <html>
+<head><link href="css/styleLogin.css" rel="stylesheet" type="text/css"/></head>
 <title>BookWorm</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -13,19 +13,22 @@
 body {font-family: "Roboto", sans-serif}
 .w3-bar-block .w3-bar-item{padding:16px;font-weight:bold}
 </style>
+
 <body>
 
 <!-- code referenced from https://stackoverflow.com/questions/24176684/how-to-show-alert-in-a-jsp-from-a-servlet-and-then-redirect-to-another-jsp -->
-	<c:if test="${not empty error}">
+	<c:if test="${not empty error2}">
 		<script>
 			window.addEventListener("load", function() {
-				alert("This account name already exists. Try again!");
+				alert("Invalid Username or Password!");
 			});
 		</script>
 	</c:if>
 <!-- code end -->
 
+
 <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
+  <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img src="https://www.w3schools.com/images/w3schools.png" style="width:80%;"></a>
   <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
   <a class="w3-bar-item w3-button w3-teal" href="#">Home</a>
   <a class="w3-bar-item w3-button" href="#">About Us</a>
@@ -61,67 +64,48 @@ body {font-family: "Roboto", sans-serif}
 
 </div>
 
+
 <header class="w3-container w3-theme" style="padding:64px 32px">
   <h1 class="w3-xxxlarge">BookWorm</h1>
 </header>
 
 <div class="w3-container" style="padding:32px">
 
-<form action="${pageContext.request.contextPath}/Login" onsubmit="return validate();" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
-<h2 class="w3-center">Login</h2>
- 
-<div class="w3-row w3-section">
-    <div class="w3-rest">
-      <input class="w3-input w3-border" id="accountname" name="accountname" type="text" placeholder="Account Name">
-    </div>
-</div>
+<h3>Welcome</h3>
+<h4>Log in to your BookWorm account</h4>
 
-<div class="w3-row w3-section">
-    <div class="w3-rest">
-      <input class="w3-input w3-border" id="password" name="password" type="password" placeholder="Password">
-    </div>
-</div>
-
-
-
-<p class="w3-center">
-<button class="w3-button w3-section w3-blue w3-ripple" type="submit"> Login </button>
-</p>
+<form action="${pageContext.request.contextPath}/LoginServlet" method="post">
+<div class="container">
+    <label for="name"><b>Your username</b></label><br>
+    <input type="text" placeholder="Enter username " name="name" required><br>
+    <label for="pass"><b>Your password</b></label><br>
+    <input type="password" placeholder="Enter Password" name="pass" required>
+    <label><br>
+    <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label><br>
+    <button type="submit">Login</button>
+  </div>
 </form>
 
-
-
+ <div id=container-1><h4>Are you new here....</h4><button type="submit">Create an Account Here</button>
+  </div>
+  
+<br>
 <h2>Beautiful Book Quotes...!!</h2>
 <div class="w3-container w3-sand w3-leftbar">
 <p><i>Make it as simple as possible, but not simpler.</i><br>
 Albert Einstein</p>
 </div>
+
 </div>
 
 <footer class="w3-container w3-theme" style="padding:22px">
-  <p>Copyright © 2018 Brewing Java Corporation</p>
+  <p>Footer information goes here</p>
 </footer>
      
 </div>
 
 <script>
-//	***Our code starts
-// Validating the fields to be not empty
-function validate() {
-	var accname = document.getElementById("accountname").value;
-	var pass = document.getElementById("password").value;
-	if (accname === "" || pass === "") {
-		alert("None of the fields should be left blank!");
-		return false;
-	}
-	else {
-		document.form.submit();
-        return true;
-	}
-}
-//	***Our code ends
-
-
 // Open and close the sidebar on medium and small screens
 function w3_open() {
     document.getElementById("mySidebar").style.display = "block";

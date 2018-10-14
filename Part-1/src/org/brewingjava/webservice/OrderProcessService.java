@@ -1,7 +1,5 @@
 package org.brewingjava.webservice;
 
-import java.util.ArrayList;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
@@ -28,5 +26,16 @@ public class OrderProcessService {
 		
 		OrderService os = new OrderServiceImpl();
 		return os.createAccount(accountInfo);
+	}
+	
+	@GET
+	@Path("/login")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.APPLICATION_JSON)
+	public AccountInfo getAccount(@QueryParam("username") String username, @QueryParam("password") String password) {
+		
+		//System.out.println("in OP WS and the val of password is " +password);
+		OrderService os = new OrderServiceImpl();
+		return (os.getAccount(username, password) != null) ? os.getAccount(username, password) : null;
 	}
 }

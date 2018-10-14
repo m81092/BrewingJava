@@ -30,14 +30,12 @@ public class Register extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		byte[] epass = null, salt = null;
+		String epass = null;
 		String password = request.getParameter("password");
 		if (!password.equals("")) {
-			PasswordEncryptionService pes = new PasswordEncryptionService();
 			// Generating the salt and the encrypted password if password is not empty
 			try {
-				salt = pes.generateSalt();
-				epass = pes.getEncryptedPassword(password, salt);
+				epass = PasswordEncryptionService.generateSecurePassword(password, PasswordEncryptionService.salt);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -47,13 +45,12 @@ public class Register extends HttpServlet {
 			accountInfo.setPassword(epass);
 			accountInfo.setBilling(request.getParameter("billing"));
 			accountInfo.setShipping(request.getParameter("shipping"));
-			accountInfo.setSalt(salt);
 
 			String baseURI = "http://localhost:8080/Part-1";
 			Client client = ClientBuilder.newClient();
 			WebTarget target = client.target(baseURI).path("/REST/WebService/createUser");
 			String res = target.request(MediaType.TEXT_PLAIN).put(Entity.json(accountInfo), String.class);
-
+			System.out.println(res);
 			if (res.equals("true")) {
 
 				request.setAttribute("accountname", request.getParameter("accountname"));
