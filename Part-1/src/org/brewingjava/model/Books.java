@@ -9,7 +9,7 @@ public class Books {
 	private String category;
 	
 	public Books() {
-		
+		bookid=0;
 	}
 
 	public Books(int bookid, String title, float price, String author, String category) {

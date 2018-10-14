@@ -34,7 +34,6 @@ public class ShowBooks extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String category = request.getParameter("category");
 		System.out.println(category);
 		String baseURI = "http://localhost:8080/Part-1";

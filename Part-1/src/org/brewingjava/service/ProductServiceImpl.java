@@ -17,11 +17,12 @@ public class ProductServiceImpl implements ProductService {
 		return bookList;
 	}
 	
-	public Books getBookInfo(String id) {
-		Books book;
+	public ArrayList<Books> getBookInfo(String id) {
+		ArrayList<Books> bookList = new ArrayList<Books>();
 		BookDAO dao = new BookDAOImpl();
-		book = dao.getBookInfo(id);
-		return book;
+		Books book = dao.getBookInfo(id);
+		bookList.add(book);
+		return bookList;
 	}
 
 }

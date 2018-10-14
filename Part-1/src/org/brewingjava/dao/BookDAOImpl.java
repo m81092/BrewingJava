@@ -46,7 +46,7 @@ public class BookDAOImpl implements BookDAO {
 
 	@Override
 	public Books getBookInfo(String id) {
-		Books book=null;
+		Books book=new Books();
 		try {
 			String QueryId = "BOOK_INFO";
 			Connection connection = dbConnection.getDataSource().getConnection();
