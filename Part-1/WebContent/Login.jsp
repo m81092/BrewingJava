@@ -1,11 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import = "java.util.*" %>
-<%@ page import = "org.brewingjava.model.Books" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
+<head><link href="css/styleLogin.css" rel="stylesheet" type="text/css"/></head>
 <title>BookWorm</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -15,7 +13,20 @@
 body {font-family: "Roboto", sans-serif}
 .w3-bar-block .w3-bar-item{padding:16px;font-weight:bold}
 </style>
+
 <body>
+
+<!-- code referenced from https://stackoverflow.com/questions/24176684/how-to-show-alert-in-a-jsp-from-a-servlet-and-then-redirect-to-another-jsp -->
+	<c:if test="${not empty error2}">
+		<script>
+			window.addEventListener("load", function() {
+				alert("Invalid Username or Password!");
+			});
+		</script>
+	</c:if>
+<!-- code end -->
+
+
 <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
   <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img src="https://www.w3schools.com/images/w3schools.png" style="width:80%;"></a>
   <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
@@ -59,57 +70,39 @@ body {font-family: "Roboto", sans-serif}
 </header>
 
 <div class="w3-container" style="padding:32px">
-<%
-	ArrayList<Books> CartList = session.getAttribute("CartList")!=null? (ArrayList<Books>)session.getAttribute("CartList") :new ArrayList<Books>();
-	if(request.getParameter("id")!=null){
-		int id = Integer.parseInt(request.getParameter("id"));
-		ArrayList<Books> temp = new ArrayList<Books>();
-		for(Books book: CartList){
-			if(book.getBookid()!=id)
-				temp.add(book);
-		}
-		session.setAttribute("CartList", temp);
-		CartList = session.getAttribute("CartList")!=null? (ArrayList<Books>)session.getAttribute("CartList") :new ArrayList<Books>();
-	}
-	
-%>
-	<h3>Shopping Cart</h3>
-		<%
-			if(!CartList.isEmpty()){
-		%>
-			<p>You currently have following books in your cart:</p>
-			<br>
-			<form action="Login.jsp">
-				<table class="booktable" border="3" >
-							<tr><th>Title</th><th>Price($)</th><th>Action</th></tr>
-								<% float total=0;
-								for(Books book: CartList){ 
-									total+=book.getPrice();
-								%>
-								<tr>
-										<td><%=book.getTitle() %></td><td><%=book.getPrice() %></td><td><a href="ShoppingCart.jsp?id=<%=book.getBookid()%>">Remove</a></td>	
-									</tr>
-									
-							<%} %>	
-							<tr><th>Total</th><th><%=total%></th></tr>
-				</table>
-				<button type="submit" value="<%=total%>" >Proceed TO Checkout</button>
-			</form>
-		<%
-			}
-			else{
-		%>
-				<h4>Your Cart is Empty!!</h4>
-		<%} %>
-	<a href="Welcome.jsp"><i><----Continue Shopping</i></a>
-	<div class="w3-container w3-sand w3-leftbar">
-	<p><i>Make it as simple as possible, but not simpler.</i><br>
-	Albert Einstein</p>
-	</div>
+
+<h3>Welcome</h3>
+<h4>Log in to your BookWorm account</h4>
+
+<form action="${pageContext.request.contextPath}/LoginServlet" method="post">
+<div class="container">
+    <label for="name"><b>Your username</b></label><br>
+    <input type="text" placeholder="Enter username " name="name" required><br>
+    <label for="pass"><b>Your password</b></label><br>
+    <input type="password" placeholder="Enter Password" name="pass" required>
+    <label><br>
+    <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label><br>
+    <button type="submit">Login</button>
+  </div>
+</form>
+<form action="Register.jsp">
+	<input type="submit" name="Submit">
+</form>
+ <div id=container-1><h4>Are you new here....</h4><button type="submit">Create an Account Here</button>
+  </div>
+  
+<br>
+<h2>Beautiful Book Quotes...!!</h2>
+<div class="w3-container w3-sand w3-leftbar">
+<p><i>Make it as simple as possible, but not simpler.</i><br>
+Albert Einstein</p>
+</div>
+
 </div>
 
 <footer class="w3-container w3-theme" style="padding:22px">
-  <p>Copyright © 2018 Brewing Java Corporation</p>
+  <p>Footer information goes here</p>
 </footer>
      
 </div>
@@ -152,4 +145,4 @@ function myAccordion(id) {
 </script>
      
 </body>
-</html>
+</html> 
