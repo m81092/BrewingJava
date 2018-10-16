@@ -86,14 +86,12 @@ body {font-family: "Roboto", sans-serif}
     <button type="submit">Login</button>
   </div>
 </form>
-<form action="Register.jsp">
-	<input type="submit" name="Submit">
-</form>
- <div id=container-1><h4>Are you new here....</h4><button type="submit">Create an Account Here</button>
+
+ <div id=container-1><h4>Are you new here....</h4><form style="border:0px;" action="Register.jsp"><button type="submit">Create an Account Here</button></form>
   </div>
   
 <br>
-<h2>Beautiful Book Quotes...!!</h2>
+<h2>Beautiful Book Quotes...!!</h2> 
 <div class="w3-container w3-sand w3-leftbar">
 <p><i>Make it as simple as possible, but not simpler.</i><br>
 Albert Einstein</p>
