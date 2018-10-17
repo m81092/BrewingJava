@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import = "java.util.*" %>
+<%@ page import = "org.brewingjava.model.Books" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <title>BookWorm</title>
@@ -13,7 +16,6 @@ body {font-family: "Roboto", sans-serif}
 .w3-bar-block .w3-bar-item{padding:16px;font-weight:bold}
 </style>
 <body>
-
 <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
   <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img src="https://www.w3schools.com/images/w3schools.png" style="width:80%;"></a>
   <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
@@ -57,22 +59,53 @@ body {font-family: "Roboto", sans-serif}
 </header>
 
 <div class="w3-container" style="padding:32px">
-
-<h3>What is BookWorm?</h3>
-<ul class="w3-leftbar w3-theme-border" style="list-style:none">
- <li>Smaller and faster than other CSS frameworks.</li>
- <li>Easier to learn, and easier to use than other CSS frameworks.</li>
- <li>Uses standard CSS only (No jQuery or JavaScript library).</li>
- <li>Speeds up mobile HTML apps.</li>
- <li>Provides CSS equality for all devices. PC, laptop, tablet, and mobile:</li>
-</ul>
-<br>
-<h2>Beautiful Book Quotes...!!</h2>
-<div class="w3-container w3-sand w3-leftbar">
-<p><i>Make it as simple as possible, but not simpler.</i><br>
-Albert Einstein</p>
-</div>
-
+<%
+	ArrayList<Books> CartList = session.getAttribute("CartList")!=null? (ArrayList<Books>)session.getAttribute("CartList") :new ArrayList<Books>();
+	if(request.getParameter("id")!=null){
+		int id = Integer.parseInt(request.getParameter("id"));
+		ArrayList<Books> temp = new ArrayList<Books>();
+		for(Books book: CartList){
+			if(book.getBookid()!=id)
+				temp.add(book);
+		}
+		session.setAttribute("CartList", temp);
+		CartList = session.getAttribute("CartList")!=null? (ArrayList<Books>)session.getAttribute("CartList") :new ArrayList<Books>();
+	}
+	
+%>
+	<h3>Shopping Cart</h3>
+		<%
+			if(!CartList.isEmpty()){
+		%>
+			<p>You currently have following books in your cart:</p>
+			<br>
+			<form action="Login.jsp">
+				<table class="booktable" border="3" >
+							<tr><th>Title</th><th>Price($)</th><th>Action</th></tr>
+								<% float total=0;
+								for(Books book: CartList){ 
+									total+=book.getPrice();
+								%>
+								<tr>
+										<td><%=book.getTitle() %></td><td><%=book.getPrice() %></td><td><a href="ShoppingCart.jsp?id=<%=book.getBookid()%>">Remove</a></td>	
+									</tr>
+									
+							<%} %>	
+							<tr><th>Total</th><th><%=total%></th></tr>
+				</table>
+				<button type="submit" value="<%=total%>" >Proceed TO Checkout</button>
+			</form>
+		<%
+			}
+			else{
+		%>
+				<h4>Your Cart is Empty!!</h4>
+		<%} %>
+	<a href="Welcome.jsp"><i><----Continue Shopping</i></a>
+	<div class="w3-container w3-sand w3-leftbar">
+	<p><i>Make it as simple as possible, but not simpler.</i><br>
+	Albert Einstein</p>
+	</div>
 </div>
 
 <footer class="w3-container w3-theme" style="padding:22px">
@@ -119,4 +152,4 @@ function myAccordion(id) {
 </script>
      
 </body>
-</html> 
+</html>

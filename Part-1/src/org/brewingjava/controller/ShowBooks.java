@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -36,15 +37,23 @@ public class ShowBooks extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String category = request.getParameter("category");
+		HttpSession mysession = request.getSession();
+		mysession.setAttribute("category", category);
 		System.out.println(category);
 		String baseURI = "http://localhost:8080/Part-1";
 		Client client = ClientBuilder.newClient();
-		WebTarget target = client.target(baseURI).path("/REST/WebService/Categories");
-		String res2 = target.request(MediaType.APPLICATION_JSON).get().readEntity(String.class);
-		System.out.println(res2);
+		WebTarget target = null;
+		if (category.equals("All")) {
+		 target = client.target(baseURI).path("/REST/WebService/AllBooks");
+		}
+		else {
+		 target = client.target(baseURI).path("/REST/WebService/Categories").queryParam("category", category);
+		}
+		String result = target.request(MediaType.APPLICATION_JSON).get().readEntity(String.class);
+		System.out.println(result);
 		List<Books> allBooksList = new ArrayList<Books>();
 		try {
-			JSONArray jsonArr = new JSONArray(res2);
+			JSONArray jsonArr = new JSONArray(result);
 			for (int i = 0; i < jsonArr.length(); i++) {
 				JSONObject jsonObj = jsonArr.getJSONObject(i);
 				Books bookVo = new Books();

@@ -16,6 +16,17 @@ body {font-family: "Roboto", sans-serif}
 
 <body>
 
+<!-- code referenced from https://stackoverflow.com/questions/24176684/how-to-show-alert-in-a-jsp-from-a-servlet-and-then-redirect-to-another-jsp -->
+	<c:if test="${not empty error2}">
+		<script>
+			window.addEventListener("load", function() {
+				alert("Invalid Username or Password!");
+			});
+		</script>
+	</c:if>
+<!-- code end -->
+
+
 <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
   <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img src="https://www.w3schools.com/images/w3schools.png" style="width:80%;"></a>
   <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
@@ -63,7 +74,7 @@ body {font-family: "Roboto", sans-serif}
 <h3>Welcome</h3>
 <h4>Log in to your BookWorm account</h4>
 
-<form action="LoginServlet" method="post">
+<form action="${pageContext.request.contextPath}/LoginServlet" method="post">
 <div class="container">
     <label for="name"><b>Your username</b></label><br>
     <input type="text" placeholder="Enter username " name="name" required><br>
@@ -73,15 +84,14 @@ body {font-family: "Roboto", sans-serif}
     <input type="checkbox" checked="checked" name="remember"> Remember me
     </label><br>
     <button type="submit">Login</button>
-    <span class="pass"><a href="#">Forgot password?</a></span>
   </div>
 </form>
 
- <div id=container-1><h4>Are you new here....</h4><button type="submit">Create an Account Here</button>
+ <div id=container-1><h4>Are you new here....</h4><form style="border:0px;" action="Register.jsp"><button type="submit">Create an Account Here</button></form>
   </div>
   
 <br>
-<h2>Beautiful Book Quotes...!!</h2>
+<h2>Beautiful Book Quotes...!!</h2> 
 <div class="w3-container w3-sand w3-leftbar">
 <p><i>Make it as simple as possible, but not simpler.</i><br>
 Albert Einstein</p>
