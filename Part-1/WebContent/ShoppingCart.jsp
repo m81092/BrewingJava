@@ -77,7 +77,7 @@ body {font-family: "Roboto", sans-serif}
 		<%
 			if(!CartList.isEmpty()){
 		%>
-			<p>You currently have following books in your cart:</p>
+			<p>You currently have <%out.println(CartList.size());%> books in your cart:</p>
 			<br>
 			<form action="Login.jsp">
 				<table class="booktable" border="3" >
