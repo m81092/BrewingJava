@@ -1,4 +1,8 @@
 <!-- Reference:w3Schools.com -->
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@ page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,23 +21,29 @@
       
         <div class="row">
           <div class="col-50">
-            <h3>Please checkout here</h3>
-            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="Enter Name here">
+            <%
+				ArrayList userDetails = (ArrayList) request.getAttribute("UserDetails");
+			%>
+			<%
+				if (userDetails.size() != 0) {
+			%>
+           <c:forEach var="items" items="${UserDetails}">
+            <label for="fname"><i class="fa fa-user"></i> Username</label>
+            <input type="text" id="fname" name="firstname" value='${items.username}'>
             
             <label for="adr"><i class="fa fa-address-card-o"></i> Billing Address</label>
-            <input type="text" id="adr" name="address" placeholder="Enter Billing Address here">
+            <input type="text" id="adr" name="address"  value='${items.billing}'>
+            
             <label for="city"><i class="fa fa-institution"></i> Shipping Address</label>
-            <input type="text" id="city" name="city" placeholder="Enter Shipping Address">
-			<label>
-          	<input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
-        	</label>
+            <input type="text" id="city" name="city"  value='${items.shipping}'>
+            
             <div class="row">
               <div class="col-50"> </div>
               <div class="col-50"></div>
            </div>
+           </c:forEach>
           </div>
-
+		  <% } %>
           <div class="col-50">
             <h3>Payment</h3>
             <label for="fname">Accepted Cards</label>
@@ -60,10 +70,7 @@
               </div>
             </div>
           </div>
-          
         </div>
-        
-        
       </form>
     </div>
   </div>

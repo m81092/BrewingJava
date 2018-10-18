@@ -35,9 +35,9 @@ public class PropertyReaderUtil {
 		// check file exists
 		//make changes in your system with your own path
 		if (propertiesFile == "db.properties") {
-			path = "C:\\Users\\VRUSHALI\\git\\BrewingJava\\Part-1\\WebContent\\resources\\db.properties";
+			path = "C:\\Users\\vikra\\git\\BrewingJava\\Part-1\\WebContent\\resources\\db.properties";
 		} else if (propertiesFile == "queries.properties") {
-			path = "C:\\Users\\VRUSHALI\\git\\BrewingJava\\Part-1\\WebContent\\resources\\queries.properties";
+			path = "C:\\Users\\vikra\\git\\BrewingJava\\Part-1\\WebContent\\resources\\queries.properties";
 		}
 
 		System.out.println("file is here" + new File(".").getAbsoluteFile());
