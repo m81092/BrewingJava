@@ -63,12 +63,17 @@ body {font-family: "Roboto", sans-serif}
 	ArrayList<Books> CartList = session.getAttribute("CartList")!=null? (ArrayList<Books>)session.getAttribute("CartList") :new ArrayList<Books>();
 	if(request.getParameter("id")!=null){
 		int id = Integer.parseInt(request.getParameter("id"));
-		ArrayList<Books> temp = new ArrayList<Books>();
-		for(Books book: CartList){
-			if(book.getBookid()!=id)
-				temp.add(book);
+		int bookToRemoveIndex = -1;
+		for(int i = 0 ; i < CartList.size(); i++){
+			if(CartList.get(i).getBookid()==id) {
+				bookToRemoveIndex = i;
+				break;
+			}
 		}
-		session.setAttribute("CartList", temp);
+		if (bookToRemoveIndex != -1)
+			CartList.remove(bookToRemoveIndex);
+		
+		session.setAttribute("CartList", CartList);
 		CartList = session.getAttribute("CartList")!=null? (ArrayList<Books>)session.getAttribute("CartList") :new ArrayList<Books>();
 	}
 	
@@ -79,7 +84,7 @@ body {font-family: "Roboto", sans-serif}
 		%>
 			<p>You currently have <%out.println(CartList.size());%> books in your cart:</p>
 			<br>
-			<form action="Login.jsp">
+			<form action="${pageContext.request.contextPath}/Checkout">
 				<table class="booktable" border="3" >
 							<tr><th>Title</th><th>Price($)</th><th>Action</th></tr>
 								<% float total=0;
