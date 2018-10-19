@@ -8,13 +8,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
+import org.brewingjava.model.AccountInfo;
 import org.brewingjava.util.PasswordEncryptionService;
+import org.json.JSONObject;
 
 /**
  * Servlet implementation class Login
@@ -31,6 +34,7 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String epass = null;
+		HttpSession mySession = request.getSession();
 		String name = request.getParameter("name");
 		String pass = request.getParameter("pass");
 		try {
@@ -47,9 +51,15 @@ public class LoginServlet extends HttpServlet {
 		WebTarget target = client.target(baseURI).path("/REST/WebService/login").queryParam("username", name)
 				.queryParam("password", epass);
 		String res2 = target.request(MediaType.APPLICATION_JSON).get().readEntity(String.class);
+		JSONObject jsonString = new JSONObject(res2);
 		System.out.println("in the login servlet and val of res2 is " + res2);
 		if (!res2.equals("")) {
-			request.setAttribute("userDetails", res2);
+			AccountInfo accountVo = new  AccountInfo();
+			accountVo.setUsername(jsonString.getString("username"));
+			accountVo.setBilling(jsonString.getString("billing"));
+			accountVo.setShipping(jsonString.getString("shipping"));
+			accountVo.setPassword("");
+			mySession.setAttribute("accountInfo", accountVo);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("Checkout.jsp");
 			dispatcher.include(request, response);
 		} else {
