@@ -70,6 +70,18 @@ body {font-family: "Roboto", sans-serif}
 <form action="${pageContext.request.contextPath}/Register" onsubmit="return validate();" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
 <h2 class="w3-center">Registration</h2>
  
+ <div class="w3-row w3-section">
+    <div class="w3-rest">
+      <input class="w3-input w3-border" id="fname" name="fname" type="text" placeholder="First Name">
+    </div>
+</div>
+
+<div class="w3-row w3-section">
+    <div class="w3-rest">
+      <input class="w3-input w3-border" id="lname" name="lname" type="text" placeholder="Last Name">
+    </div>
+</div>
+
 <div class="w3-row w3-section">
     <div class="w3-rest">
       <input class="w3-input w3-border" id="accountname" name="accountname" type="text" placeholder="Account Name">

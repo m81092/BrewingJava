@@ -3,7 +3,6 @@ package org.brewingjava.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +15,8 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 import org.brewingjava.model.AccountInfo;
+import org.brewingjava.model.UserDetails;
+import org.brewingjava.model.UserInfo;
 import org.brewingjava.util.PasswordEncryptionService;
 import org.json.JSONObject;
 
@@ -50,17 +51,29 @@ public class LoginServlet extends HttpServlet {
 		String result = target.request(MediaType.APPLICATION_JSON).get().readEntity(String.class);
 		System.out.println("in the login servlet and val of res2 is " + result);
 		if (!result.equals("")) {
-			List<AccountInfo> accountinfoList = new ArrayList<AccountInfo>();
-			AccountInfo accountinfo = new AccountInfo();
+			List<UserDetails> userDetailList = new ArrayList<UserDetails>();
+			UserDetails userDetails;
+			AccountInfo accountInfo = new AccountInfo();
+			UserInfo userInfo = new UserInfo();
 			try {
 				// Use JSON Object
 				JSONObject jsonObj = new JSONObject(result);
-				// Set values in account info object 
-				accountinfo.setUsername(jsonObj.getString("username"));
-				accountinfo.setBilling(jsonObj.getString("billing"));
-				accountinfo.setShipping(jsonObj.getString("shipping"));
-				accountinfoList.add(accountinfo);
-				request.setAttribute("UserDetails", accountinfoList);
+				// Set values in user details object 
+				String userName = jsonObj.getJSONObject("accountInfo").get("username").toString();
+				String fname = jsonObj.getJSONObject("userInfo").get("fname").toString();
+				String lname = jsonObj.getJSONObject("userInfo").get("lname").toString();
+				String billing = jsonObj.getJSONObject("userInfo").get("billing").toString();
+				String shipping = jsonObj.getJSONObject("userInfo").get("shipping").toString();
+				
+				accountInfo.setUsername(userName);
+				userInfo.setFname(fname);
+				userInfo.setLname(lname);
+				userInfo.setBilling(billing);
+				userInfo.setShipping(shipping);
+				
+				userDetails = new UserDetails(accountInfo, userInfo);
+				userDetailList.add(userDetails);
+				request.setAttribute("UserDetails", userDetailList);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("Checkout.jsp");
 				dispatcher.include(request, response);
 			}catch (Exception e) {

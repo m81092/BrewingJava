@@ -28,14 +28,20 @@
 				if (userDetails.size() != 0) {
 			%>
            <c:forEach var="items" items="${UserDetails}">
-            <label for="fname"><i class="fa fa-user"></i> Username</label>
-            <input type="text" id="fname" name="firstname" value='${items.username}'>
+            <label for="fname"><i class="fa fa-user"></i> First Name</label>
+            <input type="text" id="fname" name="firstname" value='${items.userInfo.fname}'>
             
-            <label for="adr"><i class="fa fa-address-card-o"></i> Billing Address</label>
-            <input type="text" id="adr" name="address"  value='${items.billing}'>
+            <label for="lname"><i class="fa fa-user"></i> Last Name</label>
+            <input type="text" id="lname" name="lastname" value='${items.userInfo.lname}'>
             
-            <label for="city"><i class="fa fa-institution"></i> Shipping Address</label>
-            <input type="text" id="city" name="city"  value='${items.shipping}'>
+            <label for="uname"><i class="fa fa-user"></i> Username</label>
+            <input type="text" id="uname" name="username" value='${items.accountInfo.username}'>
+            
+            <label for="billingaddress"><i class="fa fa-address-card-o"></i> Billing Address</label>
+            <input type="text" id="billingaddress" name="billingaddress"  value='${items.userInfo.billing}'>
+            
+            <label for="shippingaddress"><i class="fa fa-institution"></i> Shipping Address</label>
+            <input type="text" id="shippingaddress" name="shippingaddress"  value='${items.userInfo.shipping}'>
             
             <div class="row">
               <div class="col-50"> </div>

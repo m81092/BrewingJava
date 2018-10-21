@@ -14,6 +14,8 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 import org.brewingjava.model.AccountInfo;
+import org.brewingjava.model.UserDetails;
+import org.brewingjava.model.UserInfo;
 import org.brewingjava.util.PasswordEncryptionService;
 
 /**
@@ -40,16 +42,26 @@ public class Register extends HttpServlet {
 				e.printStackTrace();
 			}
 
+			// Set accountInfo values
 			AccountInfo accountInfo = new AccountInfo();
 			accountInfo.setUsername(request.getParameter("accountname"));
 			accountInfo.setPassword(epass);
-			accountInfo.setBilling(request.getParameter("billing"));
-			accountInfo.setShipping(request.getParameter("shipping"));
+			
+			// Set userInfo values
+			UserInfo userInfo = new UserInfo();
+			userInfo.setFname(request.getParameter("fname"));
+			userInfo.setLname(request.getParameter("lname"));
+			userInfo.setUserName(request.getParameter("accountname"));
+			userInfo.setBilling(request.getParameter("billing"));
+			userInfo.setShipping(request.getParameter("shipping"));
 
+			// Create UserDetails class object
+			UserDetails userDetails = new UserDetails(accountInfo, userInfo);
+			
 			String baseURI = "http://localhost:8080/Part-1";
 			Client client = ClientBuilder.newClient();
 			WebTarget target = client.target(baseURI).path("/REST/WebService/createUser");
-			String res = target.request(MediaType.TEXT_PLAIN).put(Entity.json(accountInfo), String.class);
+			String res = target.request(MediaType.TEXT_PLAIN).put(Entity.json(userDetails), String.class);
 			System.out.println(res);
 			if (res.equals("true")) {
 
