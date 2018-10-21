@@ -1,28 +1,27 @@
 package org.brewingjava.service;
 
-import java.util.Arrays;
 
 import org.brewingjava.dao.AccountInfoDAO;
 import org.brewingjava.dao.AccountInfoDAOImpl;
-import org.brewingjava.model.AccountInfo;
+import org.brewingjava.model.UserDetails;
 
 public class OrderServiceImpl implements OrderService {
 
 	@Override
-	public boolean createAccount(AccountInfo accountInfo) {
+	public boolean createAccount(UserDetails userDetails) {
 
 		AccountInfoDAO dao = new AccountInfoDAOImpl();
-		return dao.createAccount(accountInfo);
+		return dao.createAccount(userDetails);
 	}
 
 	@Override
-	public AccountInfo getAccount(String username, String password) {
+	public UserDetails getAccount(String username, String password) {
 
 		AccountInfoDAO dao = new AccountInfoDAOImpl();
-		AccountInfo accountInfo = new AccountInfo();
-		accountInfo = dao.getAccount(username, password);
-		if (username.equals(accountInfo.getUsername()) && password.equals(accountInfo.getPassword())) {
-			return accountInfo;
+		UserDetails userDetails = new UserDetails();
+		userDetails = dao.getAccount(username, password);
+		if (username.equals(userDetails.accountInfo.getUsername()) && password.equals(userDetails.accountInfo.getPassword())) {
+			return userDetails;
 		} else {
 			return null;
 		}

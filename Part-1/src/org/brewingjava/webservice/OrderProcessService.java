@@ -8,12 +8,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import org.brewingjava.model.AccountInfo;
-import org.brewingjava.model.Books;
+import org.brewingjava.model.UserDetails;
 import org.brewingjava.service.OrderService;
 import org.brewingjava.service.OrderServiceImpl;
-import org.brewingjava.service.ProductService;
-import org.brewingjava.service.ProductServiceImpl;
 
 @Path("/WebService")
 public class OrderProcessService {
@@ -22,17 +19,17 @@ public class OrderProcessService {
 	@Path("/createUser")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
-	public boolean createAccount(AccountInfo accountInfo) {
+	public boolean createAccount(UserDetails userDetails) {
 		
 		OrderService os = new OrderServiceImpl();
-		return os.createAccount(accountInfo);
+		return os.createAccount(userDetails);
 	}
 	
 	@GET
 	@Path("/login")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public AccountInfo getAccount(@QueryParam("username") String username, @QueryParam("password") String password) {
+	public UserDetails getAccount(@QueryParam("username") String username, @QueryParam("password") String password) {
 		
 		//System.out.println("in OP WS and the val of password is " +password);
 		OrderService os = new OrderServiceImpl();
