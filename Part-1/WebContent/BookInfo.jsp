@@ -113,7 +113,11 @@ margin: 0px auto;
 			<br>
 			<%
 					ArrayList bookDetails = (ArrayList) request.getAttribute("Bookdetails");
+					String error = (String)request.getAttribute("error");
 				%>
+			<%
+			if (error == null) { %>
+
 				<%
 					if (bookDetails.size() != 0) {
 				%>
@@ -149,7 +153,14 @@ margin: 0px auto;
 				} else {
 			%>
 			<h3 style="color:red;">Error Processing your request. Try again later</h3>
-			<% } %>
+			<% 
+			
+				} }else { 
+			%>
+				<h3 style="color:red;">Error Processing your request. Try again later</h3>
+			<% 
+			} %>
+			
 			<b><a href = "javascript:close_window();"> Close Page</a></b>
 			<h2>Beautiful Book Quotes...!!</h2>
 			<div class="w3-container w3-sand w3-leftbar">
