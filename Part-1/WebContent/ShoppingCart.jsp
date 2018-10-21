@@ -92,15 +92,19 @@ body {font-family: "Roboto", sans-serif}
 			<form action="${pageContext.request.contextPath}/Checkout">
 				<table class="booktable" border="3" >
 							<tr><th>Title</th><th>Price($)</th><th>Action</th></tr>
-								<% float total=0;
+								<% float total=0, tax=0;
 								for(Books book: CartList){ 
 									total+=book.getPrice();
 								%>
 								<tr>
 										<td><%=book.getTitle() %></td><td><%=book.getPrice() %></td><td><a href="ShoppingCart.jsp?id=<%=book.getBookid()%>">Remove</a></td>	
 									</tr>
-									
-							<%} %>	
+								<% float bookTax = book.getPrice()*(float)(0.13); 
+									tax+=bookTax;
+								}
+								total+=tax;
+								%>		
+							<tr><th>Tax</th><th><%=tax%></th></tr>	
 							<tr><th>Total</th><th><%=total%></th></tr>
 				</table>
 				<button type="submit" value="<%=total%>" >Proceed TO Checkout</button>
