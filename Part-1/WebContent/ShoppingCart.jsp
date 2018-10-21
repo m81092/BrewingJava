@@ -62,19 +62,24 @@ body {font-family: "Roboto", sans-serif}
 <%
 	ArrayList<Books> CartList = session.getAttribute("CartList")!=null? (ArrayList<Books>)session.getAttribute("CartList") :new ArrayList<Books>();
 	if(request.getParameter("id")!=null){
-		int id = Integer.parseInt(request.getParameter("id"));
-		int bookToRemoveIndex = -1;
-		for(int i = 0 ; i < CartList.size(); i++){
-			if(CartList.get(i).getBookid()==id) {
-				bookToRemoveIndex = i;
-				break;
+		try{
+			int id = Integer.parseInt(request.getParameter("id"));
+			System.out.println(id);
+			int bookToRemoveIndex = -1;
+			for(int i = 0 ; i < CartList.size(); i++){
+				if(CartList.get(i).getBookid()==id) {
+					bookToRemoveIndex = i;
+					break;
+				}
 			}
+			if (bookToRemoveIndex != -1)
+				CartList.remove(bookToRemoveIndex);
+			
+			session.setAttribute("CartList", CartList);
+			CartList = session.getAttribute("CartList")!=null? (ArrayList<Books>)session.getAttribute("CartList") :new ArrayList<Books>();
+		}catch(NumberFormatException e){
+			System.out.println(e);
 		}
-		if (bookToRemoveIndex != -1)
-			CartList.remove(bookToRemoveIndex);
-		
-		session.setAttribute("CartList", CartList);
-		CartList = session.getAttribute("CartList")!=null? (ArrayList<Books>)session.getAttribute("CartList") :new ArrayList<Books>();
 	}
 	
 %>
