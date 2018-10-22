@@ -17,6 +17,16 @@ body {font-family: "Roboto", sans-serif}
 </style>
 <body>
 
+<!-- code referenced from https://stackoverflow.com/questions/24176684/how-to-show-alert-in-a-jsp-from-a-servlet-and-then-redirect-to-another-jsp -->
+	<c:if test="${not empty error}">
+		<script>
+			window.addEventListener("load", function() {
+				alert("This account name already exists. Try again!");
+			});
+		</script>
+	</c:if>
+<!-- code end -->
+
 <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" ></nav>
 <a class="w3-bar-item w3-button w3-hide-large w3-large" ></a>
 
@@ -34,80 +44,79 @@ body {font-family: "Roboto", sans-serif}
   <h1 class="w3-xxxlarge">BookWorm</h1>
 </header>
 
-<div class="w3-container" style="padding:55px">
+<div class="w3-container" style="padding:70px">
 
 <form action="" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
-<h2 class="w3-center">Check Out here</h2>
- 
- 			<%
-				ArrayList userDetails = (ArrayList) request.getAttribute("UserDetails");
-			%>
-			<%
-				if (userDetails.size() != 0) {
-			%>
-           <c:forEach var="items" items="${UserDetails}">
+<h2 class="w3-center">Payment</h2>
  
  <div class="w3-row w3-section w3-text-black">
     <div class="w3-rest">
-    <label for="fname"><i class="fa fa-user"></i> First Name</label>
-      <input class="w3-input w3-border" id="fname" name="firstname" type="text" value='${items.userInfo.fname}' readonly>
+    <label for="nameOnCard">Name On Card</label>
+      <input class="w3-input w3-border" id="nameOnCard" name="nameOnCard" type="text" placeholder="Enter Name on Credit Card" required>
     </div>
 </div>
 
 <div class="w3-row w3-section w3-text-black">
     <div class="w3-rest">
-    <label for="lname"><i class="fa fa-user"></i> Last Name</label>
-      <input class="w3-input w3-border" id="lname" name="lastname" type="text" value='${items.userInfo.lname}' readonly>
+    <label for="expMonth"> Select Card Type</label><br>
+                <select>
+                    <option value="creditCard">Credit Card </option>
+                    <option value="debitCard">Debit Card </option>
+                </select>
+	</div>
+</div>
+<div class="w3-row w3-section w3-text-black">
+    <div class="w3-rest">
+    <label for="cardNumber">Card Number</label>
+      <input class="w3-input w3-border" id="cardNumber" name="cardNumber" type="text" value=""
+            onkeypress="javascript:return isNumber(event)"placeholder="Enter card Number" required >
     </div>
 </div>
 
 <div class="w3-row w3-section w3-text-black">
     <div class="w3-rest">
-    <label for="username"><i class="fa fa-user"></i> Username</label>
-      <input class="w3-input w3-border" id="username" name="username" type="text" value='${items.accountInfo.username}' readonly>
-    </div>
-</div>
+    <label for="expMonth"> Expiration Date</label><br>
+                
+                <select>
+                    <option value="01">January</option>
+                    <option value="02">February </option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+                <select>
+                    <option value="16"> 2018</option>
+                    <option value="17"> 2019</option>
+                    <option value="18"> 2020</option>
+                    <option value="19"> 2021</option>
+                    <option value="20"> 2022</option>
+                    <option value="21"> 2023</option>
+                </select>
+            </div>
+</div>            
 
 <div class="w3-row w3-section w3-text-black">
     <div class="w3-rest">
-    <label for="billingaddress"><i class="fa fa-address-card-o"></i> Billing Address</label>
-      <input class="w3-input w3-border" id="billingaddress" name="billingaddress" type="text" value='${items.userInfo.billing}' readonly>
+    <label for="cvvNum"> CVV</label>
+      <input class="w3-input w3-border" id="cvvNum" name="cvvNum" value=""
+            onkeypress="javascript:return isNumber(event)" placeholder="Enter Three digit CVV Number" required>
     </div>
 </div>
-
-<div class="w3-row w3-section w3-text-black">
-    <div class="w3-rest">
-    <label for="shippingaddress"><i class="fa fa-institution"></i> Shipping Address</label>
-      <input class="w3-input w3-border" id="shippingaddress" name="shippingaddress" type="text" value='${items.userInfo.shipping}' readonly>
-    </div>
-</div>
-   </c:forEach> 
-
-    <% } %>
-
+   
 </form>
 
-<div class="w3-container" style="padding:10px">
-
-<form action="" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
-<h2 class="w3-center">Cart<i class="fa fa-shopping-cart"></i></h2>
-<p><span class="Taxes"></span></p>
-<p><span class="price"></span></p>
-      <p><a href="#"></a> <span class="price"></span></p>
-      <p><a href="#"></a> <span class="price"></span></p>
-      <p><a href="#"></a> <span class="price"></span></p>
-      <hr>
-      <div class="w3-row w3-section w3-text-black">
-      <p>Taxes <span class="Taxes" style="color:black"><b></b></span></p>
-      <p>Total <span class="price" style="color:black"><b></b></span></p>
-</div>
-</form>
- </div>
  <p class="w3-center">
-<button class="w3-button w3-section w3-blue w3-ripple" type="submit"> Continue to checkout </button>
+ <form action="Success.jsp">
+<button class="w3-button w3-section w3-blue w3-ripple" type="submit"> Confirm </button></form>
 </p>
-<!-- href is just for testing. Delete below line later  -->
-<a href="ConfirmOrder.jsp">Confirm order</a>
+
 
 <h2>Beautiful Book Quotes...!!</h2>
 <div class="w3-container w3-sand w3-leftbar">
@@ -123,6 +132,29 @@ Albert Einstein</p>
 </div>
 
 <script>
+function isNumber(evt) {
+    var iKeyCode = (evt.which) ? evt.which : evt.keyCode
+    if (iKeyCode != 46 && iKeyCode > 31 && (iKeyCode < 48 || iKeyCode > 57))
+        return false;
+
+    return true;
+}   
+
+function validate() {
+	var nameOnCard = document.getElementById("nameOnCard").value;
+	var cardNumber = document.getElementById("cardNumber").value;
+	var expMonth = document.getElementById("expMonth").value;
+	var expYear = document.getElementById("expYear").value;
+	var cvvNum = document.getElementById("cvvNum").value;
+	if (nameOnCard === "" || cardNumber === "" || expMonth ===""||expYear ===""|| cvvNum === "" ) {
+		alert("None of the fields should be left blank!");
+		return false;
+	}
+	else {
+		document.form.submit();
+        return true;
+	}
+}
 
 // Open and close the sidebar on medium and small screens
 function w3_open() {
