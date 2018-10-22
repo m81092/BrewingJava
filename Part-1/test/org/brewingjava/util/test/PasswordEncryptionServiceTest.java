@@ -4,8 +4,13 @@ import static org.junit.Assert.*;
 
 import org.brewingjava.util.PasswordEncryptionService;
 import org.junit.Test;
-
+/**
+ * Test class for Password Encryption Service
+ */
 public class PasswordEncryptionServiceTest {
+	/**
+	 * Test generateSecurePassword method
+	 */
 	@Test
 	public void generateSecurePasswordTest(){
 		String password= "test";

@@ -5,7 +5,9 @@ import static org.junit.Assert.*;
 import org.brewingjava.dao.AccountInfoDAOImpl;
 import org.brewingjava.model.UserDetails;
 import org.junit.Test;
-
+/**
+ * Test class for Account Info DAO implementation
+ */
 public class AccountInfoDAOImplTest {
 	private static final String ADDRESS = "Paris";
 	private static final String LAST_NAME = "Lincon";
@@ -14,6 +16,9 @@ public class AccountInfoDAOImplTest {
 	private static final String JOHN123 = "john123";
 	private AccountInfoDAOImpl dao;
 	
+	/**
+	 * Test createAccount method
+	 */
 	@Test
 	public void createAccountTest() {
 		dao = new AccountInfoDAOImpl();
@@ -21,15 +26,19 @@ public class AccountInfoDAOImplTest {
 				dao.createAccount(null));
 	}
 	
+	/**
+	 * Test getAccount method
+	 */
 	@Test
 	public void getAccountTest() {
 		dao = new AccountInfoDAOImpl();
 		String username = JOHN123;
 		String password = JOHN123;
+		// Get account details
 		UserDetails details = dao.getAccount(username, password);
-		
+		// Test not null
 		assertNotNull(details);
-		
+		// Test username, encrypted password, first name, last name. shipping and billing address
 		assertEquals(username, details.getAccountInfo().getUsername());
 		assertEquals(ENCRYPTED_PASSWORD, details.getAccountInfo().getPassword());
 		assertEquals(FIRST_NAME, details.getUserInfo().getFname());

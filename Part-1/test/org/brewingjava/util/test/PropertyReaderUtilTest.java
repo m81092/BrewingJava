@@ -7,9 +7,11 @@ import java.io.IOException;
 
 import org.brewingjava.util.PropertyReaderUtil;
 import org.junit.Test;
-
+/**
+ * Test class PropertyReaderUtil
+ */
 public class PropertyReaderUtilTest {
-	
+	// Query IDs used to get Database query from property file
 	private static final String ALL_BOOKS = "Select * from book;";
 	private static final String CATEGORY_BOOKS = "Select bookid, title, price, author, category from book where category='%s';";
 	private static final String FEATURED_BOOKS = "Select bookid, title, price, author, category from book where featured='%b';";
@@ -21,6 +23,9 @@ public class PropertyReaderUtilTest {
 	private static final String QUERIES_PROERTIES_FILE = "queries.properties";
 	private PropertyReaderUtil propertyReader;
 	
+	/**
+	 * Test getPropertyValue method which read property file and returns Query
+	 */
 	@Test
 	public void getPropertyValueTest() throws FileNotFoundException, IOException {
 		propertyReader = new PropertyReaderUtil();
