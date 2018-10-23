@@ -22,7 +22,14 @@ body {
 	padding: 16px;
 	font-weight: bold
 }
-
+.t1	{ 
+margin: 0px auto;
+margin-left: auto;
+	margin-right: auto;
+}
+.booktable {
+margin: 0px auto;
+}
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -100,71 +107,61 @@ body {
 			<h3>Let's see what we got for you !!</h3>
 
 			<p>Based on your recent click</p>
-			</h4>
-			<br>
-			
-			<%
-					ArrayList orderList = (ArrayList) request.getAttribute("allBook");
-				%>
-				<%
-					if (orderList.size() != 0) {
-				%>
-			<table class="booktable" border="3">
 
+			<h4>Book Details</h4>
+			
+			<br>
+			<%
+					ArrayList bookDetails = (ArrayList) request.getAttribute("Bookdetails");
+					String error = (String)request.getAttribute("error");
+				%>
+			<%
+			if (error == null) { %>
+
+				<%
+					if (bookDetails.size() != 0) {
+				%>
+
+			<table class="t1" style="display: inline-block;" border="0" align="center">
+				<td><img src="./images/book.jpg" alt="Book" height="160px" width="100px"></td>
+			</table>
+			<table class="booktable" style="display: inline-block;" border="0" width="60%" height="50%">
 				
 				<tr>
-					<td>BookID</td>
-					<td>Title</td>
-					<td>Price</td>
-					<td>Details</td>
-					<td>Action</td>
-
-
-					<!--  <tr><td>BookID</td><td>Title</td><td>Price</td><td>Details</td><td>Action</td>-->
-
-					<c:forEach var="items" items="${allBook}">
-						<tr>
-							<%-- <td>${items.author}</td> --%>
-							<td>${items.bookid}</td>
-
-							<td>${items.title}</td>
-
-							<td>${items.price}</td>
-
-							<td><a
-								href="javaScript:{openNewWindow();}" id="getInfo" >Book Info</a></td>
-								<script>
-								function openNewWindow()
-							    {
-							    window.open('${pageContext.request.contextPath}/BookInfo?bookId='+ ${items.bookid})
-							    }
-								</script>
-
-							<td>
-								<form name="addToCartForm"
-									action="${pageContext.request.contextPath}/AddItemsToCart"
-									method="post">
-									<input type="hidden" class="bookId" name="bookId" value='${items.bookid}' />
-									 <input type="hidden" class="title" value='${items.title}' />
-									  <input type="hidden" id="cart" />
-									<input type="submit" class="submitbutton11" value="Add to cart" />
-								</form>
-							</td>
-						</tr>
-					</c:forEach>
+					<td><b>Details</b></td>
+				</tr>
+				<c:forEach var="items" items="${Bookdetails}">
+					<tr>
+						<td><b>Author</b> : ${items.author}</td>
+					</tr>
+					<tr>
+						<td><b>ID</b> : ${items.bookid}</td>
+					</tr>
+					<tr>
+						<td><b>Title</b> : ${items.title}</td>
+					</tr>
+					<tr>
+						<td><b>Category</b> : ${items.category}</td>
+					</tr>
+					<tr>
+						<td><b>Price</b>: ${items.price}</td>
+					</tr>
+				</c:forEach>
 			</table>
-
-			<br>
-			<form name="ShoppingCart" action="${pageContext.request.contextPath}/ShoppingCart" method="get">
-				<input id="Proceed" type="submit" class="submitbutton12" value="Proceed to Cart" />
-			</form>
+			
 			<%
 				} else {
 			%>
-			<h3 style="color:red;">We are sorry !! No Books Found !!</h3>
-			<%
-				}
+			<h3 style="color:red;">Error Processing your request. Try again later</h3>
+			<% 
+			
+				} }else { 
 			%>
+				<h3 style="color:red;">Error Processing your request. Try again later</h3>
+			<% 
+			} %>
+			
+			<b><a href = "javascript:close_window();"> Close Page</a></b>
 			<h2>Beautiful Book Quotes...!!</h2>
 			<div class="w3-container w3-sand w3-leftbar">
 				<p>
@@ -247,6 +244,11 @@ body {
 			return false;
 		});
 		
+		function close_window() {
+			  if (confirm("Close Window?")) {
+			    close();
+			  }
+			}
 	</script>
 
 </body>
