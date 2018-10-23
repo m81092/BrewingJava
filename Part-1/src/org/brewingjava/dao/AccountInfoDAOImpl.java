@@ -22,92 +22,87 @@ public class AccountInfoDAOImpl implements AccountInfoDAO {
 	@Override
 	public boolean createAccount(UserDetails userDetails) {
 
+		String QueryId = "";
+		Statement stmt = null;
 		boolean hasError = true;
 		try {
-			String QueryAccountId = "SAVE_ACCOUNT";
+			QueryId = "SAVE_ACCOUNT";
 			Connection connection = dbConnection.getDataSource().getConnection();
-			String query = PropertyReaderUtil.getInstance().getPropertyValue(QUERIES_PROERTIES_FILE, QueryAccountId);
+			String registerQuery = PropertyReaderUtil.getInstance().getPropertyValue(QUERIES_PROERTIES_FILE, QueryId);
 			// Formating the query with the data to be saved
-			String newquery = String.format(query, userDetails.accountInfo.getUsername(), userDetails.accountInfo.getPassword());
-			Statement stmt = connection.createStatement();
+			registerQuery = String.format(registerQuery, userDetails.accountInfo.getUsername(),
+					userDetails.accountInfo.getPassword());
+			System.out.println("in accountinfo DAO the registerQuery is " + registerQuery);
+			stmt = connection.createStatement();
 			// Returns 1 if data is inserted
-			int temp = stmt.executeUpdate(newquery);
-			if (temp == 1)
-				hasError = false;
-			else
+			int result = stmt.executeUpdate(registerQuery);
+			// If the result is 1, execute the second the query
+			if (result == 1) {
+				 registerQuery = "";
+				 QueryId = "SAVE_USER_INFO";
+				registerQuery = PropertyReaderUtil.getInstance().getPropertyValue(QUERIES_PROERTIES_FILE,
+						QueryId);
+				// Formating the query with the data to be saved
+				registerQuery = String.format(registerQuery, userDetails.userInfo.getFname(),
+						userDetails.userInfo.getLname(), userDetails.userInfo.getUserName(),
+						userDetails.userInfo.getShipping(), userDetails.userInfo.getBilling());
+				int finalResult = stmt.executeUpdate(registerQuery);
+				if (finalResult == 1)
+					hasError = false;
+			} else
 				hasError = true;
 		} catch (Exception e) {
-			System.out.println("Some Error occurred while saving user credentials");
-			//e.printStackTrace();
-			hasError = true;
-		}
-		
-		try {
-			String QueryUserInfoId = "SAVE_USER_INFO";
-			Connection connection = dbConnection.getDataSource().getConnection();
-			String query = PropertyReaderUtil.getInstance().getPropertyValue(QUERIES_PROERTIES_FILE, QueryUserInfoId);
-			// Formating the query with the data to be saved
-			String newquery = String.format(query, userDetails.userInfo.getFname(), userDetails.userInfo.getLname(),
-					userDetails.userInfo.getUserName(), userDetails.userInfo.getShipping(), userDetails.userInfo.getBilling());
-			Statement stmt = connection.createStatement();
-			// Returns 1 if data is inserted
-			int temp = stmt.executeUpdate(newquery);
-			if (temp == 1)
-				hasError = false;
-			else
-				hasError = true;
-		} catch (Exception e) {
-			System.out.println("Some Error occurred while saving user info");
-			e.printStackTrace();
+			System.out.println("Some Error occurred while saving user credentials in DAO");
+			// e.printStackTrace();
 			hasError = true;
 		}
 		return (!hasError) ? true : false;
 	}
-	
+
+	@Override
 	public UserDetails getAccount(String username, String password) {
 		UserDetails usereDetails;
 		UserInfo userInfo = new UserInfo();
 		AccountInfo accountInfo = new AccountInfo();
+		String QueryId = "";
+		ResultSet rs = null;
+		Statement stmt = null;
 		try {
-			String QueryId = "LOGIN";
+			// Executing query for login info
+			QueryId = "LOGIN";
 			Connection connection = dbConnection.getDataSource().getConnection();
 			String query = PropertyReaderUtil.getInstance().getPropertyValue(QUERIES_PROERTIES_FILE, QueryId);
 			// Formating the query with the data to be saved
-			String newquery = String.format(query, username);
-			Statement stmt = connection.createStatement();
-			// Fetching all the data for the user
-			ResultSet rs = stmt.executeQuery(newquery);
+			query = String.format(query, username);
+		    stmt = connection.createStatement();
+			// Fetching all the login data for the user
+			rs = stmt.executeQuery(query);
 			while (rs.next()) {
 				String user = rs.getString("username");
 				String pass = rs.getString("password");
 				accountInfo.setUsername(user);
 				accountInfo.setPassword(pass);
 			}
-		} catch (Exception e) {
-			System.out.println("Some Error occurred!");
-			e.printStackTrace();
-		}
-		try {
-			String QueryId = "USER_INFO";
-			Connection connection = dbConnection.getDataSource().getConnection();
-			String query = PropertyReaderUtil.getInstance().getPropertyValue(QUERIES_PROERTIES_FILE, QueryId);
-			// Formating the query with the data to be saved
-			String newquery = String.format(query, username);
-			Statement stmt = connection.createStatement();
-			// Fetching all the data for the user
-			ResultSet rs = stmt.executeQuery(newquery);
-			while (rs.next()) {
-				userInfo.setFname(rs.getString("fname"));
-				userInfo.setLname(rs.getString("lname"));
-				userInfo.setShipping(rs.getString("shippingaddress"));
-				userInfo.setBilling(rs.getString("billingaddress"));
+			// Executing the other query for user info if above query is success
+			if (!accountInfo.getUsername().isEmpty()) {
+				query = "";
+				QueryId = "USER_INFO";
+				query = PropertyReaderUtil.getInstance().getPropertyValue(QUERIES_PROERTIES_FILE, QueryId);
+				// Formating the query with the username
+				query = String.format(query, username);
+				rs = stmt.executeQuery(query);
+				while (rs.next()) {
+					userInfo.setFname(rs.getString("fname"));
+					userInfo.setLname(rs.getString("lname"));
+					userInfo.setShipping(rs.getString("shippingaddress"));
+					userInfo.setBilling(rs.getString("billingaddress"));
+				}
 			}
 		} catch (Exception e) {
-			System.out.println("Some Error occurred!");
-			e.printStackTrace();
+			System.out.println("Some Error occurred in DAO!");
+			// e.printStackTrace();
 		}
 		usereDetails = new UserDetails(accountInfo, userInfo);
 		return usereDetails;
 	}
-
 }

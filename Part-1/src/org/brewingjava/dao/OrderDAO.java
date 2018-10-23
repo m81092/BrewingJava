@@ -1,6 +1,10 @@
 package org.brewingjava.dao;
 
+import org.brewingjava.model.PO;
+
 public interface OrderDAO {
 
-	public boolean confirmOrder(int id, String username, boolean payement);
+	public int createOrder(PO orderDetails);
+	public boolean confirmOrder(int id, boolean payement);
+	
 }

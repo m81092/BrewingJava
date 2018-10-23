@@ -77,7 +77,7 @@ public class LoginServlet extends HttpServlet {
 				userDetailList.add(userDetails);
 				//request.setAttribute("UserDetails", userDetailList);
 				mySession.setAttribute("UserDetails", userDetailList);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("Checkout.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/Checkout");
 				dispatcher.include(request, response);
 			}catch (Exception e) {
 				e.printStackTrace();

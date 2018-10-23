@@ -144,9 +144,9 @@ body {
 								<form name="addToCartForm"
 									action="${pageContext.request.contextPath}/AddItemsToCart"
 									method="post">
-									<input type="hidden" class="bookId" name="bookId"
-										value='${items.bookid}' /> <input type="hidden" class="title"
-										value='${items.title}' /> <input type="hidden" id="cart" />
+									<input type="hidden" class="bookId" name="bookId" value='${items.bookid}' />
+									 <input type="hidden" class="title" value='${items.title}' />
+									  <input type="hidden" id="cart" />
 									<input type="submit" class="submitbutton11" value="Add to cart" />
 								</form>
 							</td>
