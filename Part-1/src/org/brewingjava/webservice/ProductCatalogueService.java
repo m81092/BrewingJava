@@ -40,11 +40,11 @@ public class ProductCatalogueService {
 	@Path("/BookInfo")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public ArrayList<Books> getBookInfo(@QueryParam("bookId") int id) {
+	public ArrayList<Books> getBookInfo(@QueryParam("bookId") int id, @QueryParam("event") String event) {
 		System.out.println("Service: Fetching Book Info");
 		System.out.println(id);
 		ProductService ps = new ProductServiceImpl();
-		return ps.getBookInfo(id);		//We have to handle the null value if book is not their.
+		return ps.getBookInfo(id,event);		//We have to handle the null value if book is not their.
 	}
 
 

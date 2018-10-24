@@ -43,7 +43,7 @@ public class BookInfo extends HttpServlet {
 			WebTarget target = null;
 			if (bookId != 0) {
 
-				target = client.target(baseURI).path("/REST/WebService/BookInfo").queryParam("bookId", bookId);
+				target = client.target(baseURI).path("/REST/WebService/BookInfo").queryParam("bookId", bookId).queryParam("event", "VIEW");
 				String result = target.request(MediaType.APPLICATION_JSON).get().readEntity(String.class);
 				System.out.println(result);
 				List<Books> allBooksinfo = new ArrayList<Books>();
