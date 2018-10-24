@@ -40,17 +40,21 @@ public class AuthenticationFilter implements Filter {
 		HttpServletResponse resp = (HttpServletResponse) response;
 		HttpSession mySession = req.getSession();
 		try {
-		List<UserDetails> userDetails = (ArrayList<UserDetails>)mySession.getAttribute("UserDetails");
-		if (userDetails != null) {
-			ArrayList checkCartList = (ArrayList) mySession.getAttribute("CartList");
-			if (checkCartList.size() != 0) {
-				chain.doFilter(request, response);
+			@SuppressWarnings("unchecked")
+			List<UserDetails> userDetails = (ArrayList<UserDetails>) mySession.getAttribute("UserDetails");
+			if (userDetails != null) {
+				ArrayList checkCartList = (ArrayList) mySession.getAttribute("CartList");
+				if (checkCartList.size() != 0) {
+					chain.doFilter(request, response);
+				} else {
+					resp.sendRedirect("Welcome.jsp");
+				}
 			} else {
-				resp.sendRedirect("Welcome.jsp");
-			}
-		} else {
-			resp.sendRedirect("Login.jsp");
+				resp.sendRedirect("Login.jsp");
 
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		}catch(Exception e) {
 			e.printStackTrace();
