@@ -2,6 +2,7 @@ package org.brewingjava.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.brewingjava.model.AccountInfo;
+import org.brewingjava.model.UserDetails;
 
 /**
  * Servlet Filter implementation class AuthenticationFilter
@@ -37,8 +39,9 @@ public class AuthenticationFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
 		HttpSession mySession = req.getSession();
-		AccountInfo accountDetails = (AccountInfo) mySession.getAttribute("accountInfo");
-		if (accountDetails != null) {
+		try {
+		List<UserDetails> userDetails = (ArrayList<UserDetails>)mySession.getAttribute("UserDetails");
+		if (userDetails != null) {
 			ArrayList checkCartList = (ArrayList) mySession.getAttribute("CartList");
 			if (checkCartList.size() != 0) {
 				chain.doFilter(request, response);
@@ -48,6 +51,9 @@ public class AuthenticationFilter implements Filter {
 		} else {
 			resp.sendRedirect("Login.jsp");
 
+		}
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
 
 	}
