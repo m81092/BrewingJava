@@ -10,6 +10,6 @@ public interface ProductService {
 	//All the methods are implemented in Class ProductServiceImpl**
 	public ArrayList<Books> getAllBooks();
 	public List<Books> getBooksByCategory(String category);
-	public ArrayList<Books> getBookInfo(int id);
+	public ArrayList<Books> getBookInfo(int id, String event);
 
 }

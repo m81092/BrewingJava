@@ -56,10 +56,6 @@ public class AuthenticationFilter implements Filter {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-
 	}
 
 	/**

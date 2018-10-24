@@ -42,7 +42,7 @@ public class ShoppingCart extends HttpServlet {
 		List<Books> allBooksList = new ArrayList<Books>();
 		try {
 			for(int j=0;j<idList.size();j++) {
-				target = client.target(baseURI).path("/REST/WebService/BookInfo").queryParam("bookId", idList.get(j).getBookid());
+				target = client.target(baseURI).path("/REST/WebService/BookInfo").queryParam("bookId", idList.get(j).getBookid()).queryParam("event", "CART");
 				result = target.request(MediaType.APPLICATION_JSON).get().readEntity(String.class);
 				System.out.println(result);
 				JSONArray jsonArr = new JSONArray(result);
