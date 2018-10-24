@@ -44,8 +44,8 @@ margin: 0px auto;
 			class="w3-bar-item w3-button w3-hide-large w3-large"
 			href="javascript:void(0)" onclick="w3_close()">Close <i
 			class="fa fa-remove"></i></a> <a class="w3-bar-item w3-button w3-teal"
-			href="Welcome.jsp">Home</a> <a class="w3-bar-item w3-button" href="#">About
-			Us</a> <a class="w3-bar-item w3-button" href="#">Team</a> <a
+			href="Welcome.jsp">Home</a> <a class="w3-bar-item w3-button" href="AboutUs.jsp">About
+			Us</a> <a class="w3-bar-item w3-button" href="Team.jsp">Team</a> <a
 			class="w3-bar-item w3-button" href="#">Contact US</a> <a
 			class="w3-bar-item w3-button"
 			href="${pageContext.request.contextPath}/ShowBooks?category=All">View
