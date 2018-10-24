@@ -1,38 +1,81 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- All of the below code is referenced unless specified from https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_examples_material  -->
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <title>BookWorm</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-teal.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><style>
+
 body {font-family: "Roboto", sans-serif}
 .w3-bar-block .w3-bar-item{padding:16px;font-weight:bold}
+
+.card1 {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 200px;
+  text-align: center;
+  font-family: arial;
+  position: absolute;
+}
+.card2 {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 200px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  position: right;
+}
+.card3 {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 200px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  position: absolute;
+}
+.card4 {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 200px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  position: center;
+}
+.card5 {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 200px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  position: center;
+}
+
+.mainFrame {
+margin-left:45px;
+}
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
 </style>
 <body>
 
-<!-- code referenced from https://stackoverflow.com/questions/24176684/how-to-show-alert-in-a-jsp-from-a-servlet-and-then-redirect-to-another-jsp -->
-	<c:if test="${not empty error}">
-		<script>
-			window.addEventListener("load", function() {
-				alert("This account name already exists. Try again!");
-			});
-		</script>
-	</c:if>
-<!-- code end -->
+
 
 <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
+  <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img src="https://www.w3schools.com/images/w3schools.png" style="width:80%;"></a>
   <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
   <a class="w3-bar-item w3-button w3-teal" href="Welcome.jsp">Home</a>
   <a class="w3-bar-item w3-button" href="AboutUs.jsp">About Us</a>
-  <a class="w3-bar-item w3-button" href="Team.jsp">Team</a>
+  <a class="w3-bar-item w3-button" href="Team.jsp">Team~ Brewing Java</a>
   <a class="w3-bar-item w3-button" href="#">Contact US</a>
   <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=All">View All Books</a>
   <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=featured">Featured Books</a>
+  
   <div>
     <a class="w3-bar-item w3-button" onclick="myAccordion('demo')" href="javascript:void(0)">Categories <i class="fa fa-caret-down"></i></a>
     <div id="demo" class="w3-hide">
@@ -61,102 +104,47 @@ body {font-family: "Roboto", sans-serif}
 
 </div>
 
+
 <header class="w3-container w3-theme" style="padding:64px 32px">
   <h1 class="w3-xxxlarge">BookWorm</h1>
 </header>
-
-<div class="w3-container" style="padding:32px">
-
-<form action="${pageContext.request.contextPath}/Register" onsubmit="return validate();" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
-<h2 class="w3-center">Registration</h2>
- 
- <div class="w3-row w3-section">
-    <div class="w3-rest">
-      <input class="w3-input w3-border" id="fname" name="fname" type="text" placeholder="First Name">
-    </div>
-</div>
-
-<div class="w3-row w3-section">
-    <div class="w3-rest">
-      <input class="w3-input w3-border" id="lname" name="lname" type="text" placeholder="Last Name">
-    </div>
-</div>
-
-<div class="w3-row w3-section">
-    <div class="w3-rest">
-      <input class="w3-input w3-border" id="accountname" name="accountname" type="text" placeholder="Account Name">
-    </div>
-</div>
-
-<div class="w3-row w3-section">
-    <div class="w3-rest">
-      <input class="w3-input w3-border" id="password" name="password" type="password" placeholder="Password">
-    </div>
-</div>
-
-<div class="w3-row w3-section">
-    <div class="w3-rest">
-      <input class="w3-input w3-border" id="billing" name="billing" type="text" placeholder="Billing Address">
-    </div>
-</div>
-
-<input type="checkbox" id="check" onclick="makeSame()">&nbsp;Same as above
-
-<div class="w3-row w3-section">
-    <div class="w3-rest">
-      <input class="w3-input w3-border" id="shipping" name="shipping" type="text" placeholder="Shipping Address">
-    </div>
-</div>
-
-<p class="w3-center">
-<button class="w3-button w3-section w3-blue w3-ripple" type="submit"> Register </button>
-</p>
-</form>
-
-
-
-<h2>Beautiful Book Quotes...!!</h2>
-<div class="w3-container w3-sand w3-leftbar">
-<p><i>Make it as simple as possible, but not simpler.</i><br>
-Albert Einstein</p>
-</div>
-</div>
-
-<footer class="w3-container w3-theme" style="padding:22px">
-  <p>Copyright © 2018 Brewing Java Corporation</p>
-</footer>
-     
-</div>
-
+<br>
+<div class= "mainFrame">
+<div class="card1">
+  <img src="C:\Users\suboo\Desktop\hugh.jpg"  style="width:80%">
+  <h1>Tarun</h1>
+  <p class="title">Student Id: 30009273</p>
+  <p>Email:tarun@gmail.com</p>
+  </div>
+  
+  <div class="card2">
+  <img src="C:\Users\suboo\Desktop\hugh.jpg"  style="width:80%">
+  <h1>Manpreet</h1>
+  <p class="title">Student Id: 3000564</p>
+  <p>Email:manpreet@gmail.com</p>
+  </div>
+<br>
+   <div class="card3">
+  <img src="C:\Users\suboo\Desktop\hugh.jpg"  style="width:80%">
+  <h1>Mudit</h1>
+  <p class="title">Student Id: 3000392</p>
+  <p>Email:mudit@gmail.com</p>
+  </div>
+  <div class="card4">
+  <img src="C:\Users\suboo\Desktop\hugh.jpg"  style="width:80%">
+  <h1>Vrushali</h1>
+  <p class="title">Student Id: 3009872</p>
+  <p>Email:vrushali@gmail.com</p>
+  </div>
+  <br>
+  <div class="card5">
+  <img src="C:\Users\suboo\Desktop\hugh.jpg"  style="width:80%">
+  <h1>Suboor Junaidi</h1>
+  <p class="title">Student Id: 300034887</p>
+  <p>Email:suboorjunaidi15@gmail.com</p>
+  </div>
+  </div>
 <script>
-
-//	***Our code starts
-//Make the billing and shipping address same 
-function makeSame() {
-	var checkBox = document.getElementById("check");
-	var billingAdd = document.getElementById("billing").value;
-	if (checkBox.checked == true) {
-		document.getElementById("shipping").value = billingAdd;
-	}
-}
-
-function validate() {
-	var accname = document.getElementById("accountname").value;
-	var pass = document.getElementById("password").value;
-	var billingAdd = document.getElementById("billing").value;
-	var shippingAdd = document.getElementById("shipping").value;
-	if (accname === "" || pass === "" || billingAdd === "" || shippingAdd === "") {
-		alert("None of the fields should be left blank!");
-		return false;
-	}
-	else {
-		document.form.submit();
-        return true;
-	}
-}
-//	***Our code ends
-
-
 // Open and close the sidebar on medium and small screens
 function w3_open() {
     document.getElementById("mySidebar").style.display = "block";
