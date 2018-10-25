@@ -87,7 +87,7 @@ body {font-family: "Roboto", sans-serif}
   </div>
 </form>
 
- <div id=container-1><h4>Are you new here....</h4><form style="border:0px;" action="Register.jsp"><button type="submit">Create an Account Here</button></form>
+ <div id=container-1><h4>Are you new here....</h4><form style="border:0px;" action="Register.jsp"><button type="submit" style="margin-left:20px; width:47%;">Create an Account Here</button></form>
   </div>
   
 <br>
@@ -100,7 +100,7 @@ Albert Einstein</p>
 </div>
 
 <footer class="w3-container w3-theme" style="padding:22px">
-  <p>Footer information goes here</p>
+  <p>Copyright © 2018 Brewing Java Corporation</p>
 </footer>
      
 </div>
