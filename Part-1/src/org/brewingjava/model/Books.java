@@ -7,6 +7,7 @@ public class Books {
 	private float price;
 	private String author;
 	private String category;
+<<<<<<< HEAD
 	
 	public Books() {
 		
@@ -61,6 +62,73 @@ public class Books {
 		this.category = category;
 	}
 
+=======
+	private String status;
+	
+	
+
+	public Books() {
+		
+	}
+
+	public Books(int bookid, String title, float price, String author, String category) {
+		
+		this.bookid = bookid;
+		this.title = title;
+		this.price = price;
+		this.author = author;
+		this.category = category;
+	}
+
+	public int getBookid() {
+		return bookid;
+	}
+
+	public void setBookid(int bookid) {
+		this.bookid = bookid;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public float getPrice() {
+		return price;
+	}
+
+	public void setPrice(float price) {
+		this.price = price;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+>>>>>>> branch 'Mudit' of https://github.com/m81092/BrewingJava.git
 	@Override
 	public String toString() {
 		return "Categories [bookid=" + bookid + ", title=" + title + ", price=" + price + ", author=" + author
