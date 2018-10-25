@@ -106,6 +106,11 @@ Albert Einstein</p>
 </div>
 
 <script>
+//Disable back button in next page
+function preventBack(){window.history.forward();}
+setTimeout("preventBack()", 0);
+window.onunload=function(){null};
+
 // Open and close the sidebar on medium and small screens
 function w3_open() {
     document.getElementById("mySidebar").style.display = "block";
