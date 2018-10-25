@@ -156,7 +156,7 @@ margin-left:45px;
   <br>
   <div class="card5">
   <img src="./images/suboor.jpg"  style="width:70px; height:90px">
-  <h1>Suboor Junaidi</h1>
+  <h1>Suboor</h1>
   <p class="title">Student Id: 300034887</p>
   <p>suboorjunaidi15@gmail.com</p>
   </div>

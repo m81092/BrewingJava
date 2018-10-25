@@ -72,11 +72,7 @@ public class DBConnection {
 
 		gPool = new GenericObjectPool();
 
-<<<<<<< HEAD
-		gPool.setMaxActive(5);
-=======
 		gPool.setMaxActive(20);
->>>>>>> branch 'Mudit' of https://github.com/m81092/BrewingJava.git
 
 		// Creates a ConnectionFactory Object Which Will Be Use by the Pool to Create
 		// the Connection Object!

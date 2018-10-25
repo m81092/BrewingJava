@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title></title>
-</head>
-<body>
-
-<h4>Welcome ${accountname} to the Checkout page.</h4>
-</body>
-</html>
-=======
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -209,4 +194,3 @@ function myAccordion(id) {
      
 </body>
 </html> 
->>>>>>> branch 'Mudit' of https://github.com/m81092/BrewingJava.git
