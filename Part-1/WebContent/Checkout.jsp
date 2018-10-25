@@ -21,10 +21,6 @@ table.booktable {
 }
 </style>
 <body>
-
-<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" ></nav>
-<a class="w3-bar-item w3-button w3-hide-large w3-large" ></a>
-
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
 
 <div class="w3-main" style="margin-left:250px;">
@@ -38,8 +34,19 @@ table.booktable {
 <header class="w3-container w3-theme" style="padding:64px 32px">
   <h1 class="w3-xxxlarge">BookWorm</h1>
 </header>
-
-<div class="w3-container" style="padding:55px">
+		<%
+			String username = (String) session.getAttribute("userName");
+			if (username == null) {
+		%>
+		<h4>&nbsp;&nbsp;&nbsp;&nbsp;Welcome:<b> Guest</b></h4>
+		<%
+			} else {
+		%>
+		<h4>
+			&nbsp;&nbsp;&nbsp;&nbsp;Welcome: <b><%=username%></b>
+		</h4>
+		<%} %>
+		<div class="w3-container" style="padding:55px">
 
 <form action="" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
 <h2 class="w3-center">Check Out here</h2>

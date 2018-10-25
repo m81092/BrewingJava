@@ -113,7 +113,19 @@ margin-left:45px;
 <header class="w3-container w3-theme" style="padding:64px 32px">
   <h1 class="w3-xxxlarge">BookWorm</h1>
 </header>
-<br>
+		<%
+			String username = (String) session.getAttribute("userName");
+			if (username == null) {
+		%>
+		<h4>&nbsp;&nbsp;&nbsp;&nbsp;Welcome:<b> Guest</b></h4>
+		<%
+			} else {
+		%>
+		<h4>
+			&nbsp;&nbsp;&nbsp;&nbsp;Welcome: <b><%=username%></b>
+		</h4>
+		<%} %>
+		<br>
 <div class= "mainFrame">
 <div class="card1">
   <img src="./images/tarun_manchanda.jpg"  style="width:70px; height:90px">
@@ -123,27 +135,27 @@ margin-left:45px;
   </div>
   
   <div class="card2">
-  <img src="./images/tarun_manchanda.jpg"  style="width:70px; height:90px">
+  <img src="./images/manpreet.jpg"  style="width:80px; height:90px">
   <h1>Manpreet</h1>
-  <p class="title">Student Id: 3000564</p>
-  <p>manpreet@gmail.com</p>
+  <p class="title">Student Id: 300045244</p>
+  <p>msing105@uottawa.ca</p>
   </div>
 <br>
    <div class="card3">
   <img src="./images/Mudit_Aggarwal.jpg"  style="width:70px; height:90px">
   <h1>Mudit</h1>
-  <p class="title">Student Id: 300039200</p>
+  <p class="title">Student Id: 101087211</p>
   <p>muditaggarwal@cmail.carleton.ca</p>
   </div>
   <div class="card4">
-  <img src="./images/tarun_manchanda.jpg"  style="width:70px; height:90px">
+  <img src="./images/vrushali.png"  style="width:70px; height:90px">
   <h1>Vrushali</h1>
-  <p class="title">Student Id: 3009872</p>
+  <p class="title">Student Id: 101098117</p>
   <p>vrushalinadre@cmail.carleton.ca</p>
   </div>
   <br>
   <div class="card5">
-  <img src="./images/tarun_manchanda.jpg"  style="width:70px; height:90px">
+  <img src="./images/suboor.jpg"  style="width:70px; height:90px">
   <h1>Suboor Junaidi</h1>
   <p class="title">Student Id: 300034887</p>
   <p>suboorjunaidi15@gmail.com</p>

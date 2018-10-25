@@ -57,9 +57,20 @@ body {font-family: "Roboto", sans-serif}
 <header class="w3-container w3-theme" style="padding:64px 32px">
   <h1 class="w3-xxxlarge">BookWorm</h1>
 </header>
-
-<div class="w3-container" style="padding:32px">
-<%
+		<%
+			String username = (String) session.getAttribute("userName");
+			if (username == null) {
+		%>
+		<h4>&nbsp;&nbsp;&nbsp;&nbsp;Welcome:<b> Guest</b></h4>
+		<%
+			} else {
+		%>
+		<h4>
+			&nbsp;&nbsp;&nbsp;&nbsp;Welcome: <b><%=username%></b>
+		</h4>
+		<%} %>
+		<div class="w3-container" style="padding: 32px">
+			<%
 	ArrayList<Books> CartList = session.getAttribute("CartList")!=null? (ArrayList<Books>)session.getAttribute("CartList") :new ArrayList<Books>();
 	if(request.getParameter("id")!=null){
 		try{
@@ -83,47 +94,66 @@ body {font-family: "Roboto", sans-serif}
 	}
 	
 %>
-	<h3>Shopping Cart</h3>
-		<%
+			<h3>Shopping Cart</h3>
+			<%
 			if(!CartList.isEmpty()){
 		%>
-			<p>You currently have <%out.println(CartList.size());%> books in your cart:</p>
+			<p>
+				You currently have
+				<%out.println(CartList.size());%>
+				books in your cart:
+			</p>
 			<br>
 			<form action="${pageContext.request.contextPath}/Checkout">
-				<table class="booktable" border="3" >
-							<tr><th>Title</th><th>Price($)</th><th>Action</th></tr>
-								<% float total=0, tax=0;
+				<table class="booktable" border="3">
+					<tr>
+						<th>Title</th>
+						<th>Price($)</th>
+						<th>Action</th>
+					</tr>
+					<% float total=0, tax=0;
 								for(Books book: CartList){ 
 									total+=book.getPrice();
 								%>
-								<tr>
-										<td><%=book.getTitle() %></td><td><%=book.getPrice() %></td><td><a href="ShoppingCart.jsp?id=<%=book.getBookid()%>">Remove</a></td>	
-									</tr>
-								<% float bookTax = book.getPrice()*(float)(0.13); 
+					<tr>
+						<td><%=book.getTitle() %></td>
+						<td><%=book.getPrice() %></td>
+						<td><a href="ShoppingCart.jsp?id=<%=book.getBookid()%>">Remove</a></td>
+					</tr>
+					<% float bookTax = book.getPrice()*(float)(0.13); 
 									tax+=bookTax;
 								}
 								total+=tax;
-								%>		
-							<tr><th>Tax</th><th><%=tax%></th></tr>	
-							<tr><th>Total</th><th><%=total%></th></tr>
+								%>
+					<tr>
+						<th>Tax</th>
+						<th><%=tax%></th>
+					</tr>
+					<tr>
+						<th>Total</th>
+						<th><%=total%></th>
+					</tr>
 				</table>
 				<br>
-				<button type="submit" value="<%=total%>" >Proceed TO Checkout</button>
+				<button type="submit" value="<%=total%>">Proceed TO
+					Checkout</button>
 			</form>
-		<%
+			<%
 			}
 			else{
 		%>
-				<h4>Your Cart is Empty!!</h4>
-		<%} %>
-	<a href="Welcome.jsp"><i><----Continue Shopping</i></a>
-	<div class="w3-container w3-sand w3-leftbar">
-	<p><i>Make it as simple as possible, but not simpler.</i><br>
-	Albert Einstein</p>
-	</div>
-</div>
+			<h4>Your Cart is Empty!!</h4>
+			<%} %>
+			<a href="Welcome.jsp"><i><----Continue Shopping</i></a>
+			<div class="w3-container w3-sand w3-leftbar">
+				<p>
+					<i>Make it as simple as possible, but not simpler.</i><br>
+					Albert Einstein
+				</p>
+			</div>
+		</div>
 
-<footer class="w3-container w3-theme" style="padding:22px">
+		<footer class="w3-container w3-theme" style="padding:22px">
   <p>Copyright © 2018 Brewing Java Corporation</p>
 </footer>
      

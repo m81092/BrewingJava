@@ -58,7 +58,12 @@ body {font-family: "Roboto", sans-serif}
 <header class="w3-container w3-theme" style="padding:64px 32px">
   <h1 class="w3-xxxlarge">About us</h1>
 </header>
-
+<% String username = (String)session.getAttribute("userName"); 
+if (username == null) { %>
+<h4>&nbsp;&nbsp;&nbsp;&nbsp;Welcome:<b>Guest</b></h4>
+<% } else { %>
+<h4>&nbsp;&nbsp;&nbsp;&nbsp;Welcome: <b><%=username%></b></h4>
+<%} %>
 <div class="w3-container" style="padding:32px">
 
 <h3>Welcome to Bookworm- an Online Bookstore</h3>
