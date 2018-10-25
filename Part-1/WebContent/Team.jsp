@@ -15,14 +15,16 @@ body {font-family: "Roboto", sans-serif}
 
 .card1 {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 200px;
+  width: 250px;
+  height: 300px;
   text-align: center;
   font-family: arial;
   position: absolute;
 }
 .card2 {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 200px;
+  width: 250px;
+  height: 300px;
   margin: auto;
   text-align: center;
   font-family: arial;
@@ -30,7 +32,8 @@ body {font-family: "Roboto", sans-serif}
 }
 .card3 {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 200px;
+  width: 250px;
+  height: 300px;
   margin: auto;
   text-align: center;
   font-family: arial;
@@ -38,7 +41,8 @@ body {font-family: "Roboto", sans-serif}
 }
 .card4 {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 200px;
+  width: 250px;
+  height: 300px;
   margin: auto;
   text-align: center;
   font-family: arial;
@@ -46,11 +50,12 @@ body {font-family: "Roboto", sans-serif}
 }
 .card5 {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 200px;
+  width: 250px;
+  height: 300px;
   margin: auto;
   text-align: center;
   font-family: arial;
-  position: center;
+  position: absolute;
 }
 
 .mainFrame {
@@ -71,7 +76,7 @@ margin-left:45px;
   <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
   <a class="w3-bar-item w3-button w3-teal" href="Welcome.jsp">Home</a>
   <a class="w3-bar-item w3-button" href="AboutUs.jsp">About Us</a>
-  <a class="w3-bar-item w3-button" href="Team.jsp">Team~ Brewing Java</a>
+  <a class="w3-bar-item w3-button" href="Team.jsp">Team</a>
   <a class="w3-bar-item w3-button" href="#">Contact US</a>
   <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=All">View All Books</a>
   <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=featured">Featured Books</a>
@@ -111,37 +116,37 @@ margin-left:45px;
 <br>
 <div class= "mainFrame">
 <div class="card1">
-  <img src="C:\Users\suboo\Desktop\hugh.jpg"  style="width:80%">
+  <img src="./images/tarun_manchanda.jpg"  style="width:70px; height:90px">
   <h1>Tarun</h1>
   <p class="title">Student Id: 30009273</p>
-  <p>Email:tarun@gmail.com</p>
+  <p>tmanc030@uottawa.ca</p>
   </div>
   
   <div class="card2">
-  <img src="C:\Users\suboo\Desktop\hugh.jpg"  style="width:80%">
+  <img src="./images/tarun_manchanda.jpg"  style="width:70px; height:90px">
   <h1>Manpreet</h1>
   <p class="title">Student Id: 3000564</p>
-  <p>Email:manpreet@gmail.com</p>
+  <p>manpreet@gmail.com</p>
   </div>
 <br>
    <div class="card3">
-  <img src="C:\Users\suboo\Desktop\hugh.jpg"  style="width:80%">
+  <img src="./images/Mudit_Aggarwal.jpg"  style="width:70px; height:90px">
   <h1>Mudit</h1>
-  <p class="title">Student Id: 3000392</p>
-  <p>Email:mudit@gmail.com</p>
+  <p class="title">Student Id: 300039200</p>
+  <p>muditaggarwal@cmail.carleton.ca</p>
   </div>
   <div class="card4">
-  <img src="C:\Users\suboo\Desktop\hugh.jpg"  style="width:80%">
+  <img src="./images/tarun_manchanda.jpg"  style="width:70px; height:90px">
   <h1>Vrushali</h1>
   <p class="title">Student Id: 3009872</p>
-  <p>Email:vrushali@gmail.com</p>
+  <p>vrushalinadre@cmail.carleton.ca</p>
   </div>
   <br>
   <div class="card5">
-  <img src="C:\Users\suboo\Desktop\hugh.jpg"  style="width:80%">
+  <img src="./images/tarun_manchanda.jpg"  style="width:70px; height:90px">
   <h1>Suboor Junaidi</h1>
   <p class="title">Student Id: 300034887</p>
-  <p>Email:suboorjunaidi15@gmail.com</p>
+  <p>suboorjunaidi15@gmail.com</p>
   </div>
   </div>
 <script>
