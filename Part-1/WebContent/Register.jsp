@@ -109,9 +109,13 @@ body {font-family: "Roboto", sans-serif}
 </div>
 
 <p class="w3-center">
-<button class="w3-button w3-section w3-blue w3-ripple" type="submit"> Register </button>
+<button class="w3-button w3-section w3-blue w3-ripple" type="submit" style="margin-left:20px; width:47%;"> Register </button>
 </p>
 </form>
+<form action="${pageContext.request.contextPath}/Login.jsp" method="get">
+<button class="w3-button w3-section w3-blue w3-ripple" type="submit" style="display:block; margin:auto;"> Back To Login </button>
+</form>
+
 
 
 

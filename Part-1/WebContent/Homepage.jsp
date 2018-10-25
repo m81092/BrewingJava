@@ -70,8 +70,7 @@ body {
 				<a class="w3-bar-item w3-button"
 					href="${pageContext.request.contextPath}/ShowBooks?category=Science and Nature">Science
 					and Nature</a> <a class="w3-bar-item w3-button"
-					href="${pageContext.request.contextPath}/ShowBooks?category=Poetry">Science
-					and Nature</a>
+					href="${pageContext.request.contextPath}/ShowBooks?category=Poetry">Poetry</a>
 			</div>
 		</div>
 	</nav>

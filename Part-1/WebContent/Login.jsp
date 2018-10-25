@@ -17,7 +17,7 @@ body {font-family: "Roboto", sans-serif}
 <body>
 
 <!-- code referenced from https://stackoverflow.com/questions/24176684/how-to-show-alert-in-a-jsp-from-a-servlet-and-then-redirect-to-another-jsp -->
-	<c:if test="${not empty error2}">
+	<c:if test="${not empty error}">
 		<script>
 			window.addEventListener("load", function() {
 				alert("Invalid Username or Password!");
@@ -106,6 +106,11 @@ Albert Einstein</p>
 </div>
 
 <script>
+//Disable back button in next page
+function preventBack(){window.history.forward();}
+setTimeout("preventBack()", 0);
+window.onunload=function(){null};
+
 // Open and close the sidebar on medium and small screens
 function w3_open() {
     document.getElementById("mySidebar").style.display = "block";

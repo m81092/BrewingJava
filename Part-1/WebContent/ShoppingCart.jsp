@@ -107,6 +107,7 @@ body {font-family: "Roboto", sans-serif}
 							<tr><th>Tax</th><th><%=tax%></th></tr>	
 							<tr><th>Total</th><th><%=total%></th></tr>
 				</table>
+				<br>
 				<button type="submit" value="<%=total%>" >Proceed TO Checkout</button>
 			</form>
 		<%
