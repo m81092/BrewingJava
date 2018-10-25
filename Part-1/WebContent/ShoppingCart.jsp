@@ -120,11 +120,12 @@ body {font-family: "Roboto", sans-serif}
 						<td><%=book.getPrice() %></td>
 						<td><a href="ShoppingCart.jsp?id=<%=book.getBookid()%>">Remove</a></td>
 					</tr>
-					<% float bookTax = book.getPrice()*(float)(0.13); 
-									tax+=bookTax;
-								}
-								total+=tax;
-								%>
+					<%
+						float bookTax = book.getPrice() * (float) (0.13);
+								tax += bookTax;
+							}
+							total += tax;
+					%>
 					<tr>
 						<th>Tax</th>
 						<th><%=tax%></th>

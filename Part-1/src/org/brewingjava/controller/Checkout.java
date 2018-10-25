@@ -29,16 +29,19 @@ public class Checkout extends HttpServlet {
 		HttpSession mysession = request.getSession();
 		List<Books> cartList = (List<Books>) mysession.getAttribute("CartList");
 		boolean addTax = (boolean) mysession.getAttribute("addTax");
-		float price = 0;
+		float price = 0, tax = 0;
+		
 		// Adding the 13% tax
 		for (Books book : cartList) {	
 			if (addTax) {
 				price = book.getPrice();
-				price += (float) (price * 0.13);
+				tax = price * (float) 0.13;
+				price = tax + price;
 				book.setPrice(price);
-				addTax = false;
 			}
+			
 		}
+		addTax = false;
 		// Setting the flag in session
 		mysession.setAttribute("addTax", addTax);
 		// Setting the updated price in session
