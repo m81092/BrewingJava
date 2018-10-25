@@ -100,7 +100,7 @@ Albert Einstein</p>
 </div>
 
 <footer class="w3-container w3-theme" style="padding:22px">
-  <p>Footer information goes here</p>
+  <p>Copyright © 2018 Brewing Java Corporation</p>
 </footer>
      
 </div>
