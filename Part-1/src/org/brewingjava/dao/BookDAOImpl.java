@@ -99,12 +99,12 @@ public class BookDAOImpl implements BookDAO {
 				QueryId = "FEATURED_BOOKS";
 				query = PropertyReaderUtil.getInstance().getPropertyValue(QUERIES_PROERTIES_FILE, QueryId);
 				query = String.format(query, true);
-				System.out.println(query);
+				System.out.println("in book dao impl, featured query is " +query);
 			} else {
 				QueryId = "CATEGORY_BOOKS";
 				query = PropertyReaderUtil.getInstance().getPropertyValue(QUERIES_PROERTIES_FILE, QueryId);
 				query = String.format(query, bookCategory);
-				System.out.println(query);
+				//System.out.println(query);
 			}
 			stmt = connection.createStatement();
 			rs = stmt.executeQuery(query);

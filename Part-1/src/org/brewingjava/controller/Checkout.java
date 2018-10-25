@@ -28,16 +28,21 @@ public class Checkout extends HttpServlet {
 		
 		HttpSession mysession = request.getSession();
 		List<Books> cartList = (List<Books>) mysession.getAttribute("CartList");
-		float price;
-		for (Books book : cartList) {
-			price = book.getPrice();
-			System.out.println("in checkout serv value of price before tax " + price);
-			book.setPrice((price + (price * (float)0.13)));
-			System.out.println("in checkout serv value of price after tax " + price);
+		boolean addTax = (boolean) mysession.getAttribute("addTax");
+		float price = 0;
+		// Adding the 13% tax
+		for (Books book : cartList) {	
+			if (addTax) {
+				price = book.getPrice();
+				price += (float) (price * 0.13);
+				book.setPrice(price);
+				addTax = false;
+			}
 		}
+		// Setting the flag in session
+		mysession.setAttribute("addTax", addTax);
 		// Setting the updated price in session
 		mysession.setAttribute("CartList", cartList);
-		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("Checkout.jsp");
 		dispatcher.include(request, response);
 	}

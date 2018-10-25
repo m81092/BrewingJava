@@ -1,8 +1,9 @@
 package org.brewingjava.service;
 
-
 import org.brewingjava.dao.AccountInfoDAO;
 import org.brewingjava.dao.AccountInfoDAOImpl;
+import org.brewingjava.dao.EventHandlerDAO;
+import org.brewingjava.dao.EventHandlerDAOImpl;
 import org.brewingjava.dao.OrderDAO;
 import org.brewingjava.dao.OrderDAOImpl;
 import org.brewingjava.model.PO;
@@ -23,7 +24,8 @@ public class OrderServiceImpl implements OrderService {
 		AccountInfoDAO dao = new AccountInfoDAOImpl();
 		UserDetails userDetails = new UserDetails();
 		userDetails = dao.getAccount(username, password);
-		if (username.equals(userDetails.accountInfo.getUsername()) && password.equals(userDetails.accountInfo.getPassword())) {
+		if (username.equals(userDetails.accountInfo.getUsername())
+				&& password.equals(userDetails.accountInfo.getPassword())) {
 			return userDetails;
 		} else {
 			return null;
@@ -35,18 +37,19 @@ public class OrderServiceImpl implements OrderService {
 		OrderDAO dao = new OrderDAOImpl();
 		return dao.createOrder(purchaseOrder);
 	}
-	
+
 	@Override
 	public String confirmOrder(int id, boolean payement) {
-		if(id%5==0) {
+		// Hard coded to decline the 5th request
+		if (id % 5 == 0) {
 			payement = false;
 		}
 		OrderDAO dao = new OrderDAOImpl();
 		boolean result = dao.confirmOrder(id, payement);
 		String resultingStmt;
-		if(result)
+		if (result) {
 			resultingStmt = "Your Order is Confirmed";
-		else
+		} else
 			resultingStmt = "Your Order is Denied";
 		return resultingStmt;
 	}

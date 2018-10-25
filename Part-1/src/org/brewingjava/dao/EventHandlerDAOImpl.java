@@ -9,7 +9,7 @@ import org.brewingjava.model.Books;
 import org.brewingjava.util.DBConnection;
 import org.brewingjava.util.PropertyReaderUtil;
 
-public class EventHandlerDAOImpl implements EventHandlerDAO{
+public class EventHandlerDAOImpl implements EventHandlerDAO {
 	private static final String QUERIES_PROERTIES_FILE = "queries.properties";
 	String QueryId = "";
 	private DBConnection dbConnection;
@@ -18,6 +18,7 @@ public class EventHandlerDAOImpl implements EventHandlerDAO{
 		dbConnection = DBConnection.getInstance();
 	}
 
+	@Override
 	public boolean createEvent(ArrayList<Books> bookIdList, String eventType) {
 
 		Connection connection = null;

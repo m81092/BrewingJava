@@ -28,6 +28,8 @@ public class ShoppingCart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		boolean addTax = true;
 		String baseURI = "http://localhost:8080/Part-1";
 		Client client = ClientBuilder.newClient();
 		HttpSession session = request.getSession();
@@ -62,6 +64,7 @@ public class ShoppingCart extends HttpServlet {
 				CartList.add(book);
 			}
 			session.setAttribute("CartList", CartList);
+			session.setAttribute("addTax", addTax);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("ShoppingCart.jsp");
 			dispatcher.include(request, response);
 		} catch (Exception e) {

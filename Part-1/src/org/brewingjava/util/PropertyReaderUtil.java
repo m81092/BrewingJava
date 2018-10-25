@@ -37,7 +37,7 @@ public class PropertyReaderUtil {
 		if (propertiesFile == "db.properties") {
 			path = "C:\\Users\\Admin\\Downloads\\eclipse\\workspace\\BrewingJava-Mudit\\Part-1\\WebContent\\resources\\db.properties";
 		} else if (propertiesFile == "queries.properties") {
-			path = "queries.properties";
+			path = "C:\\Users\\Admin\\Downloads\\eclipse\\workspace\\BrewingJava-Mudit\\Part-1\\WebContent\\resources\\queries.properties";
 		}
 
 		System.out.println("file is here" + new File(".").getAbsoluteFile());
