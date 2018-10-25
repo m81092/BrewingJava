@@ -87,7 +87,7 @@ body {font-family: "Roboto", sans-serif}
   </div>
 </form>
 
- <div id=container-1><h4>Are you new here....</h4><form style="border:0px;" action="Register.jsp"><button type="submit">Create an Account Here</button></form>
+ <div id=container-1><h4>Are you new here....</h4><form style="border:0px;" action="Register.jsp"><button type="submit" style="margin-left:20px; width:47%;">Create an Account Here</button></form>
   </div>
   
 <br>
