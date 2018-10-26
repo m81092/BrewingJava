@@ -8,6 +8,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import org.brewingjava.model.PO;
 import org.brewingjava.model.UserDetails;
 import org.brewingjava.service.OrderService;
 import org.brewingjava.service.OrderServiceImpl;
@@ -35,4 +36,26 @@ public class OrderProcessService {
 		OrderService os = new OrderServiceImpl();
 		return (os.getAccount(username, password) != null) ? os.getAccount(username, password) : null;
 	}
+	
+	@PUT
+	@Path("/createOrder")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.TEXT_PLAIN)
+	public int createOrder(PO purchaseOrder) {
+		
+		OrderService os = new OrderServiceImpl();
+		return os.createOrder(purchaseOrder);
+	}
+	
+	@GET
+	@Path("/confirmOrder")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String confirmOrder(@QueryParam("POId") int id) {
+		System.out.println("Service: Confirming Order");
+		System.out.println(id);
+		OrderService os = new OrderServiceImpl();
+		return os.confirmOrder(id, true);		//payement is passed as true. Set it as false in service if id is divisible by 5.
+	}
+	
 }

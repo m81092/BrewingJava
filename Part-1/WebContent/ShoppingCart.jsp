@@ -19,9 +19,9 @@ body {font-family: "Roboto", sans-serif}
 <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
   <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img src="https://www.w3schools.com/images/w3schools.png" style="width:80%;"></a>
   <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
-  <a class="w3-bar-item w3-button w3-teal" href="#">Home</a>
-  <a class="w3-bar-item w3-button" href="#">About Us</a>
-  <a class="w3-bar-item w3-button" href="#">Team</a>
+  <a class="w3-bar-item w3-button w3-teal" href="Welcome.jsp">Home</a>
+  <a class="w3-bar-item w3-button" href="About.jsp">About Us</a>
+  <a class="w3-bar-item w3-button" href="Team.jsp">Team</a>
   <a class="w3-bar-item w3-button" href="#">Contact US</a>
   <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=All">View All Books</a>
   <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=featured">Featured Books</a>
@@ -57,58 +57,103 @@ body {font-family: "Roboto", sans-serif}
 <header class="w3-container w3-theme" style="padding:64px 32px">
   <h1 class="w3-xxxlarge">BookWorm</h1>
 </header>
-
-<div class="w3-container" style="padding:32px">
-<%
+		<%
+			String username = (String) session.getAttribute("userName");
+			if (username == null) {
+		%>
+		<h4>&nbsp;&nbsp;&nbsp;&nbsp;Welcome:<b> Guest</b></h4>
+		<%
+			} else {
+		%>
+		<h4>
+			&nbsp;&nbsp;&nbsp;&nbsp;Welcome: <b><%=username%></b>
+		</h4>
+		<%} %>
+		<div class="w3-container" style="padding: 32px">
+			<%
 	ArrayList<Books> CartList = session.getAttribute("CartList")!=null? (ArrayList<Books>)session.getAttribute("CartList") :new ArrayList<Books>();
 	if(request.getParameter("id")!=null){
-		int id = Integer.parseInt(request.getParameter("id"));
-		ArrayList<Books> temp = new ArrayList<Books>();
-		for(Books book: CartList){
-			if(book.getBookid()!=id)
-				temp.add(book);
+		try{
+			int id = Integer.parseInt(request.getParameter("id"));
+			System.out.println(id);
+			int bookToRemoveIndex = -1;
+			for(int i = 0 ; i < CartList.size(); i++){
+				if(CartList.get(i).getBookid()==id) {
+					bookToRemoveIndex = i;
+					break;
+				}
+			}
+			if (bookToRemoveIndex != -1)
+				CartList.remove(bookToRemoveIndex);
+			
+			session.setAttribute("CartList", CartList);
+			CartList = session.getAttribute("CartList")!=null? (ArrayList<Books>)session.getAttribute("CartList") :new ArrayList<Books>();
+		}catch(NumberFormatException e){
+			System.out.println(e);
 		}
-		session.setAttribute("CartList", temp);
-		CartList = session.getAttribute("CartList")!=null? (ArrayList<Books>)session.getAttribute("CartList") :new ArrayList<Books>();
 	}
 	
 %>
-	<h3>Shopping Cart</h3>
-		<%
+			<h3>Shopping Cart</h3>
+			<%
 			if(!CartList.isEmpty()){
 		%>
-			<p>You currently have following books in your cart:</p>
+			<p>
+				You currently have
+				<%out.println(CartList.size());%>
+				books in your cart:
+			</p>
 			<br>
-			<form action="Login.jsp">
-				<table class="booktable" border="3" >
-							<tr><th>Title</th><th>Price($)</th><th>Action</th></tr>
-								<% float total=0;
+			<form action="${pageContext.request.contextPath}/Checkout">
+				<table class="booktable" border="3">
+					<tr>
+						<th>Title</th>
+						<th>Price($)</th>
+						<th>Action</th>
+					</tr>
+					<% float total=0, tax=0;
 								for(Books book: CartList){ 
 									total+=book.getPrice();
 								%>
-								<tr>
-										<td><%=book.getTitle() %></td><td><%=book.getPrice() %></td><td><a href="ShoppingCart.jsp?id=<%=book.getBookid()%>">Remove</a></td>	
-									</tr>
-									
-							<%} %>	
-							<tr><th>Total</th><th><%=total%></th></tr>
+					<tr>
+						<td><%=book.getTitle() %></td>
+						<td><%=book.getPrice() %></td>
+						<td><a href="ShoppingCart.jsp?id=<%=book.getBookid()%>">Remove</a></td>
+					</tr>
+					<% float bookTax = book.getPrice()*(float)(0.13); 
+									tax+=bookTax;
+								}
+								total+=tax;
+								%>
+					<tr>
+						<th>Tax</th>
+						<th><%=tax%></th>
+					</tr>
+					<tr>
+						<th>Total</th>
+						<th><%=total%></th>
+					</tr>
 				</table>
-				<button type="submit" value="<%=total%>" >Proceed TO Checkout</button>
+				<br>
+				<button type="submit" value="<%=total%>">Proceed TO
+					Checkout</button>
 			</form>
-		<%
+			<%
 			}
 			else{
 		%>
-				<h4>Your Cart is Empty!!</h4>
-		<%} %>
-	<a href="Welcome.jsp"><i><----Continue Shopping</i></a>
-	<div class="w3-container w3-sand w3-leftbar">
-	<p><i>Make it as simple as possible, but not simpler.</i><br>
-	Albert Einstein</p>
-	</div>
-</div>
+			<h4>Your Cart is Empty!!</h4>
+			<%} %>
+			<a href="Welcome.jsp"><i><----Continue Shopping</i></a>
+			<div class="w3-container w3-sand w3-leftbar">
+				<p>
+					<i>Make it as simple as possible, but not simpler.</i><br>
+					Albert Einstein
+				</p>
+			</div>
+		</div>
 
-<footer class="w3-container w3-theme" style="padding:22px">
+		<footer class="w3-container w3-theme" style="padding:22px">
   <p>Copyright © 2018 Brewing Java Corporation</p>
 </footer>
      

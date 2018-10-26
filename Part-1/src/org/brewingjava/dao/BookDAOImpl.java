@@ -59,10 +59,13 @@ public class BookDAOImpl implements BookDAO {
 					System.out.println(sqle);
 					sqle.printStackTrace();
 				}
+			}
 
 				if (stmt != null) {
 					try {
 						stmt.close();
+				
+					
 					} catch (SQLException sqle) {
 						System.out.println(sqle);
 						sqle.printStackTrace();
@@ -77,7 +80,7 @@ public class BookDAOImpl implements BookDAO {
 						sqle.printStackTrace();
 					}
 				}
-			}
+			
 		}
 		return allBooksList;
 	}
@@ -123,6 +126,9 @@ public class BookDAOImpl implements BookDAO {
 				cat.setStatus(status);
 				booksByCategory.add(cat);
 			}
+			rs.close();
+			stmt.close();
+			connection.close();
 		} catch (Exception e) {
 			System.out.println("Unable to load Driver");
 			e.printStackTrace();
@@ -134,6 +140,7 @@ public class BookDAOImpl implements BookDAO {
 					System.out.println(sqle);
 					sqle.printStackTrace();
 				}
+			}
 
 				if (stmt != null) {
 					try {
@@ -152,7 +159,6 @@ public class BookDAOImpl implements BookDAO {
 						sqle.printStackTrace();
 					}
 				}
-			}
 		}
 		return booksByCategory;
 
@@ -161,14 +167,17 @@ public class BookDAOImpl implements BookDAO {
 	@Override
 	public Books getBookInfo(int id) {
 		Books book=null;
+		Connection connection = null;
+		Statement stmt = null;
+		ResultSet rs = null;
 		try {
 			String QueryId = "BOOK_INFO";
-			Connection connection = dbConnection.getDataSource().getConnection();
+			connection = dbConnection.getDataSource().getConnection();
 			String query = PropertyReaderUtil.getInstance().getPropertyValue(QUERIES_PROERTIES_FILE, QueryId);
 			query = String.format(query, id);
 			System.out.println(query);
-			Statement stmt = connection.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
+			stmt = connection.createStatement();
+			rs = stmt.executeQuery(query);
 			while (rs.next()) {
 				int bookid = rs.getInt("bookid");
 				String title = rs.getString("title");
@@ -177,9 +186,39 @@ public class BookDAOImpl implements BookDAO {
 				String category = rs.getString("category");
 				book = new Books(bookid, title, price, author, category);
 			}
+			rs.close();
+			stmt.close();
+			connection.close();
 		} catch (Exception e) {
 			System.out.println("Unable to load Driver");
 			e.printStackTrace();
+		}finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException sqle) {
+					System.out.println(sqle);
+					sqle.printStackTrace();
+				}
+			}
+
+				if (stmt != null) {
+					try {
+						stmt.close();
+					} catch (SQLException sqle) {
+						System.out.println(sqle);
+						sqle.printStackTrace();
+					}
+				}
+
+				if (connection != null) {
+					try {
+						connection.close();
+					} catch (SQLException sqle) {
+						System.out.println(sqle);
+						sqle.printStackTrace();
+					}
+				}
 		}
 		return book;
 	}

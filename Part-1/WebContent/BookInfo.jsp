@@ -44,8 +44,8 @@ margin: 0px auto;
 			class="w3-bar-item w3-button w3-hide-large w3-large"
 			href="javascript:void(0)" onclick="w3_close()">Close <i
 			class="fa fa-remove"></i></a> <a class="w3-bar-item w3-button w3-teal"
-			href="Welcome.jsp">Home</a> <a class="w3-bar-item w3-button" href="#">About
-			Us</a> <a class="w3-bar-item w3-button" href="#">Team</a> <a
+			href="Welcome.jsp">Home</a> <a class="w3-bar-item w3-button" href="AboutUs.jsp">About
+			Us</a> <a class="w3-bar-item w3-button" href="Team.jsp">Team</a> <a
 			class="w3-bar-item w3-button" href="#">Contact US</a> <a
 			class="w3-bar-item w3-button"
 			href="${pageContext.request.contextPath}/ShowBooks?category=All">View
@@ -101,7 +101,18 @@ margin: 0px auto;
 		<header class="w3-container w3-theme" style="padding: 64px 32px">
 			<h1 class="w3-xxxlarge">BookWorm</h1>
 		</header>
-
+		<%
+			String username = (String) session.getAttribute("userName");
+			if (username == null) {
+		%>
+		<h4>&nbsp;&nbsp;&nbsp;&nbsp;Welcome:<b> Guest</b></h4>
+		<%
+			} else {
+		%>
+		<h4>
+			&nbsp;&nbsp;&nbsp;&nbsp;Welcome: <b><%=username%></b>
+		</h4>
+		<%} %>
 		<div class="w3-container" style="padding: 32px">
 
 			<h3>Let's see what we got for you !!</h3>
@@ -113,7 +124,11 @@ margin: 0px auto;
 			<br>
 			<%
 					ArrayList bookDetails = (ArrayList) request.getAttribute("Bookdetails");
+					String error = (String)request.getAttribute("error");
 				%>
+			<%
+			if (error == null) { %>
+
 				<%
 					if (bookDetails.size() != 0) {
 				%>
@@ -149,7 +164,14 @@ margin: 0px auto;
 				} else {
 			%>
 			<h3 style="color:red;">Error Processing your request. Try again later</h3>
-			<% } %>
+			<% 
+			
+				} }else { 
+			%>
+				<h3 style="color:red;">Error Processing your request. Try again later</h3>
+			<% 
+			} %>
+			
 			<b><a href = "javascript:close_window();"> Close Page</a></b>
 			<h2>Beautiful Book Quotes...!!</h2>
 			<div class="w3-container w3-sand w3-leftbar">

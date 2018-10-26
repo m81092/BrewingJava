@@ -30,9 +30,9 @@ body {font-family: "Roboto", sans-serif}
 <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
   <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img src="https://www.w3schools.com/images/w3schools.png" style="width:80%;"></a>
   <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
-  <a class="w3-bar-item w3-button w3-teal" href="#">Home</a>
-  <a class="w3-bar-item w3-button" href="#">About Us</a>
-  <a class="w3-bar-item w3-button" href="#">Team</a>
+  <a class="w3-bar-item w3-button w3-teal" href="Welcome.jsp">Home</a>
+  <a class="w3-bar-item w3-button" href="AboutUs.jsp">About Us</a>
+  <a class="w3-bar-item w3-button" href="Team.jsp">Team</a>
   <a class="w3-bar-item w3-button" href="#">Contact US</a>
   <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=All">View All Books</a>
   <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=featured">Featured Books</a>
@@ -87,7 +87,7 @@ body {font-family: "Roboto", sans-serif}
   </div>
 </form>
 
- <div id=container-1><h4>Are you new here....</h4><form style="border:0px;" action="Register.jsp"><button type="submit">Create an Account Here</button></form>
+ <div id=container-1><h4>Are you new here....</h4><form style="border:0px;" action="Register.jsp"><button type="submit" style="margin-left:20px; width:47%;">Create an Account Here</button></form>
   </div>
   
 <br>
@@ -100,12 +100,17 @@ Albert Einstein</p>
 </div>
 
 <footer class="w3-container w3-theme" style="padding:22px">
-  <p>Footer information goes here</p>
+  <p>Copyright © 2018 Brewing Java Corporation</p>
 </footer>
      
 </div>
 
 <script>
+//Disable back button in next page
+function preventBack(){window.history.forward();}
+setTimeout("preventBack()", 0);
+window.onunload=function(){null};
+
 // Open and close the sidebar on medium and small screens
 function w3_open() {
     document.getElementById("mySidebar").style.display = "block";

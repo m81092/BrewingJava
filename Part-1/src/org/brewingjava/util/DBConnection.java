@@ -27,10 +27,10 @@ public class DBConnection {
 
 	private static GenericObjectPool gPool = null;
 
-	public DBConnection() {
+	private DBConnection() {
 	}
 
-	public DBConnection(DBConnectionProps properties) {
+	private DBConnection(DBConnectionProps properties) {
 
 		dbConnectionProperties = properties;
 

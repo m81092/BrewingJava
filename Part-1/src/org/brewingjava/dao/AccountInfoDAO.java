@@ -1,5 +1,6 @@
 package org.brewingjava.dao;
 
+
 import org.brewingjava.model.UserDetails;
 
 public interface AccountInfoDAO {

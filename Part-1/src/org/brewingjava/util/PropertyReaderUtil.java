@@ -12,7 +12,7 @@ public class PropertyReaderUtil {
 
 	private static PropertyReaderUtil instance;
 
-	public PropertyReaderUtil() {
+	private PropertyReaderUtil() {
 	}
 
 	public static PropertyReaderUtil getInstance() {

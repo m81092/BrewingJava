@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -37,6 +38,7 @@ public class LoginServlet extends HttpServlet {
 		String epass = null;
 		String name = request.getParameter("name");
 		String pass = request.getParameter("pass");
+		HttpSession mySession = request.getSession();
 		try {
 			epass = PasswordEncryptionService.generateSecurePassword(pass, PasswordEncryptionService.salt);
 		} catch (Exception e) {
@@ -66,6 +68,7 @@ public class LoginServlet extends HttpServlet {
 				String shipping = jsonObj.getJSONObject("userInfo").get("shipping").toString();
 				
 				accountInfo.setUsername(userName);
+				mySession.setAttribute("userName", userName);
 				userInfo.setFname(fname);
 				userInfo.setLname(lname);
 				userInfo.setBilling(billing);
@@ -73,8 +76,9 @@ public class LoginServlet extends HttpServlet {
 				
 				userDetails = new UserDetails(accountInfo, userInfo);
 				userDetailList.add(userDetails);
-				request.setAttribute("UserDetails", userDetailList);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("Checkout.jsp");
+				//request.setAttribute("UserDetails", userDetailList);
+				mySession.setAttribute("UserDetails", userDetailList);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/Checkout");
 				dispatcher.include(request, response);
 			}catch (Exception e) {
 				e.printStackTrace();

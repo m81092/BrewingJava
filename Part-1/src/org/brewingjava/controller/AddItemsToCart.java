@@ -43,7 +43,9 @@ public class AddItemsToCart extends HttpServlet {
 			book.setBookid(bookId);
 			idList.add(book);
 			System.out.println(idList.size());
+			String msg= "Book added successfully to cart";
 			mysession.setAttribute("idList", idList);
+			mysession.setAttribute("displayMsg", msg);
 			response.sendRedirect("ShowBooks?category="+category);
 			
 		}

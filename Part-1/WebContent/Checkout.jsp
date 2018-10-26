@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
+<%@ page import = "org.brewingjava.model.Books" %>
 
 <!-- All of the below code is referenced unless specified from https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_examples_material  -->
 <!DOCTYPE html>
@@ -14,12 +15,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><style>
 body {font-family: "Roboto", sans-serif}
 .w3-bar-block .w3-bar-item{padding:16px;font-weight:bold}
+table.booktable {
+	margin-left: auto;
+	margin-right: auto;
+}
 </style>
 <body>
-
-<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" ></nav>
-<a class="w3-bar-item w3-button w3-hide-large w3-large" ></a>
-
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
 
 <div class="w3-main" style="margin-left:250px;">
@@ -33,14 +34,25 @@ body {font-family: "Roboto", sans-serif}
 <header class="w3-container w3-theme" style="padding:64px 32px">
   <h1 class="w3-xxxlarge">BookWorm</h1>
 </header>
-
-<div class="w3-container" style="padding:55px">
+		<%
+			String username = (String) session.getAttribute("userName");
+			if (username == null) {
+		%>
+		<h4>&nbsp;&nbsp;&nbsp;&nbsp;Welcome:<b> Guest</b></h4>
+		<%
+			} else {
+		%>
+		<h4>
+			&nbsp;&nbsp;&nbsp;&nbsp;Welcome: <b><%=username%></b>
+		</h4>
+		<%} %>
+		<div class="w3-container" style="padding:55px">
 
 <form action="" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
 <h2 class="w3-center">Check Out here</h2>
  
  			<%
-				ArrayList userDetails = (ArrayList) request.getAttribute("UserDetails");
+				ArrayList userDetails = (ArrayList) session.getAttribute("UserDetails");
 			%>
 			<%
 				if (userDetails.size() != 0) {
@@ -63,7 +75,7 @@ body {font-family: "Roboto", sans-serif}
 
 <div class="w3-row w3-section w3-text-black">
     <div class="w3-rest">
-    <label for="username"><i class="fa fa-user"></i> Username</label>
+    <label for="username"><i class="fa fa-user"></i> UserName</label>
       <input class="w3-input w3-border" id="username" name="username" type="text" value='${items.accountInfo.username}' readonly>
     </div>
 </div>
@@ -91,23 +103,43 @@ body {font-family: "Roboto", sans-serif}
 
 <form action="" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
 <h2 class="w3-center">Cart<i class="fa fa-shopping-cart"></i></h2>
-<p><span class="Taxes"></span></p>
 <p><span class="price"></span></p>
-      <p><a href="#"></a> <span class="price"></span></p>
-      <p><a href="#"></a> <span class="price"></span></p>
-      <p><a href="#"></a> <span class="price"></span></p>
-      <hr>
-      <div class="w3-row w3-section w3-text-black">
-      <p>Taxes <span class="Taxes" style="color:black"><b></b></span></p>
-      <p>Total <span class="price" style="color:black"><b></b></span></p>
+     <%
+							ArrayList<Books> cartList = (ArrayList<Books>) session.getAttribute("CartList");
+							if (!cartList.isEmpty()) {
+						%>
+						<table class="booktable" border="0" style="color: black;" >
+							<tr>
+								<td>Title</td>
+								<td>Price(Inc Tax)</td>
+							
+							<%
+								float total = 0;
+									for (Books book : cartList) {
+										total += book.getPrice();
+							%>
+							<tr>
+								<td><%=book.getTitle()%></td>
+								<td>$<%=book.getPrice()%></td>
+							</tr>
+							<%
+							}
+						%>
+						</table>
+						
+      <div class="w3-row w3-section w3-text-black" style="text-align: center">
+      <p>Total (Includes Tax (13%)) <span class="price" style="color:black"><b><%=total%></b></span></p>
+      <% } else { %>
+      <h3 style="color:red;">Error Processing your request. Try again later</h3>
+      <% } %>
 </div>
 </form>
  </div>
  <p class="w3-center">
-<button class="w3-button w3-section w3-blue w3-ripple" type="submit"> Continue to checkout </button>
+ <form action="${pageContext.request.contextPath}/CreateOrder" method="Post">
+<button class="w3-button w3-section w3-blue w3-ripple" type="submit"> Create Order </button>
+</form>
 </p>
-<!-- href is just for testing. Delete below line later  -->
-<a href="ConfirmOrder.jsp">Confirm order</a>
 
 <h2>Beautiful Book Quotes...!!</h2>
 <div class="w3-container w3-sand w3-leftbar">

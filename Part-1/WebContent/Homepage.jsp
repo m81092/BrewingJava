@@ -38,7 +38,7 @@ body {
 			href="javascript:void(0)" onclick="w3_close()">Close <i
 			class="fa fa-remove"></i></a> <a class="w3-bar-item w3-button w3-teal"
 			href="Welcome.jsp">Home</a> <a class="w3-bar-item w3-button" href="#">About
-			Us</a> <a class="w3-bar-item w3-button" href="#">Team</a> <a
+			Us</a> <a class="w3-bar-item w3-button" href="Team.jsp">Team</a> <a
 			class="w3-bar-item w3-button" href="#">Contact US</a> <a
 			class="w3-bar-item w3-button"
 			href="${pageContext.request.contextPath}/ShowBooks?category=All">View
@@ -70,8 +70,7 @@ body {
 				<a class="w3-bar-item w3-button"
 					href="${pageContext.request.contextPath}/ShowBooks?category=Science and Nature">Science
 					and Nature</a> <a class="w3-bar-item w3-button"
-					href="${pageContext.request.contextPath}/ShowBooks?category=Poetry">Science
-					and Nature</a>
+					href="${pageContext.request.contextPath}/ShowBooks?category=Poetry">Poetry</a>
 			</div>
 		</div>
 	</nav>
@@ -94,13 +93,29 @@ body {
 		<header class="w3-container w3-theme" style="padding: 64px 32px">
 			<h1 class="w3-xxxlarge">BookWorm</h1>
 		</header>
-
+		<%
+			String username = (String) session.getAttribute("userName");
+			if (username == null) {
+		%>
+		<h4>&nbsp;&nbsp;&nbsp;&nbsp;Welcome:<b> Guest</b></h4>
+		<%
+			} else {
+		%>
+		<h4>
+			&nbsp;&nbsp;&nbsp;&nbsp;Welcome: <b><%=username%></b>
+		</h4>
+		<%} %>
 		<div class="w3-container" style="padding: 32px">
 
 			<h3>Let's see what we got for you !!</h3>
 
 			<p>Based on your recent click</p>
-			</h4>
+			<% String displayMsg = (String)session.getAttribute("displayMsg"); 
+					session.removeAttribute("displayMsg");
+					if (displayMsg == null) 
+						displayMsg="";%>
+			<div id="displayMsg"><h3 style="color:green;"><%=displayMsg%></h3></div>
+
 			<br>
 			
 			<%
@@ -144,10 +159,10 @@ body {
 								<form name="addToCartForm"
 									action="${pageContext.request.contextPath}/AddItemsToCart"
 									method="post">
-									<input type="hidden" class="bookId" name="bookId"
-										value='${items.bookid}' /> <input type="hidden" class="title"
-										value='${items.title}' /> <input type="hidden" id="cart" />
-									<input type="submit" class="submitbutton11" value="Add to cart" />
+									<input type="hidden" class="bookId" name="bookId" value='${items.bookid}' />
+									 <input type="hidden" class="title" value='${items.title}' />
+									  <input type="hidden" id="cart" />
+									<input id="AddCart" type="submit" class="submitbutton11" value="Add to cart" />
 								</form>
 							</td>
 						</tr>
@@ -181,6 +196,11 @@ body {
 	</div>
 
 	<script>
+		// OnClick Listener for Add To Cart button
+		$(function(e){
+			$("#displayMsg").show();
+			$("#displayMsg").fadeOut(2000);
+		});
 		// Open and close the sidebar on medium and small screens
 		function w3_open() {
 			document.getElementById("mySidebar").style.display = "block";
