@@ -43,8 +43,29 @@ body {font-family: "Roboto", sans-serif}
 <header class="w3-container w3-theme" style="padding:64px 32px">
   <h1 class="w3-xxxlarge">BookWorm</h1>
 </header>
+		<%
+			String username = (String) session.getAttribute("userName");
+			if (username == null) {
+		%>
+		<div style="float: left">
+			<h4>
+				&nbsp;&nbsp;&nbsp;&nbsp;Welcome:<b> Guest</b>
+			</h4>
+		</div>
+		<%
+			} else {
+		%>
+		<div style="float: left">
+			<h4>
+				&nbsp;&nbsp;&nbsp;&nbsp;Welcome:<b><%=username%></b>
+			</h4>
+		</div>
+		<div style="float: right">
+			<a href="${pageContext.request.contextPath}/Logout">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		</div>
 
-<div class="w3-container" style="padding:70px">
+		<%} %>
+		<div class="w3-container" style="padding:70px">
 
 <form action="" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin" style="width:700px;">
 <h2 class="w3-center">Payment</h2>

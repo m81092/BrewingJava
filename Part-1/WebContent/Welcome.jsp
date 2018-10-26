@@ -58,14 +58,30 @@ body {font-family: "Roboto", sans-serif}
   <h1 class="w3-xxxlarge">BookWorm</h1>
   
 </header>
-<% String username = (String)session.getAttribute("userName"); 
-if (username == null) { %>
-<h4>&nbsp;&nbsp;&nbsp;&nbsp;Welcome:<b> Guest</b></h4>
-<% } else { %>
-<h4>&nbsp;&nbsp;&nbsp;&nbsp;Welcome: <b><%=username%></b></h4>
-<%} %>
+		<%
+			String username = (String) session.getAttribute("userName");
+			if (username == null) {
+		%>
+		<div style="float: left">
+			<h4>
+				&nbsp;&nbsp;&nbsp;&nbsp;Welcome:<b> Guest</b>
+			</h4>
+		</div>
+		<%
+			} else {
+		%>
+		<div style="float: left">
+			<h4>
+				&nbsp;&nbsp;&nbsp;&nbsp;Welcome:<b><%=username%></b>
+			</h4>
+		</div>
+		<div style="float: right">
+			<a href="${pageContext.request.contextPath}/Logout">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		</div>
 
-<div class="w3-container" style="padding:32px">
+		<%} %>
+
+		<div class="w3-container" style="padding:32px">
 
 <h3>What is BookWorm?</h3>
 <ul class="w3-leftbar w3-theme-border" style="list-style:none">

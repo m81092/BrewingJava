@@ -38,13 +38,23 @@ table.booktable {
 			String username = (String) session.getAttribute("userName");
 			if (username == null) {
 		%>
-		<h4>&nbsp;&nbsp;&nbsp;&nbsp;Welcome:<b> Guest</b></h4>
+		<div style="float: left">
+			<h4>
+				&nbsp;&nbsp;&nbsp;&nbsp;Welcome:<b> Guest</b>
+			</h4>
+		</div>
 		<%
 			} else {
 		%>
-		<h4>
-			&nbsp;&nbsp;&nbsp;&nbsp;Welcome: <b><%=username%></b>
-		</h4>
+		<div style="float: left">
+			<h4>
+				&nbsp;&nbsp;&nbsp;&nbsp;Welcome:<b><%=username%></b>
+			</h4>
+		</div>
+		<div style="float: right">
+			<a href="${pageContext.request.contextPath}/Logout">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		</div>
+
 		<%} %>
 		<div class="w3-container" style="padding:55px">
 
