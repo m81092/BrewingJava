@@ -27,12 +27,11 @@ body {font-family: "Roboto", sans-serif}
 	</c:if>
 <!-- code end -->
 
-<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" ></nav>
 <a class="w3-bar-item w3-button w3-hide-large w3-large" ></a>
 
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
 
-<div class="w3-main" style="margin-left:250px;">
+<div class="w3-main">
 
 <div id="myTop" class="w3-container w3-top w3-theme w3-large">
   <p><i class="fa fa-bars w3-button w3-teal w3-hide-large w3-xlarge" onclick="w3_open()"></i>
@@ -67,7 +66,7 @@ body {font-family: "Roboto", sans-serif}
 		<%} %>
 		<div class="w3-container" style="padding:70px">
 
-<form action="" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin" style="width:700px;">
+<form action="" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin" style="width:70%; margin-left:15%!important; margin-right:15%!important; max-width: 650px;">
 <h2 class="w3-center">Payment</h2>
  
  <div class="w3-row w3-section w3-text-black">
@@ -148,7 +147,7 @@ body {font-family: "Roboto", sans-serif}
  int orderID =  (Integer)request.getAttribute("purchaseOrderID");
  %> --%>
  <input type="hidden" class="purchaseOrderID" name="purchaseOrderID" value = "<%=request.getAttribute("purchaseOrderID") %>">
- <div style="width: 730px; text-align: center;">
+ <div style="text-align: center;">
 <button class="w3-button w3-section w3-blue w3-ripple" type="submit"> Confirm Order</button></div></form>
 </p>
 

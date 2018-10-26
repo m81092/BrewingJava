@@ -23,7 +23,7 @@ table.booktable {
 <body>
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
 
-<div class="w3-main" style="margin-left:250px;">
+<div class="w3-main">
 
 <div id="myTop" class="w3-container w3-top w3-theme w3-large">
   <p><i class="fa fa-bars w3-button w3-teal w3-hide-large w3-xlarge" onclick="w3_open()"></i>
@@ -58,7 +58,7 @@ table.booktable {
 		<%} %>
 		<div class="w3-container" style="padding:55px">
 
-<form action="" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
+<form action="" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin" style="margin-left:60px!important; margin-right:60px!important;">
 <h2 class="w3-center">Check Out here</h2>
  
  			<%
@@ -111,7 +111,7 @@ table.booktable {
 
 <div class="w3-container" style="padding:10px">
 
-<form action="" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
+<form action="" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin" style="margin-left:50px!important; margin-right:50px!important;">
 <h2 class="w3-center">Cart<i class="fa fa-shopping-cart"></i></h2>
 <p><span class="price"></span></p>
      <%
