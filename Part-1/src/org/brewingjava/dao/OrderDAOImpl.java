@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -58,15 +57,14 @@ public class OrderDAOImpl implements OrderDAO {
 				for (Books book : cartDetails) {
 					bookId = book.getBookid();
 					price = book.getPrice();
-					if(bookMap.containsKey(bookId)) {
-						float tempPrice = bookMap.get(bookId)+price;
+					if (bookMap.containsKey(bookId)) {
+						float tempPrice = bookMap.get(bookId) + price;
 						bookMap.put(bookId, tempPrice);
-					}
-					else {
+					} else {
 						bookMap.put(bookId, price);
 					}
 				}
-				for(Map.Entry<Integer,Float> entry : bookMap.entrySet() ) {
+				for (Map.Entry<Integer, Float> entry : bookMap.entrySet()) {
 					QueryId = "CREATE_ORDER_2";
 					query = PropertyReaderUtil.getInstance().getPropertyValue(QUERIES_PROERTIES_FILE, QueryId);
 					query = String.format(query, entry.getKey(), entry.getValue());
@@ -92,32 +90,62 @@ public class OrderDAOImpl implements OrderDAO {
 
 		return purchaseOrderID;
 	}
-	
 
 	@Override
 	public boolean confirmOrder(int id, boolean payement) {
 		Connection connection = null;
 		Statement stmt = null;
-		boolean result=false;
+		Statement stmt1 = null;
+		ResultSet resultSet = null;
+		int bookid = 0;
+		Books eventBook = null;
+		boolean result = false;
 		try {
 			String queryConfirm;
-			if(payement)
+			if (payement)
 				queryConfirm = "CONFIRM_ORDER";
 			else
 				queryConfirm = "DENY_ORDER";
-			
+
 			connection = dbConnection.getDataSource().getConnection();
 			String query = PropertyReaderUtil.getInstance().getPropertyValue(QUERIES_PROERTIES_FILE, queryConfirm);
-			query = String.format(query, id,id);
+			query = String.format(query, id, id);
 			stmt = connection.createStatement();
-			int rs = stmt.executeUpdate(query);
-			if(rs==1)
-				result = true;
-			else {
-				queryConfirm="DENIED_STATUS";
+			int rowCount = stmt.executeUpdate(query);
+			if (rowCount == 1) {
+				if (payement) {
+					result = true;
+					String queryId = "FETCH_BOOKID";
+					String eventQuery = PropertyReaderUtil.getInstance().getPropertyValue(QUERIES_PROERTIES_FILE,
+							queryId);
+					eventQuery = String.format(eventQuery, id);
+					stmt1 = connection.createStatement();
+					resultSet = stmt1.executeQuery(eventQuery);
+					ArrayList<Books> bookEventList = new ArrayList<Books>();
+					while (resultSet.next()) {
+						bookid = resultSet.getInt(1);
+						eventBook = new Books();
+						eventBook.setBookid(bookid);
+						bookEventList.add(eventBook);
+					}
+
+					System.out.println(bookEventList.size());
+					EventHandlerDAO eventDao = new EventHandlerDAOImpl();
+					// Saving events in visit event table
+					boolean visitFlag = eventDao.createEvent(bookEventList, "PURCHASE");
+					// Error inserting the purchase event to DB.
+					if (!visitFlag) {
+						System.out.println("Some error occurred while saving to Visit Event table");
+					}
+					stmt1.close();
+				}
+
+			} else {
+				queryConfirm = "DENIED_STATUS";
 				query = PropertyReaderUtil.getInstance().getPropertyValue(QUERIES_PROERTIES_FILE, queryConfirm);
 				query = String.format(query, id);
 				stmt.executeUpdate(query);
+
 			}
 			stmt.close();
 			connection.close();
@@ -126,22 +154,30 @@ public class OrderDAOImpl implements OrderDAO {
 			e.printStackTrace();
 		} finally {
 			if (stmt != null) {
-					try {
-						stmt.close();
-					} catch (SQLException sqle) {
-						System.out.println(sqle);
-						sqle.printStackTrace();
-					}
+				try {
+					stmt.close();
+				} catch (SQLException sqle) {
+					System.out.println(sqle);
+					sqle.printStackTrace();
 				}
+			}
+			if (stmt1 != null) {
+				try {
+					stmt1.close();
+				} catch (SQLException sqle) {
+					System.out.println(sqle);
+					sqle.printStackTrace();
+				}
+			}
 
-				if (connection != null) {
-					try {
-						connection.close();
-					} catch (SQLException sqle) {
-						System.out.println(sqle);
-						sqle.printStackTrace();
-					}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException sqle) {
+					System.out.println(sqle);
+					sqle.printStackTrace();
 				}
+			}
 		}
 		return result;
 	}

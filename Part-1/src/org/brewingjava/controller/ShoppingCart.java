@@ -40,6 +40,7 @@ public class ShoppingCart extends HttpServlet {
 		WebTarget target;
 		String result;
 		List<Books> allBooksList = new ArrayList<Books>();
+		boolean addTax = true;
 		try {
 			for(int j=0;j<idList.size();j++) {
 				target = client.target(baseURI).path("/REST/WebService/BookInfo").queryParam("bookId", idList.get(j).getBookid()).queryParam("event", "CART");
@@ -62,6 +63,7 @@ public class ShoppingCart extends HttpServlet {
 				CartList.add(book);
 			}
 			session.setAttribute("CartList", CartList);
+			session.setAttribute("addTax", addTax);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("ShoppingCart.jsp");
 			dispatcher.include(request, response);
 		} catch (Exception e) {

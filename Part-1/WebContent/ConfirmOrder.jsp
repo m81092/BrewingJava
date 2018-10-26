@@ -46,38 +46,46 @@ body {font-family: "Roboto", sans-serif}
 
 <div class="w3-container" style="padding:70px">
 
-<form action="" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
+<form action="" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin" style="width:700px;">
 <h2 class="w3-center">Payment</h2>
  
  <div class="w3-row w3-section w3-text-black">
     <div class="w3-rest">
     <label for="nameOnCard">Name On Card</label>
-      <input class="w3-input w3-border" id="nameOnCard" name="nameOnCard" type="text" placeholder="Enter Name on Credit Card" required>
+      <input class="w3-input w3-border" id="nameOnCard" name="nameOnCard" required type="text" placeholder="Enter Name on Credit Card"  style="width:600px;" >
     </div>
 </div>
 
 <div class="w3-row w3-section w3-text-black">
     <div class="w3-rest">
-    <label for="expMonth"> Select Card Type</label><br>
-                <select>
+    
+    <label for="cardType"> Select Card Type</label> <i>
+              <i class="fa fa-cc-visa" style="color:navy;"></i>
+              <i class="fa fa-cc-amex" style="color:blue;"></i>
+              <i class="fa fa-cc-mastercard" style="color:red;"></i>
+              <i class="fa fa-cc-discover" style="color:orange;"></i></i>
+            
+    <div class="custom-select" >
+                <select style="width:600px; height:35px; color:gray">
+                	<option value="0">Select card</option>
                     <option value="creditCard">Credit Card </option>
                     <option value="debitCard">Debit Card </option>
-                </select>
+                </select></div>
 	</div>
 </div>
 <div class="w3-row w3-section w3-text-black">
     <div class="w3-rest">
     <label for="cardNumber">Card Number</label>
-      <input class="w3-input w3-border" id="cardNumber" name="cardNumber" type="text" value=""
-            onkeypress="javascript:return isNumber(event)"placeholder="Enter card Number" required >
+      <input class="w3-input w3-border" id="cardNumber" minlength="16" maxlength="16" name="cardNumber"  value=""
+            onkeypress="javascript:return isNumber(event)"placeholder="Enter card Number"  style="width:600px;" required>
     </div>
 </div>
 
 <div class="w3-row w3-section w3-text-black">
-    <div class="w3-rest">
+    <div class="w3-rest" >
     <label for="expMonth"> Expiration Date</label><br>
                 
-                <select>
+                <select style="width:250px; height:35px; color:gray">
                     <option value="01">January</option>
                     <option value="02">February </option>
                     <option value="03">March</option>
@@ -91,7 +99,7 @@ body {font-family: "Roboto", sans-serif}
                     <option value="11">November</option>
                     <option value="12">December</option>
                 </select>
-                <select>
+                <select style="width:250px; height:35px; color:gray">
                     <option value="16"> 2018</option>
                     <option value="17"> 2019</option>
                     <option value="18"> 2020</option>
@@ -106,7 +114,7 @@ body {font-family: "Roboto", sans-serif}
     <div class="w3-rest">
     <label for="cvvNum"> CVV</label>
       <input class="w3-input w3-border" id="cvvNum" name="cvvNum" value=""
-            onkeypress="javascript:return isNumber(event)" placeholder="Enter Three digit CVV Number" required>
+            onkeypress="javascript:return isNumber(event)" placeholder="Enter Three digit CVV Number"  style="width:600px;" required>
       
     </div>
 </div>
@@ -114,12 +122,13 @@ body {font-family: "Roboto", sans-serif}
 </form>
 
  <p class="w3-center">
- <form action="${pageContext.request.contextPath}/ConfirmOrder" method="get">
+ <form action="${pageContext.request.contextPath}/ConfirmOrder" onsubmit= "return validate();" method="get">
  <%-- <%
  int orderID =  (Integer)request.getAttribute("purchaseOrderID");
  %> --%>
  <input type="hidden" class="purchaseOrderID" name="purchaseOrderID" value = "<%=request.getAttribute("purchaseOrderID") %>">
-<button class="w3-button w3-section w3-blue w3-ripple" type="submit"> Confirm Order</button></form>
+ <div style="width: 730px; text-align: center;">
+<button class="w3-button w3-section w3-blue w3-ripple" type="submit"> Confirm Order</button></div></form>
 </p>
 
 
@@ -148,17 +157,23 @@ Albert Einstein</p>
 function validate() {
 	var nameOnCard = document.getElementById("nameOnCard").value;
 	var cardNumber = document.getElementById("cardNumber").value;
-	var expMonth = document.getElementById("expMonth").value;
-	var expYear = document.getElementById("expYear").value;
 	var cvvNum = document.getElementById("cvvNum").value;
-	if (nameOnCard === "" || cardNumber === "" || expMonth ===""||expYear ===""|| cvvNum === "" ) {
-		alert("None of the fields should be left blank!");
+	
+	if (nameOnCard === "" || cardNumber === "" || cvvNum === "")  {
+		alert("None of the Fields Should be Left Blank!");
 		return false;
 	}
-	else {
-		document.form.submit();
-        return true;
-	}
+	if(cvvNum.length > 3 || cvvNum.length < 3) {
+        alert("Enter Three Digit CVV Number!");
+        return false;
+    }
+	if(cardNumber.length > 16 || cardNumber.length < 16 ) {
+        alert("Please Enter 16 digits Card Number!");
+        return false;
+    }
+  	  
+	document.form.submit();
+    return true;
 }
 
 // Open and close the sidebar on medium and small screens
