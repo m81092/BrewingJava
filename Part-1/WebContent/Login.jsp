@@ -79,7 +79,7 @@ body {font-family: "Roboto", sans-serif}
     <label for="name"><b>Your username</b></label><br>
     <input type="text" placeholder="Enter username " name="name" required><br>
     <label for="pass"><b>Your password</b></label><br>
-    <input type="password" placeholder="Enter Password" name="pass" required>
+    <input type="password" placeholder="Enter Password" name="pass" pattern=".{6,}" title="Six or more characters" required>
     <label><br>
     <input type="checkbox" checked="checked" name="remember"> Remember me
     </label><br>
