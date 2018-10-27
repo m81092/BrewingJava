@@ -166,7 +166,6 @@ Albert Einstein</p>
 </div>
 
 <script>
-// Our code starts
  function isNumber(evt) {
     var iKeyCode = (evt.which) ? evt.which : evt.keyCode
     if (iKeyCode != 46 && iKeyCode > 31 && (iKeyCode < 48 || iKeyCode > 57))
@@ -196,7 +195,7 @@ function validate() {
 	document.form.submit();
     return true;
 }
-// Our code ends
+
 // Open and close the sidebar on medium and small screens
 function w3_open() {
     document.getElementById("mySidebar").style.display = "block";

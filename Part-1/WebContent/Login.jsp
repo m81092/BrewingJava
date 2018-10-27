@@ -33,6 +33,7 @@ body {font-family: "Roboto", sans-serif}
   <a class="w3-bar-item w3-button w3-teal" href="Welcome.jsp">Home</a>
   <a class="w3-bar-item w3-button" href="AboutUs.jsp">About Us</a>
   <a class="w3-bar-item w3-button" href="Team.jsp">Team</a>
+  <a class="w3-bar-item w3-button" href="#">Contact US</a>
   <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=All">View All Books</a>
   <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=featured">Featured Books</a>
   <div>
