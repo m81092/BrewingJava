@@ -17,7 +17,6 @@
 body {
 	font-family: "Roboto", sans-serif
 }
-
 .w3-bar-block .w3-bar-item {
 	padding: 16px;
 	font-weight: bold
@@ -212,7 +211,6 @@ margin: 0px auto;
 			document.getElementById("mySidebar").style.display = "none";
 			document.getElementById("myOverlay").style.display = "none";
 		}
-
 		// Change style of top container on scroll
 		window.onscroll = function() {
 			myFunction()
@@ -231,7 +229,6 @@ margin: 0px auto;
 						"w3-animate-opacity");
 			}
 		}
-
 		// Accordions
 		function myAccordion(id) {
 			var x = document.getElementById(id);
@@ -244,27 +241,21 @@ margin: 0px auto;
 						.replace(" w3-theme", "");
 			}
 		}
-
 		var idList = new Array();
 		$('.submitbutton').click(function(e) {
-
 			var _bookId = $(this).parent().find('.bookId').val();
 			var _bookName = $(this).parent().find('.title').val();
 			console.log(_bookName);
-
 			//DO your AJAX call here
 			idList.push(_bookId);
 			console.log(idList.length);
 			var i;
 			for (i = 0; i < idList.length; i++) {
-
 				console.log(idList[i]);
 			}
-
 			document.getElementById("idList").value = idList;
 			document.location.href = "Homepage.jsp?idList=" + idList;
 			//idList = '@Session["idList"]'
-
 			alert(_bookName + ' Added to cart ');
 			return false;
 		});

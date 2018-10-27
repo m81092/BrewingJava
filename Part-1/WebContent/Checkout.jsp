@@ -147,8 +147,7 @@ table.booktable {
  </div>
  <p class="w3-center">
  <form action="${pageContext.request.contextPath}/CreateOrder" method="Post">
- <div style="text-align: center;">
-<button class="w3-button w3-section w3-blue w3-ripple" type="submit"> Create Order </button></div>
+<button class="w3-button w3-section w3-blue w3-ripple" type="submit"> Create Order </button>
 </form>
 </p>
 
@@ -202,6 +201,5 @@ function myAccordion(id) {
     }
 }
 </script>
-     
 </body>
 </html> 
