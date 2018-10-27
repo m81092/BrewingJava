@@ -30,7 +30,6 @@ body {font-family: "Roboto", sans-serif}
   <a class="w3-bar-item w3-button w3-teal" href="Welcome.jsp">Home</a>
   <a class="w3-bar-item w3-button" href="AboutUs.jsp">About Us</a>
   <a class="w3-bar-item w3-button" href="Team.jsp">Team</a>
-  <a class="w3-bar-item w3-button" href="#">Contact US</a>
   <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=All">View All Books</a>
   <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=featured">Featured Books</a>
   <div>
@@ -96,6 +95,12 @@ body {font-family: "Roboto", sans-serif}
 
 <div class="w3-row w3-section">
     <div class="w3-rest">
+      <input class="w3-input w3-border" id="confirmpassword" name="confirmpassword" type="password" placeholder="Confirm Password">
+    </div>
+</div>
+
+<div class="w3-row w3-section">
+    <div class="w3-rest">
       <input class="w3-input w3-border" id="billing" name="billing" type="text" placeholder="Billing Address">
     </div>
 </div>
@@ -147,10 +152,16 @@ function makeSame() {
 function validate() {
 	var accname = document.getElementById("accountname").value;
 	var pass = document.getElementById("password").value;
+	var confirmpass = document.getElementById("confirmpassword").value;
 	var billingAdd = document.getElementById("billing").value;
 	var shippingAdd = document.getElementById("shipping").value;
-	if (accname === "" || pass === "" || billingAdd === "" || shippingAdd === "") {
-		alert("None of the fields should be left blank!");
+	
+	if (accname === "" || confirmpass === "" || pass === "" || billingAdd === "" || shippingAdd === "") {
+		alert("None of the fields should be left blank!!");
+		return false;
+	}
+	else if (pass != confirmpass) {
+		alert("Passwords don't match!");
 		return false;
 	}
 	else {
@@ -158,6 +169,7 @@ function validate() {
         return true;
 	}
 }
+
 //	***Our code ends
 
 

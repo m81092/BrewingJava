@@ -21,7 +21,6 @@ body {font-family: "Roboto", sans-serif}
   <a class="w3-bar-item w3-button w3-teal" href="Welcome.jsp">Home</a>
   <a class="w3-bar-item w3-button" href="AboutUs.jsp">About Us</a>
   <a class="w3-bar-item w3-button" href="Team.jsp">Team</a>
-  <a class="w3-bar-item w3-button" href="#">Contact US</a>
   <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=All">View All Books</a>
   <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=featured">Featured Books</a>
   <a class="w3-bar-item w3-button" href="Register.jsp">Sign Up</a>
@@ -58,8 +57,29 @@ body {font-family: "Roboto", sans-serif}
 <header class="w3-container w3-theme" style="padding:64px 32px">
   <h1 class="w3-xxxlarge">About us</h1>
 </header>
+		<%
+			String username = (String) session.getAttribute("userName");
+			if (username == null) {
+		%>
+		<div style="float: left">
+			<h4>
+				&nbsp;&nbsp;&nbsp;&nbsp;Welcome:<b> Guest</b>
+			</h4>
+		</div>
+		<%
+			} else {
+		%>
+		<div style="float: left">
+			<h4>
+				&nbsp;&nbsp;&nbsp;&nbsp;Welcome:<b><%=username%></b>
+			</h4>
+		</div>
+		<div style="float: right">
+			<a href="${pageContext.request.contextPath}/Logout">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		</div>
 
-<div class="w3-container" style="padding:32px">
+		<%} %>
+		<div class="w3-container" style="padding:32px">
 
 <h3>Welcome to Bookworm- an Online Bookstore</h3>
 <ul class="w3-leftbar w3-theme-border" style="list-style:none">

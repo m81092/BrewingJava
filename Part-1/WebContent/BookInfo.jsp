@@ -17,7 +17,6 @@
 body {
 	font-family: "Roboto", sans-serif
 }
-
 .w3-bar-block .w3-bar-item {
 	padding: 16px;
 	font-weight: bold
@@ -40,16 +39,20 @@ margin: 0px auto;
 		style="z-index: 3; width: 250px;" id="mySidebar">
 		<a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img
 			src="https://www.w3schools.com/images/w3schools.png"
-			style="width: 80%;"></a> <a
-			class="w3-bar-item w3-button w3-hide-large w3-large"
+			style="width: 80%;"></a> 
+		<a class="w3-bar-item w3-button w3-hide-large w3-large"
 			href="javascript:void(0)" onclick="w3_close()">Close <i
-			class="fa fa-remove"></i></a> <a class="w3-bar-item w3-button w3-teal"
-			href="Welcome.jsp">Home</a> <a class="w3-bar-item w3-button" href="AboutUs.jsp">About
-			Us</a> <a class="w3-bar-item w3-button" href="Team.jsp">Team</a> <a
-			class="w3-bar-item w3-button" href="#">Contact US</a> <a
-			class="w3-bar-item w3-button"
+			class="fa fa-remove"></i></a> 
+		<a class="w3-bar-item w3-button w3-teal"
+			href="Welcome.jsp">Home</a> 
+		<a class="w3-bar-item w3-button"
+			href="AboutUs.jsp">About Us</a> 
+		<a class="w3-bar-item w3-button"
+			href="Team.jsp">Team</a> 
+		<a class="w3-bar-item w3-button"
 			href="${pageContext.request.contextPath}/ShowBooks?category=All">View
-			All Books</a> <a class="w3-bar-item w3-button"
+			All Books</a> 
+		<a class="w3-bar-item w3-button"
 			href="${pageContext.request.contextPath}/ShowBooks?category=featured">Featured
 			Books</a>
 		<div>
@@ -101,7 +104,28 @@ margin: 0px auto;
 		<header class="w3-container w3-theme" style="padding: 64px 32px">
 			<h1 class="w3-xxxlarge">BookWorm</h1>
 		</header>
+		<%
+			String username = (String) session.getAttribute("userName");
+			if (username == null) {
+		%>
+		<div style="float: left">
+			<h4>
+				&nbsp;&nbsp;&nbsp;&nbsp;Welcome:<b> Guest</b>
+			</h4>
+		</div>
+		<%
+			} else {
+		%>
+		<div style="float: left">
+			<h4>
+				&nbsp;&nbsp;&nbsp;&nbsp;Welcome:<b><%=username%></b>
+			</h4>
+		</div>
+		<div style="float: right">
+			<a href="${pageContext.request.contextPath}/Logout">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		</div>
 
+		<%} %>
 		<div class="w3-container" style="padding: 32px">
 
 			<h3>Let's see what we got for you !!</h3>
@@ -187,7 +211,6 @@ margin: 0px auto;
 			document.getElementById("mySidebar").style.display = "none";
 			document.getElementById("myOverlay").style.display = "none";
 		}
-
 		// Change style of top container on scroll
 		window.onscroll = function() {
 			myFunction()
@@ -206,7 +229,6 @@ margin: 0px auto;
 						"w3-animate-opacity");
 			}
 		}
-
 		// Accordions
 		function myAccordion(id) {
 			var x = document.getElementById(id);
@@ -219,27 +241,21 @@ margin: 0px auto;
 						.replace(" w3-theme", "");
 			}
 		}
-
 		var idList = new Array();
 		$('.submitbutton').click(function(e) {
-
 			var _bookId = $(this).parent().find('.bookId').val();
 			var _bookName = $(this).parent().find('.title').val();
 			console.log(_bookName);
-
 			//DO your AJAX call here
 			idList.push(_bookId);
 			console.log(idList.length);
 			var i;
 			for (i = 0; i < idList.length; i++) {
-
 				console.log(idList[i]);
 			}
-
 			document.getElementById("idList").value = idList;
 			document.location.href = "Homepage.jsp?idList=" + idList;
 			//idList = '@Session["idList"]'
-
 			alert(_bookName + ' Added to cart ');
 			return false;
 		});

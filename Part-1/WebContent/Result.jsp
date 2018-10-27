@@ -28,14 +28,25 @@ body {font-family: "Roboto", sans-serif}
 <header class="w3-container w3-theme" style="padding:64px 32px">
   <h1 class="w3-xxxlarge">BookWorm</h1>
 </header>
+		<%
+			String username = (String) session.getAttribute("userName");
+			if (username == null) {
+		%>
+		<div style="float:left"><h4>&nbsp;&nbsp;&nbsp;&nbsp;Welcome:<b> Guest</b></h4></div>	
+		<%
+			} else {
+		%>
+			<div style="float:left"><h4>&nbsp;&nbsp;&nbsp;&nbsp;Welcome:<b><%=username%></b></h4></div>
+        	<div style="float:right"><a href="${pageContext.request.contextPath}/Logout">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+		
+		<%} %>
 
-<div class="w3-container" style="padding:32px">
+		<div class="w3-container" style="padding:32px">
 
 <h2><c:out value="${Message}"/></h2>
 <br>
 <div style="display:inline;">
 	<div style="float:left"><a href="Welcome.jsp"><i><----Continue Shopping</i></a></div>
-	<div style="float:right"><a href="${pageContext.request.contextPath}/Logout">Logout</a></div>	
 </div>
 
 <br>

@@ -21,13 +21,9 @@ table.booktable {
 }
 </style>
 <body>
-
-<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" ></nav>
-<a class="w3-bar-item w3-button w3-hide-large w3-large" ></a>
-
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
 
-<div class="w3-main" style="margin-left:250px;">
+<div class="w3-main">
 
 <div id="myTop" class="w3-container w3-top w3-theme w3-large">
   <p><i class="fa fa-bars w3-button w3-teal w3-hide-large w3-xlarge" onclick="w3_open()"></i>
@@ -38,10 +34,31 @@ table.booktable {
 <header class="w3-container w3-theme" style="padding:64px 32px">
   <h1 class="w3-xxxlarge">BookWorm</h1>
 </header>
+		<%
+			String username = (String) session.getAttribute("userName");
+			if (username == null) {
+		%>
+		<div style="float: left">
+			<h4>
+				&nbsp;&nbsp;&nbsp;&nbsp;Welcome:<b> Guest</b>
+			</h4>
+		</div>
+		<%
+			} else {
+		%>
+		<div style="float: left">
+			<h4>
+				&nbsp;&nbsp;&nbsp;&nbsp;Welcome:<b><%=username%></b>
+			</h4>
+		</div>
+		<div style="float: right">
+			<a href="${pageContext.request.contextPath}/Logout">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		</div>
 
-<div class="w3-container" style="padding:55px">
+		<%} %>
+		<div class="w3-container" style="padding:55px">
 
-<form action="" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
+<form action="" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin" style="margin-left:60px!important; margin-right:60px!important;">
 <h2 class="w3-center">Check Out here</h2>
  
  			<%
@@ -94,7 +111,7 @@ table.booktable {
 
 <div class="w3-container" style="padding:10px">
 
-<form action="" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin">
+<form action="" method="post" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin" style="margin-left:50px!important; margin-right:50px!important;">
 <h2 class="w3-center">Cart<i class="fa fa-shopping-cart"></i></h2>
 <p><span class="price"></span></p>
      <%
@@ -184,6 +201,5 @@ function myAccordion(id) {
     }
 }
 </script>
-     
 </body>
 </html> 

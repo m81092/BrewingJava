@@ -2,6 +2,7 @@ package org.brewingjava.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.brewingjava.model.AccountInfo;
@@ -24,10 +25,11 @@ public class AccountInfoDAOImpl implements AccountInfoDAO {
 
 		String QueryId = "";
 		Statement stmt = null;
+		Connection connection = null;
 		boolean hasError = true;
 		try {
 			QueryId = "SAVE_ACCOUNT";
-			Connection connection = dbConnection.getDataSource().getConnection();
+			connection = dbConnection.getDataSource().getConnection();
 			String registerQuery = PropertyReaderUtil.getInstance().getPropertyValue(QUERIES_PROERTIES_FILE, QueryId);
 			// Formating the query with the data to be saved
 			registerQuery = String.format(registerQuery, userDetails.accountInfo.getUsername(),
@@ -53,8 +55,27 @@ public class AccountInfoDAOImpl implements AccountInfoDAO {
 				hasError = true;
 		} catch (Exception e) {
 			System.out.println("Some Error occurred while saving user credentials in DAO");
-			// e.printStackTrace();
+			e.printStackTrace();
 			hasError = true;
+		}finally {
+
+				if (stmt != null) {
+					try {
+						stmt.close();
+					} catch (SQLException sqle) {
+						System.out.println(sqle);
+						sqle.printStackTrace();
+					}
+				}
+
+				if (connection != null) {
+					try {
+						connection.close();
+					} catch (SQLException sqle) {
+						System.out.println(sqle);
+						sqle.printStackTrace();
+					}
+				}
 		}
 		return (!hasError) ? true : false;
 	}
@@ -67,10 +88,11 @@ public class AccountInfoDAOImpl implements AccountInfoDAO {
 		String QueryId = "";
 		ResultSet rs = null;
 		Statement stmt = null;
+		Connection connection = null;
 		try {
 			// Executing query for login info
 			QueryId = "LOGIN";
-			Connection connection = dbConnection.getDataSource().getConnection();
+			connection = dbConnection.getDataSource().getConnection();
 			String query = PropertyReaderUtil.getInstance().getPropertyValue(QUERIES_PROERTIES_FILE, QueryId);
 			// Formating the query with the data to be saved
 			query = String.format(query, username);
@@ -83,6 +105,7 @@ public class AccountInfoDAOImpl implements AccountInfoDAO {
 				accountInfo.setUsername(user);
 				accountInfo.setPassword(pass);
 			}
+			rs.close();
 			// Executing the other query for user info if above query is success
 			if (!accountInfo.getUsername().isEmpty()) {
 				query = "";
@@ -97,10 +120,41 @@ public class AccountInfoDAOImpl implements AccountInfoDAO {
 					userInfo.setShipping(rs.getString("shippingaddress"));
 					userInfo.setBilling(rs.getString("billingaddress"));
 				}
+				
 			}
+			rs.close();
+			stmt.close();
+			connection.close();
 		} catch (Exception e) {
 			System.out.println("Some Error occurred in DAO!");
-			// e.printStackTrace();
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException sqle) {
+					System.out.println(sqle);
+					sqle.printStackTrace();
+				}
+			}
+
+				if (stmt != null) {
+					try {
+						stmt.close();
+					} catch (SQLException sqle) {
+						System.out.println(sqle);
+						sqle.printStackTrace();
+					}
+				}
+
+				if (connection != null) {
+					try {
+						connection.close();
+					} catch (SQLException sqle) {
+						System.out.println(sqle);
+						sqle.printStackTrace();
+					}
+				}
 		}
 		usereDetails = new UserDetails(accountInfo, userInfo);
 		return usereDetails;

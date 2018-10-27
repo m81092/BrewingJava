@@ -33,7 +33,6 @@ body {font-family: "Roboto", sans-serif}
   <a class="w3-bar-item w3-button w3-teal" href="Welcome.jsp">Home</a>
   <a class="w3-bar-item w3-button" href="AboutUs.jsp">About Us</a>
   <a class="w3-bar-item w3-button" href="Team.jsp">Team</a>
-  <a class="w3-bar-item w3-button" href="#">Contact US</a>
   <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=All">View All Books</a>
   <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=featured">Featured Books</a>
   <div>
@@ -79,7 +78,7 @@ body {font-family: "Roboto", sans-serif}
     <label for="name"><b>Your username</b></label><br>
     <input type="text" placeholder="Enter username " name="name" required><br>
     <label for="pass"><b>Your password</b></label><br>
-    <input type="password" placeholder="Enter Password" name="pass" required>
+    <input type="password" placeholder="Enter Password" name="pass" pattern=".{6,}" title="Six or more characters" required>
     <label><br>
     <input type="checkbox" checked="checked" name="remember"> Remember me
     </label><br>

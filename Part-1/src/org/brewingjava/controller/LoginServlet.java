@@ -68,6 +68,7 @@ public class LoginServlet extends HttpServlet {
 				String shipping = jsonObj.getJSONObject("userInfo").get("shipping").toString();
 				
 				accountInfo.setUsername(userName);
+				mySession.setAttribute("userName", userName);
 				userInfo.setFname(fname);
 				userInfo.setLname(lname);
 				userInfo.setBilling(billing);
