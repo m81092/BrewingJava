@@ -17,7 +17,7 @@ INSERT INTO BOOK (bookid, title, price, author, category, featured) VALUES ('173
 INSERT INTO BOOK (bookid, title, price, author, category, featured) VALUES ('1735463701', 'Kite Runner', 15, 'Khaled Hosseini', 'Fiction', 1);
 INSERT INTO BOOK (bookid, title, price, author, category, featured) VALUES ('1735463702', 'Half Girlfriend', 11, 'Chetan Bhagat', 'Fiction', 1);
 INSERT INTO BOOK (bookid, title, price, author, category, featured) VALUES ('1735463703', 'Business Concepts', 12, 'Dr Gulati', 'Business and Finance', 0);
-INSERT INTO BOOK (bookid, title, price, author, category, featured) VALUES ('1735463704', 'Pre-Historic Era of Unknown Civilization', 1599, 'Chetan Bhagat', 'Fiction', 1);
+INSERT INTO BOOK (bookid, title, price, author, category, featured) VALUES ('1735463704', 'Pre-Historic Era of Unknown Civilization', 14, 'Arthur Boyle', 'History', 1);
 INSERT INTO BOOK (bookid, title, price, author, category, featured) VALUES ('1735463705', 'Soorma', 20, 'Diljit', 'Biography and Memoir', 1);
 INSERT INTO BOOK (bookid, title, price, author, category, featured) VALUES ('1735463706', 'Fun with Science', 9, 'Dr Hammock', 'Science Fiction', 0);
 INSERT INTO BOOK (bookid, title, price, author, category, featured) VALUES ('1735463707', 'Healthy Living', 22, 'Prem Kumar Chopra', 'Health', 0);
