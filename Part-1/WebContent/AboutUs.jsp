@@ -16,14 +16,13 @@ body {font-family: "Roboto", sans-serif}
 <body>
 
 <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
-  <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img src="https://www.w3schools.com/images/w3schools.png" style="width:80%;"></a>
+  <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img src="./images/Logo.JPG" style="width:250px; height:63px;"></a>
   <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
   <a class="w3-bar-item w3-button w3-teal" href="Welcome.jsp">Home</a>
   <a class="w3-bar-item w3-button" href="AboutUs.jsp">About Us</a>
   <a class="w3-bar-item w3-button" href="Team.jsp">Team</a>
   <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=All">View All Books</a>
   <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=featured">Featured Books</a>
-  <a class="w3-bar-item w3-button" href="Register.jsp">Sign Up</a>
   
   <div>
     <a class="w3-bar-item w3-button" onclick="myAccordion('demo')" href="javascript:void(0)">Categories <i class="fa fa-caret-down"></i></a>
@@ -38,7 +37,7 @@ body {font-family: "Roboto", sans-serif}
 	  <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=Self-Help">Self-Help</a>
 	  <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=Health">Health</a>
 	  <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=Science and Nature">Science and Nature</a>
-	  <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=Poetry">Science and Nature</a>
+	  <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=Poetry">Poetry</a>
     </div>
   </div>
 </nav>
@@ -55,7 +54,7 @@ body {font-family: "Roboto", sans-serif}
 
 
 <header class="w3-container w3-theme" style="padding:64px 32px">
-  <h1 class="w3-xxxlarge">About us</h1>
+  <h1 class="w3-xxxlarge">BookWorm</h1>
 </header>
 		<%
 			String username = (String) session.getAttribute("userName");
@@ -92,7 +91,19 @@ body {font-family: "Roboto", sans-serif}
 </ul>
 <br>
 
-</div>
+
+<h2>Beautiful Book Quotes...!!</h2>
+			<div class="w3-container w3-sand w3-leftbar">
+				<p>
+					<i>We live for books.</i><br>
+					Umberto Eco
+				</p>
+			</div>
+			</div>
+			<footer class="w3-container w3-theme" style="padding: 22px">
+			<p>Copyright © 2018 Brewing Java Corporation</p>
+		</footer>
+			</div>
 
 <script>
 // Open and close the sidebar on medium and small screens

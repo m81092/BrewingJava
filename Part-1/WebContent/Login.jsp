@@ -28,7 +28,7 @@ body {font-family: "Roboto", sans-serif}
 
 
 <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
-  <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img src="https://www.w3schools.com/images/w3schools.png" style="width:80%;"></a>
+  <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img src="./images/Logo.JPG" style="width: 250px; height: 63px;"></a> 
   <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
   <a class="w3-bar-item w3-button w3-teal" href="Welcome.jsp">Home</a>
   <a class="w3-bar-item w3-button" href="AboutUs.jsp">About Us</a>
@@ -48,7 +48,7 @@ body {font-family: "Roboto", sans-serif}
 	  <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=Self-Help">Self-Help</a>
 	  <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=Health">Health</a>
 	  <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=Science and Nature">Science and Nature</a>
-	  <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=Poetry">Science and Nature</a>
+	  <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=Poetry">Poetry</a>
     </div>
   </div>
 </nav>
@@ -92,8 +92,8 @@ body {font-family: "Roboto", sans-serif}
 <br>
 <h2>Beautiful Book Quotes...!!</h2> 
 <div class="w3-container w3-sand w3-leftbar">
-<p><i>Make it as simple as possible, but not simpler.</i><br>
-Albert Einstein</p>
+<p><i>I cannot live without books.</i><br>
+Thomas Jefferson</p>
 </div>
 
 </div>

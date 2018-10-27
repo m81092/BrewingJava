@@ -17,7 +17,7 @@ body {font-family: "Roboto", sans-serif}
 <body>
 
 <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
-  <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img src="https://www.w3schools.com/images/w3schools.png" style="width:80%;"></a>
+  <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img src="./images/Logo.JPG" style="width:250px; height:63px;"></a>
   <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
   <a class="w3-bar-item w3-button w3-teal" href="Welcome.jsp">Home</a>
   <a class="w3-bar-item w3-button" href="AboutUs.jsp">About Us</a>
@@ -37,7 +37,7 @@ body {font-family: "Roboto", sans-serif}
 	  <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=Self-Help">Self-Help</a>
 	  <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=Health">Health</a>
 	  <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=Science and Nature">Science and Nature</a>
-	  <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=Poetry">Science and Nature</a>
+	  <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=Poetry">Poetry</a>
     </div>
   </div>
 </nav>
@@ -84,11 +84,11 @@ body {font-family: "Roboto", sans-serif}
 
 <h3>What is BookWorm?</h3>
 <ul class="w3-leftbar w3-theme-border" style="list-style:none">
- <li>Smaller and faster than other CSS frameworks.</li>
- <li>Easier to learn, and easier to use than other CSS frameworks.</li>
- <li>Uses standard CSS only (No jQuery or JavaScript library).</li>
- <li>Speeds up mobile HTML apps.</li>
- <li>Provides CSS equality for all devices. PC, laptop, tablet, and mobile:</li>
+ <li>Room for book lovers.</li>
+ <li>Easier to browse, shop and get delivered at yours doorstep.</li>
+ <li>We use third party standardized delivery service at no extra cost.</li>
+ <li>Our mission is to bring the power of reading to your world.</li> <!--  copied from https://www.kobo.com  -->
+ <li>Every 10th customer gets a free book from us.</li>
 </ul>
 <br>
 <h2>Beautiful Book Quotes...!!</h2>

@@ -52,8 +52,8 @@ body {font-family: "Roboto", sans-serif}
 <br>
 <h2>Beautiful Book Quotes...!!</h2>
 <div class="w3-container w3-sand w3-leftbar">
-<p><i>Make it as simple as possible, but not simpler.</i><br>
-Albert Einstein</p>
+<p><i>When I have a little money, I buy books; and if I have any left, I buy food and clothes.</i><br>
+Desiderius Erasmus Roterodamus</p>
 </div>
 
 </div>

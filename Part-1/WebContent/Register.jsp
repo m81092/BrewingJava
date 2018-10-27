@@ -26,6 +26,7 @@ body {font-family: "Roboto", sans-serif}
 <!-- code end -->
 
 <nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
+  <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img src="./images/Logo.JPG" style="width: 250px; height: 63px;"></a>
   <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
   <a class="w3-bar-item w3-button w3-teal" href="Welcome.jsp">Home</a>
   <a class="w3-bar-item w3-button" href="AboutUs.jsp">About Us</a>
@@ -45,7 +46,7 @@ body {font-family: "Roboto", sans-serif}
 	  <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=Self-Help">Self-Help</a>
 	  <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=Health">Health</a>
 	  <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=Science and Nature">Science and Nature</a>
-	  <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=Poetry">Science and Nature</a>
+	  <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=Poetry">Poetry</a>
     </div>
   </div>
 </nav>
@@ -89,7 +90,7 @@ body {font-family: "Roboto", sans-serif}
 
 <div class="w3-row w3-section">
     <div class="w3-rest">
-      <input class="w3-input w3-border" id="password" name="password" type="password" placeholder="Password">
+      <input class="w3-input w3-border" id="password" name="password" type="password" pattern=".{6,}" title="Six or more characters" placeholder="Password">
     </div>
 </div>
 
@@ -126,8 +127,8 @@ body {font-family: "Roboto", sans-serif}
 
 <h2>Beautiful Book Quotes...!!</h2>
 <div class="w3-container w3-sand w3-leftbar">
-<p><i>Make it as simple as possible, but not simpler.</i><br>
-Albert Einstein</p>
+<p><i>There is no friend as loyal as a book.</i><br>
+Ernest Hemingway</p>
 </div>
 </div>
 

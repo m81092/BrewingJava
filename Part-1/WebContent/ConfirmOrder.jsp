@@ -72,7 +72,7 @@ body {font-family: "Roboto", sans-serif}
  <div class="w3-row w3-section w3-text-black">
     <div class="w3-rest">
     <label for="nameOnCard">Name On Card</label>
-      <input class="w3-input w3-border" id="nameOnCard" name="nameOnCard" required type="text" placeholder="Enter Name on Credit Card"  style="width:600px;" >
+      <input class="w3-input w3-border" id="nameOnCard" name="nameOnCard" required type="text" placeholder="Enter Name on your Card"  style="width:600px;" >
     </div>
 </div>
 
@@ -97,7 +97,7 @@ body {font-family: "Roboto", sans-serif}
     <div class="w3-rest">
     <label for="cardNumber">Card Number</label>
       <input class="w3-input w3-border" id="cardNumber" minlength="16" maxlength="16" name="cardNumber"  value=""
-            onkeypress="javascript:return isNumber(event)"placeholder="Enter card Number"  style="width:600px;" required>
+            onkeypress="javascript:return isNumber(event)"placeholder="Enter 16 digit card Number"  style="width:600px;" required>
     </div>
 </div>
 
@@ -154,8 +154,8 @@ body {font-family: "Roboto", sans-serif}
 
 <h2>Beautiful Book Quotes...!!</h2>
 <div class="w3-container w3-sand w3-leftbar">
-<p><i>Make it as simple as possible, but not simpler.</i><br>
-Albert Einstein</p>
+<p><i>Never trust anyone who has not brought a book with them.</i><br>
+Lemony Snicket, Horseradish</p>
 </div>
 </div>
 
