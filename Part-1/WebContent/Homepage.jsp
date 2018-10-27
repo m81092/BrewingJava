@@ -33,16 +33,19 @@ body {
 		style="z-index: 3; width: 250px;" id="mySidebar">
 		<a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img
 			src="https://www.w3schools.com/images/w3schools.png"
-			style="width: 80%;"></a> <a
+			style="width: 80%;"></a> 
+		<a
 			class="w3-bar-item w3-button w3-hide-large w3-large"
 			href="javascript:void(0)" onclick="w3_close()">Close <i
-			class="fa fa-remove"></i></a> <a class="w3-bar-item w3-button w3-teal"
-			href="Welcome.jsp">Home</a> <a class="w3-bar-item w3-button" href="#">About
-			Us</a> <a class="w3-bar-item w3-button" href="Team.jsp">Team</a> <a
-			class="w3-bar-item w3-button" href="#">Contact US</a> <a
-			class="w3-bar-item w3-button"
+			class="fa fa-remove"></i></a> 
+		<a class="w3-bar-item w3-button w3-teal"
+			href="Welcome.jsp">Home</a>  
+		<a class="w3-bar-item w3-button" href="Team.jsp">Team</a> 
+		<a class="w3-bar-item w3-button" href="#">Contact US</a> 
+		<a class="w3-bar-item w3-button"
 			href="${pageContext.request.contextPath}/ShowBooks?category=All">View
-			All Books</a> <a class="w3-bar-item w3-button"
+			All Books</a> 
+		<a class="w3-bar-item w3-button"
 			href="${pageContext.request.contextPath}/ShowBooks?category=featured">Featured
 			Books</a>
 		<div>
