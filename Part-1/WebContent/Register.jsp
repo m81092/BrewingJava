@@ -90,7 +90,7 @@ body {font-family: "Roboto", sans-serif}
 
 <div class="w3-row w3-section">
     <div class="w3-rest">
-      <input class="w3-input w3-border" id="password" name="password" type="password" placeholder="Password">
+      <input class="w3-input w3-border" id="password" name="password" type="password" pattern=".{6,}" title="Six or more characters" placeholder="Password">
     </div>
 </div>
 
