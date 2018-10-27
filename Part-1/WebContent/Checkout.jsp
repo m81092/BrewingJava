@@ -147,14 +147,15 @@ table.booktable {
  </div>
  <p class="w3-center">
  <form action="${pageContext.request.contextPath}/CreateOrder" method="Post">
-<button class="w3-button w3-section w3-blue w3-ripple" type="submit"> Create Order </button>
+<div style="text-align: center;">
+<button class="w3-button w3-section w3-blue w3-ripple" type="submit"> Create Order </button></div>
 </form>
 </p>
 
 <h2>Beautiful Book Quotes...!!</h2>
 <div class="w3-container w3-sand w3-leftbar">
-<p><i>Make it as simple as possible, but not simpler.</i><br>
-Albert Einstein</p>
+<p><i>I have always imagined that Paradise will be a kind of library.</i><br>
+ Jorge Luis Borges</p>
 </div>
 </div>
 

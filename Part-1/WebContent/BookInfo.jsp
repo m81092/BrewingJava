@@ -17,17 +17,20 @@
 body {
 	font-family: "Roboto", sans-serif
 }
+
 .w3-bar-block .w3-bar-item {
 	padding: 16px;
 	font-weight: bold
 }
-.t1	{ 
-margin: 0px auto;
-margin-left: auto;
+
+.t1 {
+	margin: 0px auto;
+	margin-left: auto;
 	margin-right: auto;
 }
+
 .booktable {
-margin: 0px auto;
+	margin: 0px auto;
 }
 </style>
 <script
@@ -37,28 +40,17 @@ margin: 0px auto;
 	<nav
 		class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card"
 		style="z-index: 3; width: 250px;" id="mySidebar">
-		<a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img
-			src="https://www.w3schools.com/images/w3schools.png"
-			style="width: 80%;"></a> 
-		<a class="w3-bar-item w3-button w3-hide-large w3-large"
-			href="javascript:void(0)" onclick="w3_close()">Close <i
-			class="fa fa-remove"></i></a> 
-		<a class="w3-bar-item w3-button w3-teal"
-			href="Welcome.jsp">Home</a> 
-		<a class="w3-bar-item w3-button"
-			href="AboutUs.jsp">About Us</a> 
-		<a class="w3-bar-item w3-button"
-			href="Team.jsp">Team</a> 
-		<a class="w3-bar-item w3-button"
-			href="${pageContext.request.contextPath}/ShowBooks?category=All">View
-			All Books</a> 
-		<a class="w3-bar-item w3-button"
-			href="${pageContext.request.contextPath}/ShowBooks?category=featured">Featured
-			Books</a>
+			<a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img src="./images/Logo.JPG" style="width: 250px; height: 63px;"></a> 
+			<a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
+			<a class="w3-bar-item w3-button w3-teal" href="Welcome.jsp">Home</a>
+			<a class="w3-bar-item w3-button" href="AboutUs.jsp">About Us</a> 
+			<a class="w3-bar-item w3-button" href="Team.jsp">Team</a> 
+			<a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=All">View All Books</a> <a class="w3-bar-item w3-button"
+			href="${pageContext.request.contextPath}/ShowBooks?category=featured">Featured Books</a>
+			
 		<div>
-			<a class="w3-bar-item w3-button" onclick="myAccordion('demo')"
-				href="javascript:void(0)">Categories <i class="fa fa-caret-down"></i></a>
-			<div id="demo" class="w3-hide">
+			<a class="w3-bar-item w3-button" onclick="myAccordion('demo')" href="javascript:void(0)">Categories <i class="fa fa-caret-down"></i></a>
+				<div id="demo" class="w3-hide">
 				<a class="w3-bar-item w3-button"
 					href="${pageContext.request.contextPath}/ShowBooks?category=Business and Finance">Business
 					and Finance</a> <a class="w3-bar-item w3-button"
@@ -125,7 +117,9 @@ margin: 0px auto;
 			<a href="${pageContext.request.contextPath}/Logout">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		</div>
 
-		<%} %>
+		<%
+			}
+		%>
 		<div class="w3-container" style="padding: 32px">
 
 			<h3>Let's see what we got for you !!</h3>
@@ -133,24 +127,28 @@ margin: 0px auto;
 			<p>Based on your recent click</p>
 
 			<h4>Book Details</h4>
-			
+
 			<br>
 			<%
-					ArrayList bookDetails = (ArrayList) request.getAttribute("Bookdetails");
-					String error = (String)request.getAttribute("error");
-				%>
+				ArrayList bookDetails = (ArrayList) request.getAttribute("Bookdetails");
+				String error = (String) request.getAttribute("error");
+			%>
 			<%
-			if (error == null) { %>
+				if (error == null) {
+			%>
 
-				<%
-					if (bookDetails.size() != 0) {
-				%>
+			<%
+				if (bookDetails.size() != 0) {
+			%>
 
-			<table class="t1" style="display: inline-block;" border="0" align="center">
-				<td><img src="./images/book.jpg" alt="Book" height="160px" width="100px"></td>
+			<table class="t1" style="display: inline-block;" border="0"
+				align="center">
+				<td><img src="./images/book.jpg" alt="Book" height="160px"
+					width="100px"></td>
 			</table>
-			<table class="booktable" style="display: inline-block;" border="0" width="60%" height="50%">
-				
+			<table class="booktable" style="display: inline-block;" border="0"
+				width="60%" height="50%">
+
 				<tr>
 					<td><b>Details</b></td>
 				</tr>
@@ -172,25 +170,28 @@ margin: 0px auto;
 					</tr>
 				</c:forEach>
 			</table>
-			
+
 			<%
 				} else {
 			%>
-			<h3 style="color:red;">Error Processing your request. Try again later</h3>
-			<% 
-			
-				} }else { 
+			<h3 style="color: red;">Error Processing your request. Try again
+				later</h3>
+			<%
+				}
+				} else {
 			%>
-				<h3 style="color:red;">Error Processing your request. Try again later</h3>
-			<% 
-			} %>
-			
-			<b><a href = "javascript:close_window();"> Close Page</a></b>
+			<h3 style="color: red;">Error Processing your request. Try again
+				later</h3>
+			<%
+				}
+			%>
+
+			<b><a href="javascript:close_window();"> Close Page</a></b>
 			<h2>Beautiful Book Quotes...!!</h2>
 			<div class="w3-container w3-sand w3-leftbar">
 				<p>
-					<i>Make it as simple as possible, but not simpler.</i><br>
-					Albert Einstein
+					<i>Good books don't give up all their secrets at once.</i><br>
+					Stephen King
 				</p>
 			</div>
 		</div>
@@ -259,12 +260,12 @@ margin: 0px auto;
 			alert(_bookName + ' Added to cart ');
 			return false;
 		});
-		
+
 		function close_window() {
-			  if (confirm("Close Window?")) {
-			    close();
-			  }
+			if (confirm("Close Window?")) {
+				close();
 			}
+		}
 	</script>
 
 </body>

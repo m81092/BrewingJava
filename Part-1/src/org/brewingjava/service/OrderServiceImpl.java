@@ -45,9 +45,9 @@ public class OrderServiceImpl implements OrderService {
 		boolean result = dao.confirmOrder(id, payement);
 		String resultingStmt;
 		if(result)
-			resultingStmt = "Your Order is Confirmed";
+			resultingStmt = "Thanks for shopping with us. Your Order is Confirmed";
 		else
-			resultingStmt = "Your Order is Denied";
+			resultingStmt = "We are sorry , Your Order is Denied";
 		return resultingStmt;
 	}
 }

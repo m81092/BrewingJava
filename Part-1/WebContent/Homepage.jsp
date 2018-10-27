@@ -22,7 +22,6 @@ body {
 	padding: 16px;
 	font-weight: bold
 }
-
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
@@ -32,20 +31,15 @@ body {
 		class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card"
 		style="z-index: 3; width: 250px;" id="mySidebar">
 		<a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img
-			src="https://www.w3schools.com/images/w3schools.png"
-			style="width: 80%;"></a> 
-		<a
+			src="./images/Logo.JPG" style="width: 250px; height: 63px;"></a> <a
 			class="w3-bar-item w3-button w3-hide-large w3-large"
 			href="javascript:void(0)" onclick="w3_close()">Close <i
-			class="fa fa-remove"></i></a> 
-		<a class="w3-bar-item w3-button w3-teal"
-			href="Welcome.jsp">Home</a>  
-		<a class="w3-bar-item w3-button" href="Team.jsp">Team</a> 
-		<a class="w3-bar-item w3-button" href="#">Contact US</a> 
-		<a class="w3-bar-item w3-button"
+			class="fa fa-remove"></i></a> <a class="w3-bar-item w3-button w3-teal"
+			href="Welcome.jsp">Home</a> <a class="w3-bar-item w3-button"
+			href="Team.jsp">Team</a> <a class="w3-bar-item w3-button" href="#">Contact
+			US</a> <a class="w3-bar-item w3-button"
 			href="${pageContext.request.contextPath}/ShowBooks?category=All">View
-			All Books</a> 
-		<a class="w3-bar-item w3-button"
+			All Books</a> <a class="w3-bar-item w3-button"
 			href="${pageContext.request.contextPath}/ShowBooks?category=featured">Featured
 			Books</a>
 		<div>
@@ -117,29 +111,35 @@ body {
 			<a href="${pageContext.request.contextPath}/Logout">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		</div>
 
-		<%} %>
+		<%
+			}
+		%>
 		<div class="w3-container" style="padding: 32px">
 
 			<h3>Let's see what we got for you !!</h3>
 
 			<p>Based on your recent click</p>
-			<% String displayMsg = (String)session.getAttribute("displayMsg"); 
-					session.removeAttribute("displayMsg");
-					if (displayMsg == null) 
-						displayMsg="";%>
-			<div id="displayMsg"><h3 style="color:green;"><%=displayMsg%></h3></div>
+			<%
+				String displayMsg = (String) session.getAttribute("displayMsg");
+				session.removeAttribute("displayMsg");
+				if (displayMsg == null)
+					displayMsg = "";
+			%>
+			<div id="displayMsg">
+				<h3 style="color: green;"><%=displayMsg%></h3>
+			</div>
 
 			<br>
-			
+
 			<%
-					ArrayList orderList = (ArrayList) request.getAttribute("allBook");
-				%>
-				<%
-					if (orderList.size() != 0) {
-				%>
+				ArrayList orderList = (ArrayList) request.getAttribute("allBook");
+			%>
+			<%
+				if (orderList.size() != 0) {
+			%>
 			<table class="booktable" border="3">
 
-				
+
 				<tr>
 					<td>BookID</td>
 					<td>Title</td>
@@ -159,9 +159,9 @@ body {
 
 							<td>${items.price}</td>
 
-							<td><a
-								href="javaScript:{openNewWindow();}" id="getInfo" >Book Info</a></td>
-								<script>
+							<td><a href="javaScript:{openNewWindow();}" id="getInfo">Book
+									Info</a></td>
+							<script>
 								function openNewWindow()
 							    {
 							    window.open('${pageContext.request.contextPath}/BookInfo?bookId='+ ${items.bookid})
@@ -172,10 +172,11 @@ body {
 								<form name="addToCartForm"
 									action="${pageContext.request.contextPath}/AddItemsToCart"
 									method="post">
-									<input type="hidden" class="bookId" name="bookId" value='${items.bookid}' />
-									 <input type="hidden" class="title" value='${items.title}' />
-									  <input type="hidden" id="cart" />
-									<input id="AddCart" type="submit" class="submitbutton11" value="Add to cart" />
+									<input type="hidden" class="bookId" name="bookId"
+										value='${items.bookid}' /> <input type="hidden" class="title"
+										value='${items.title}' /> <input type="hidden" id="cart" />
+									<input id="AddCart" type="submit" class="submitbutton11"
+										value="Add to cart" />
 								</form>
 							</td>
 						</tr>
@@ -183,21 +184,24 @@ body {
 			</table>
 
 			<br>
-			<form name="ShoppingCart" action="${pageContext.request.contextPath}/ShoppingCart" method="get">
-				<input id="Proceed" type="submit" class="submitbutton12" value="Proceed to Cart" />
+			<form name="ShoppingCart"
+				action="${pageContext.request.contextPath}/ShoppingCart"
+				method="get">
+				<input id="Proceed" type="submit" class="submitbutton12"
+					value="Proceed to Cart" />
 			</form>
 			<%
 				} else {
 			%>
-			<h3 style="color:red;">We are sorry !! No Books Found !!</h3>
+			<h3 style="color: red;">We are sorry !! No Books Found !!</h3>
 			<%
 				}
 			%>
 			<h2>Beautiful Book Quotes...!!</h2>
 			<div class="w3-container w3-sand w3-leftbar">
 				<p>
-					<i>Make it as simple as possible, but not simpler.</i><br>
-					Albert Einstein
+					<i>So many books, so little time.</i><br>
+					 Frank Zappa
 				</p>
 			</div>
 		</div>
