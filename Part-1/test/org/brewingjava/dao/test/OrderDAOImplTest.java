@@ -17,8 +17,6 @@ public class OrderDAOImplTest {
 	public void createOrderTest() {
 
 		dao = new OrderDAOImpl();
-		// assertEquals("The purchase order id should be zero", 0,
-		// dao.createOrder(null));
 		assertEquals("The purchase order id should be zero", 0, dao.createOrder(po));
 
 	}

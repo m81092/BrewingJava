@@ -20,6 +20,7 @@ import org.brewingjava.model.UserDetails;
 
 /**
  * Servlet Filter implementation class AuthenticationFilter
+ * Servlet Filter to prevent non-logged in user to checkout.
  */
 @WebFilter("/Checkout")
 public class AuthenticationFilter implements Filter {
@@ -33,6 +34,11 @@ public class AuthenticationFilter implements Filter {
 
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
+	 * 
+	 * Servlet filter is applied over checkout page. 
+	 * Checks and allow whether user is Logged in or not.
+	 * Logged in user then allowed to move on to Checkout feature.
+	 * Guests are redirected to Login.jsp to login into their account.
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
@@ -44,7 +50,7 @@ public class AuthenticationFilter implements Filter {
 			List<UserDetails> userDetails = (ArrayList<UserDetails>) mySession.getAttribute("UserDetails");
 			if (userDetails != null) {
 				ArrayList checkCartList = (ArrayList) mySession.getAttribute("CartList");
-				if (checkCartList.size() != 0) {
+				if (checkCartList.size() != 0) {				
 					chain.doFilter(request, response);
 				} else {
 					resp.sendRedirect("Welcome.jsp");

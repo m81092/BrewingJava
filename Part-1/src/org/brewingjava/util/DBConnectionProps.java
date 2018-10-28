@@ -2,7 +2,9 @@ package org.brewingjava.util;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
+/**
+ * Class DBConnection Properties
+ */
 public class DBConnectionProps {
 
 	private static final String DB_PROERTIES_FILE = "db.properties";
@@ -23,12 +25,18 @@ public class DBConnectionProps {
 
 	private String password;
 
+	/**
+	 *  DBConnection Properties default constructor
+	 */
 	public DBConnectionProps() {
 
 		readProperties();
 
 	}
 
+	/**
+	 *  Method used to read properties from DB Properties file
+	 */
 	private void readProperties() {
 
 		try {
@@ -53,48 +61,76 @@ public class DBConnectionProps {
 
 	}
 
+	/**
+	 *  Method used to get driver
+	 */
 	public String getDriver() {
 
 		return driver;
 
 	}
 
+	/**
+	 *  Method used to set driver
+	 *  @param driver
+	 */
 	public void setDriver(String driver) {
 
 		this.driver = driver;
 
 	}
 
+	/**
+	 *  Method used to get username
+	 */
 	public String getUsername() {
 
 		return username;
 
 	}
 
+	/**
+	 *  Method used to set username
+	 *  @param username
+	 */
 	public void setUsername(String username) {
 
 		this.username = username;
 
 	}
 
+	/**
+	 *  Method used to get password
+	 */
 	public String getPassword() {
 
 		return password;
 
 	}
 
+	/**
+	 *  Method used to set password
+	 *  @param password
+	 */
 	public void setPassword(String password) {
 
 		this.password = password;
 
 	}
 
+	/**
+	 *  Method used to get URL
+	 */
 	public String getUrl() {
 
 		return url;
 
 	}
 
+	/**
+	 *  Method used to set Url
+	 *  @param url
+	 */
 	public void setUrl(String url) {
 
 		this.url = url;

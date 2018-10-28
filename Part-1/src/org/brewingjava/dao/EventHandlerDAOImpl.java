@@ -9,15 +9,22 @@ import org.brewingjava.model.Books;
 import org.brewingjava.util.DBConnection;
 import org.brewingjava.util.PropertyReaderUtil;
 
-public class EventHandlerDAOImpl implements EventHandlerDAO{
+/*
+ * This class implements the method to create the Event in db 
+ */
+public class EventHandlerDAOImpl implements EventHandlerDAO {
 	private static final String QUERIES_PROERTIES_FILE = "queries.properties";
 	String QueryId = "";
 	private DBConnection dbConnection;
 
+	
 	public EventHandlerDAOImpl() {
 		dbConnection = DBConnection.getInstance();
 	}
 
+	/*
+	 * This method saves the events and save it in the db and returns boolean value 
+	 */
 	public boolean createEvent(ArrayList<Books> bookIdList, String eventType) {
 
 		Connection connection = null;

@@ -23,6 +23,8 @@ import org.json.JSONObject;
 
 /**
  * Servlet implementation class Login
+ * 
+ * Controller for Login functionality.
  */
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -31,6 +33,10 @@ public class LoginServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
+	 *      
+	 * Method fetches the password from the request and encrypts it.
+	 * Calls the login web service that takes the username and encrypted password. Web service matches the attribute with that of stored in database and
+	 * returns empty if information is not matched, otherwise account information of the user is returned.
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -48,10 +54,8 @@ public class LoginServlet extends HttpServlet {
 		
 		String baseURI = "http://localhost:8080/Part-1";
 		Client client = ClientBuilder.newClient();
-		WebTarget target = client.target(baseURI).path("/REST/WebService/login").queryParam("username", name)
-				.queryParam("password", epass);
+		WebTarget target = client.target(baseURI).path("/REST/WebService/login").queryParam("username", name).queryParam("password", epass);
 		String result = target.request(MediaType.APPLICATION_JSON).get().readEntity(String.class);
-		System.out.println("in the login servlet and val of res2 is " + result);
 		if (!result.equals("")) {
 			List<UserDetails> userDetailList = new ArrayList<UserDetails>();
 			UserDetails userDetails;
@@ -76,7 +80,6 @@ public class LoginServlet extends HttpServlet {
 				
 				userDetails = new UserDetails(accountInfo, userInfo);
 				userDetailList.add(userDetails);
-				//request.setAttribute("UserDetails", userDetailList);
 				mySession.setAttribute("UserDetails", userDetailList);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/Checkout");
 				dispatcher.include(request, response);

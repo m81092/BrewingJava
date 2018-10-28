@@ -1,3 +1,7 @@
+/**
+ * @author: Brewing Java
+ *
+ */
 package org.brewingjava.controller;
 
 import java.io.IOException;
@@ -16,28 +20,29 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
-import org.brewingjava.model.Books;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
+/**
+ * Controller for the  Confirm Order page. 
+ *
+ */
 @WebServlet("/ConfirmOrder")
 public class ConfirmOrder extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * Calls the Web service for confirming order based on Placed Order id.
+	 * Renders response from the web service.  
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int poId = 0;
 		String msg="";
 		try {
-			System.out.println("in ConfirmOrder servlet");
 			poId = Integer.parseInt(request.getParameter("purchaseOrderID"));
-			System.out.println(poId);
 			String baseURI = "http://localhost:8080/Part-1";
 			Client client = ClientBuilder.newClient();
 			WebTarget target = null;
 			if (poId != 0) {
 				target = client.target(baseURI).path("/REST/WebService/confirmOrder").queryParam("POId", poId);
 				msg = target.request(MediaType.TEXT_PLAIN).get().readEntity(String.class);
-				System.out.println(msg);
 			}
 			else
 				msg = "Error Processing your request!!!";
@@ -51,7 +56,6 @@ public class ConfirmOrder extends HttpServlet {
 			request.setAttribute("Message", msg);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("Result.jsp");
 			dispatcher.include(request, response);
-		
 	}
 
 	

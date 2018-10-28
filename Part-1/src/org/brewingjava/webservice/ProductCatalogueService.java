@@ -13,36 +13,50 @@ import org.brewingjava.model.Books;
 import org.brewingjava.service.ProductService;
 import org.brewingjava.service.ProductServiceImpl;
 
+/**
+ * @author Brewing Java
+ *
+ * class ProductCatalogueService used as 
+ * Web service class to get all books
+ * by category and details of specific 
+ * book. Featured books are part of category.
+ * Book Catalogue
+ */
 @Path("/WebService")
 public class ProductCatalogueService {
+	
+	/**
+	 * ${get all books web service}
+	 */
 	@GET
 	@Path("/AllBooks")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<Books> getAllCategories() {
-		System.out.println("in side Web services");
 		ProductService ps = new ProductServiceImpl();
 		return ps.getAllBooks();
 	}
 
+	/**
+	 * ${get all books by category web service}
+	 */
 	@GET
 	@Path("/Categories")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Books> getBookByCategory(@QueryParam("category") String category) {
-		System.out.println("in side Web services ");
-		System.out.println("Webservice received category : " +category);
 		ProductService ps = new ProductServiceImpl();
 		return ps.getBooksByCategory(category);
 		}
 
+	/**
+	 * ${get book detail by id web service}
+	 */
 	@GET
 	@Path("/BookInfo")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<Books> getBookInfo(@QueryParam("bookId") int id, @QueryParam("event") String event) {
-		System.out.println("Service: Fetching Book Info");
-		System.out.println(id);
 		ProductService ps = new ProductServiceImpl();
 		return ps.getBookInfo(id,event);		//We have to handle the null value if book is not their.
 	}

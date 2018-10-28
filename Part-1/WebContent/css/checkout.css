@@ -1,4 +1,6 @@
-<style>
+/**
+ * Checkout style sheet 
+ */
 body {
   font-family: Arial;
   font-size: 17px;
@@ -102,4 +104,3 @@ span.price {
     margin-bottom: 20px;
   }
 }
-</style>

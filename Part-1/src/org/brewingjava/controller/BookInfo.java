@@ -1,3 +1,7 @@
+/**
+ * @author : Brewing Java
+ *
+ */
 package org.brewingjava.controller;
 
 import java.io.IOException;
@@ -22,6 +26,7 @@ import org.json.JSONObject;
 
 /**
  * Servlet implementation class BookInfo
+ * Controller to fetch the data for the particular book.
  */
 @WebServlet("/BookInfo")
 public class BookInfo extends HttpServlet {
@@ -30,6 +35,9 @@ public class BookInfo extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
+	 * 
+	 * Fetches the bookID for which details are needed to be displayed and is presented on the BookInfo.jsp.
+	 * Calls bookinfo web service to fetch the data.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -37,7 +45,6 @@ public class BookInfo extends HttpServlet {
 		int bookId = 0;
 		try {
 			bookId = Integer.parseInt(request.getParameter("bookId"));
-			System.out.println(bookId);
 			String baseURI = "http://localhost:8080/Part-1";
 			Client client = ClientBuilder.newClient();
 			WebTarget target = null;
@@ -45,7 +52,6 @@ public class BookInfo extends HttpServlet {
 
 				target = client.target(baseURI).path("/REST/WebService/BookInfo").queryParam("bookId", bookId).queryParam("event", "VIEW");
 				String result = target.request(MediaType.APPLICATION_JSON).get().readEntity(String.class);
-				System.out.println(result);
 				List<Books> allBooksinfo = new ArrayList<Books>();
 				try {
 					JSONArray jsonArr = new JSONArray(result);
@@ -65,9 +71,7 @@ public class BookInfo extends HttpServlet {
 					dispatcher.include(request, response);
 				} catch (Exception e) {
 					e.printStackTrace();
-
 				}
-
 			}
 		} catch (NumberFormatException e) {
 			if (bookId == 0) {
@@ -84,7 +88,6 @@ public class BookInfo extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

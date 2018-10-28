@@ -11,6 +11,9 @@ import org.brewingjava.model.UserInfo;
 import org.brewingjava.util.DBConnection;
 import org.brewingjava.util.PropertyReaderUtil;
 
+/*
+ * This class implements AccountInfoDAO interface
+ */
 public class AccountInfoDAOImpl implements AccountInfoDAO {
 
 	private static final String QUERIES_PROERTIES_FILE = "queries.properties";
@@ -20,6 +23,9 @@ public class AccountInfoDAOImpl implements AccountInfoDAO {
 		dbConnection = DBConnection.getInstance();
 	}
 
+	/*
+	 * This method creates a new user and saves it to the db
+	 */
 	@Override
 	public boolean createAccount(UserDetails userDetails) {
 
@@ -34,21 +40,20 @@ public class AccountInfoDAOImpl implements AccountInfoDAO {
 			// Formating the query with the data to be saved
 			registerQuery = String.format(registerQuery, userDetails.accountInfo.getUsername(),
 					userDetails.accountInfo.getPassword());
-			System.out.println("in accountinfo DAO the registerQuery is " + registerQuery);
 			stmt = connection.createStatement();
 			// Returns 1 if data is inserted
 			int result = stmt.executeUpdate(registerQuery);
 			// If the result is 1, execute the second the query
 			if (result == 1) {
-				 registerQuery = "";
-				 QueryId = "SAVE_USER_INFO";
-				registerQuery = PropertyReaderUtil.getInstance().getPropertyValue(QUERIES_PROERTIES_FILE,
-						QueryId);
+				registerQuery = "";
+				QueryId = "SAVE_USER_INFO";
+				registerQuery = PropertyReaderUtil.getInstance().getPropertyValue(QUERIES_PROERTIES_FILE, QueryId);
 				// Formating the query with the data to be saved
 				registerQuery = String.format(registerQuery, userDetails.userInfo.getFname(),
 						userDetails.userInfo.getLname(), userDetails.userInfo.getUserName(),
 						userDetails.userInfo.getShipping(), userDetails.userInfo.getBilling());
 				int finalResult = stmt.executeUpdate(registerQuery);
+				// If second query is executed set flag false
 				if (finalResult == 1)
 					hasError = false;
 			} else
@@ -57,29 +62,32 @@ public class AccountInfoDAOImpl implements AccountInfoDAO {
 			System.out.println("Some Error occurred while saving user credentials in DAO");
 			e.printStackTrace();
 			hasError = true;
-		}finally {
+		} finally {
 
-				if (stmt != null) {
-					try {
-						stmt.close();
-					} catch (SQLException sqle) {
-						System.out.println(sqle);
-						sqle.printStackTrace();
-					}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqle) {
+					System.out.println(sqle);
+					sqle.printStackTrace();
 				}
+			}
 
-				if (connection != null) {
-					try {
-						connection.close();
-					} catch (SQLException sqle) {
-						System.out.println(sqle);
-						sqle.printStackTrace();
-					}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException sqle) {
+					System.out.println(sqle);
+					sqle.printStackTrace();
 				}
+			}
 		}
 		return (!hasError) ? true : false;
 	}
 
+	/*
+	 * This method fetch the data during login
+	 */
 	@Override
 	public UserDetails getAccount(String username, String password) {
 		UserDetails usereDetails;
@@ -96,7 +104,7 @@ public class AccountInfoDAOImpl implements AccountInfoDAO {
 			String query = PropertyReaderUtil.getInstance().getPropertyValue(QUERIES_PROERTIES_FILE, QueryId);
 			// Formating the query with the data to be saved
 			query = String.format(query, username);
-		    stmt = connection.createStatement();
+			stmt = connection.createStatement();
 			// Fetching all the login data for the user
 			rs = stmt.executeQuery(query);
 			while (rs.next()) {
@@ -120,7 +128,7 @@ public class AccountInfoDAOImpl implements AccountInfoDAO {
 					userInfo.setShipping(rs.getString("shippingaddress"));
 					userInfo.setBilling(rs.getString("billingaddress"));
 				}
-				
+
 			}
 			rs.close();
 			stmt.close();
@@ -133,28 +141,25 @@ public class AccountInfoDAOImpl implements AccountInfoDAO {
 				try {
 					rs.close();
 				} catch (SQLException sqle) {
-					System.out.println(sqle);
 					sqle.printStackTrace();
 				}
 			}
 
-				if (stmt != null) {
-					try {
-						stmt.close();
-					} catch (SQLException sqle) {
-						System.out.println(sqle);
-						sqle.printStackTrace();
-					}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqle) {
+					sqle.printStackTrace();
 				}
+			}
 
-				if (connection != null) {
-					try {
-						connection.close();
-					} catch (SQLException sqle) {
-						System.out.println(sqle);
-						sqle.printStackTrace();
-					}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException sqle) {
+					sqle.printStackTrace();
 				}
+			}
 		}
 		usereDetails = new UserDetails(accountInfo, userInfo);
 		return usereDetails;

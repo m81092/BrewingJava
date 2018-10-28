@@ -15,6 +15,9 @@ import org.brewingjava.model.UserInfo;
 import org.brewingjava.util.DBConnection;
 import org.brewingjava.util.PropertyReaderUtil;
 
+/*
+ * This class implements the method to create and confirm the order
+ */
 public class OrderDAOImpl implements OrderDAO {
 	private static final String QUERIES_PROERTIES_FILE = "queries.properties";
 	String QueryId = "";
@@ -25,6 +28,10 @@ public class OrderDAOImpl implements OrderDAO {
 		dbConnection = DBConnection.getInstance();
 	}
 
+	/*
+	 * This method creates the order in the form of PO object and saves it in db. It
+	 * returns the id of the table
+	 */
 	@Override
 	public int createOrder(PO orderDetails) {
 
@@ -49,9 +56,9 @@ public class OrderDAOImpl implements OrderDAO {
 			QueryId = "CREATE_ORDER_1";
 			String query = PropertyReaderUtil.getInstance().getPropertyValue(QUERIES_PROERTIES_FILE, QueryId);
 			query = String.format(query, lname, fname, address);
-			System.out.println(query);
+
 			int countRows = stmt.executeUpdate(query);
-			System.out.println("first query result:" + countRows);
+
 			if (countRows != 0) {
 
 				for (Books book : cartDetails) {
@@ -72,12 +79,10 @@ public class OrderDAOImpl implements OrderDAO {
 					query = "";
 				}
 				int count[] = stmt1.executeBatch();
-				System.out.println(count);
 				query = "SELECT LAST_INSERT_ID();";
 				rs = stmt1.executeQuery(query);
 				while (rs.next()) {
 					purchaseOrderID = rs.getInt(1);
-					System.out.println(purchaseOrderID);
 				}
 			} else {
 				purchaseOrderID = 0;
@@ -91,6 +96,9 @@ public class OrderDAOImpl implements OrderDAO {
 		return purchaseOrderID;
 	}
 
+	/*
+	 * This method updates the PO table based on payment flag and returns a boolean value
+	 */
 	@Override
 	public boolean confirmOrder(int id, boolean payement) {
 		Connection connection = null;
@@ -129,7 +137,6 @@ public class OrderDAOImpl implements OrderDAO {
 						bookEventList.add(eventBook);
 					}
 
-					System.out.println(bookEventList.size());
 					EventHandlerDAO eventDao = new EventHandlerDAOImpl();
 					// Saving events in visit event table
 					boolean visitFlag = eventDao.createEvent(bookEventList, "PURCHASE");
@@ -157,7 +164,6 @@ public class OrderDAOImpl implements OrderDAO {
 				try {
 					stmt.close();
 				} catch (SQLException sqle) {
-					System.out.println(sqle);
 					sqle.printStackTrace();
 				}
 			}
@@ -165,7 +171,6 @@ public class OrderDAOImpl implements OrderDAO {
 				try {
 					stmt1.close();
 				} catch (SQLException sqle) {
-					System.out.println(sqle);
 					sqle.printStackTrace();
 				}
 			}
@@ -174,7 +179,6 @@ public class OrderDAOImpl implements OrderDAO {
 				try {
 					connection.close();
 				} catch (SQLException sqle) {
-					System.out.println(sqle);
 					sqle.printStackTrace();
 				}
 			}
@@ -182,6 +186,9 @@ public class OrderDAOImpl implements OrderDAO {
 		return result;
 	}
 
+	/*
+	 * This method fetches the user details using username and returns the UserInfo class object
+	 */
 	public UserInfo getUserDetails(String username) {
 		UserInfo userDetails = new UserInfo();
 		Connection connection = null;

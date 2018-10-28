@@ -15,6 +15,7 @@ import org.brewingjava.model.Books;
 
 /**
  * Servlet implementation class Checkout
+ * Controller for Checkout page
  */
 @WebServlet("/Checkout")
 public class Checkout extends HttpServlet {
@@ -23,10 +24,12 @@ public class Checkout extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
+	 * 
+	 * It adds the tax to individual book price available in the list of the books in the cart, retrieved from the session.
+	 * Directs to the checkout.jsp after updating the price of the books to be displayed on the page.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		HttpSession mysession = request.getSession();
 		List<Books> cartList = (List<Books>) mysession.getAttribute("CartList");
 		boolean addTax = (boolean) mysession.getAttribute("addTax");
@@ -41,7 +44,6 @@ public class Checkout extends HttpServlet {
 					book.setPrice(price);
 				}
 			}
-			
 			addTax = false;
 			// Setting the flag in session
 			mysession.setAttribute("addTax", addTax);
@@ -60,7 +62,6 @@ public class Checkout extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
