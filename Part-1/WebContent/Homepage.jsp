@@ -150,19 +150,11 @@ body {
 
 							<td>${items.price}</td>
 
-							<td><a href="javaScript:{openNewWindow();}" id="getInfo">Book
+							<td><a href="javaScript:{openNewWindow(${items.bookid});}" id="getInfo">Book
 									Info</a></td>
-							<script>
-								function openNewWindow()
-							    {
-							    window.open('${pageContext.request.contextPath}/BookInfo?bookId='+${items.bookid})
-							    }
-								</script>
-
+							
 							<td>
-								<form name="addToCartForm"
-									action="${pageContext.request.contextPath}/AddItemsToCart"
-									method="post">
+								<form name="addToCartForm" action="${pageContext.request.contextPath}/AddItemsToCart" method="post">
 									<input type="hidden" class="bookId" name="bookId"
 										value='${items.bookid}' /> <input type="hidden" class="title"
 										value='${items.title}' /> <input type="hidden" id="cart" />
@@ -209,6 +201,12 @@ body {
 			$("#displayMsg").show();
 			$("#displayMsg").fadeOut(2000);
 		});
+		
+		function openNewWindow(id)
+	    {
+	    	window.open('${pageContext.request.contextPath}/BookInfo?bookId='+id+'&event=VIEW');
+	    }
+		
 		// Open and close the sidebar on medium and small screens
 		function w3_open() {
 			document.getElementById("mySidebar").style.display = "block";
