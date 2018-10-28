@@ -11,6 +11,9 @@ import org.brewingjava.model.Books;
 import org.brewingjava.util.DBConnection;
 import org.brewingjava.util.PropertyReaderUtil;
 
+/*
+ * This class implements BookDAO interface
+ */
 public class BookDAOImpl implements BookDAO {
 
 	private static final String QUERIES_PROERTIES_FILE = "queries.properties";
@@ -22,6 +25,10 @@ public class BookDAOImpl implements BookDAO {
 		dbConnection = DBConnection.getInstance();
 	}
 
+	/*
+	 * This method gets all the books for product catalog and returns the list of
+	 * books
+	 */
 	@Override
 	public ArrayList<Books> getAllBooks() {
 		ArrayList<Books> allBooksList = new ArrayList<Books>();
@@ -61,30 +68,32 @@ public class BookDAOImpl implements BookDAO {
 				}
 			}
 
-				if (stmt != null) {
-					try {
-						stmt.close();
-				
-					
-					} catch (SQLException sqle) {
-						System.out.println(sqle);
-						sqle.printStackTrace();
-					}
-				}
+			if (stmt != null) {
+				try {
+					stmt.close();
 
-				if (connection != null) {
-					try {
-						connection.close();
-					} catch (SQLException sqle) {
-						System.out.println(sqle);
-						sqle.printStackTrace();
-					}
+				} catch (SQLException sqle) {
+					System.out.println(sqle);
+					sqle.printStackTrace();
 				}
-			
+			}
+
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException sqle) {
+					System.out.println(sqle);
+					sqle.printStackTrace();
+				}
+			}
+
 		}
 		return allBooksList;
 	}
 
+	/*
+	 * This method gets the books based on category and returns the list of books
+	 */
 	@Override
 	public List<Books> getBooksByCategory(String bookCategory) {
 
@@ -142,31 +151,34 @@ public class BookDAOImpl implements BookDAO {
 				}
 			}
 
-				if (stmt != null) {
-					try {
-						stmt.close();
-					} catch (SQLException sqle) {
-						System.out.println(sqle);
-						sqle.printStackTrace();
-					}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqle) {
+					System.out.println(sqle);
+					sqle.printStackTrace();
 				}
+			}
 
-				if (connection != null) {
-					try {
-						connection.close();
-					} catch (SQLException sqle) {
-						System.out.println(sqle);
-						sqle.printStackTrace();
-					}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException sqle) {
+					System.out.println(sqle);
+					sqle.printStackTrace();
 				}
+			}
 		}
 		return booksByCategory;
 
 	}
-	
+
+	/*
+	 * This method gets book info based on book id and returns a book object
+	 */
 	@Override
 	public Books getBookInfo(int id) {
-		Books book=null;
+		Books book = null;
 		Connection connection = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -192,7 +204,7 @@ public class BookDAOImpl implements BookDAO {
 		} catch (Exception e) {
 			System.out.println("Unable to load Driver");
 			e.printStackTrace();
-		}finally {
+		} finally {
 			if (rs != null) {
 				try {
 					rs.close();
@@ -202,23 +214,23 @@ public class BookDAOImpl implements BookDAO {
 				}
 			}
 
-				if (stmt != null) {
-					try {
-						stmt.close();
-					} catch (SQLException sqle) {
-						System.out.println(sqle);
-						sqle.printStackTrace();
-					}
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException sqle) {
+					System.out.println(sqle);
+					sqle.printStackTrace();
 				}
+			}
 
-				if (connection != null) {
-					try {
-						connection.close();
-					} catch (SQLException sqle) {
-						System.out.println(sqle);
-						sqle.printStackTrace();
-					}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException sqle) {
+					System.out.println(sqle);
+					sqle.printStackTrace();
 				}
+			}
 		}
 		return book;
 	}
