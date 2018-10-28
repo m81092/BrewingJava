@@ -5,16 +5,24 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
-
+/**
+ * This class is used to read properties from DB property and Queries property file
+ */
 public class PropertyReaderUtil {
 
 	private static boolean debugOnOff = false;
 
 	private static PropertyReaderUtil instance;
-
+	
+	/**
+	 * Default constructor
+	 */
 	private PropertyReaderUtil() {
 	}
 
+	/**
+	 * Method is used to get instance of a class
+	 */
 	public static PropertyReaderUtil getInstance() {
 
 		if (instance == null)
@@ -25,6 +33,15 @@ public class PropertyReaderUtil {
 
 	}
 
+	/**
+	 * This method is used to get requested property value
+	 * 
+	 * @param propertiesFile
+	 * @param propertyKey
+	 * @return requested property value
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public String getPropertyValue(String propertiesFile, String propertyKey)
 			throws FileNotFoundException, IOException {
 
