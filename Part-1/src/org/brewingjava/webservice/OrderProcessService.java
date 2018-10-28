@@ -49,7 +49,6 @@ public class OrderProcessService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public UserDetails getAccount(@QueryParam("username") String username, @QueryParam("password") String password) {
 		
-		//System.out.println("in OP WS and the val of password is " +password);
 		OrderService os = new OrderServiceImpl();
 		return (os.getAccount(username, password) != null) ? os.getAccount(username, password) : null;
 	}
@@ -75,10 +74,8 @@ public class OrderProcessService {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String confirmOrder(@QueryParam("POId") int id) {
-		System.out.println("Service: Confirming Order");
-		System.out.println(id);
 		OrderService os = new OrderServiceImpl();
-		return os.confirmOrder(id, true);		//payement is passed as true. Set it as false in service if id is divisible by 5.
+		return os.confirmOrder(id, true);		// payement is passed as true. Set it as false in service if id is divisible by 5.
 	}
 	
 }

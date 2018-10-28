@@ -33,7 +33,6 @@ public class ProductCatalogueService {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<Books> getAllCategories() {
-		System.out.println("in side Web services");
 		ProductService ps = new ProductServiceImpl();
 		return ps.getAllBooks();
 	}
@@ -46,8 +45,6 @@ public class ProductCatalogueService {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Books> getBookByCategory(@QueryParam("category") String category) {
-		System.out.println("in side Web services ");
-		System.out.println("Webservice received category : " +category);
 		ProductService ps = new ProductServiceImpl();
 		return ps.getBooksByCategory(category);
 		}
@@ -60,8 +57,6 @@ public class ProductCatalogueService {
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<Books> getBookInfo(@QueryParam("bookId") int id, @QueryParam("event") String event) {
-		System.out.println("Service: Fetching Book Info");
-		System.out.println(id);
 		ProductService ps = new ProductServiceImpl();
 		return ps.getBookInfo(id,event);		//We have to handle the null value if book is not their.
 	}
