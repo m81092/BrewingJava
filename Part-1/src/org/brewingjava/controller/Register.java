@@ -20,6 +20,7 @@ import org.brewingjava.util.PasswordEncryptionService;
 
 /**
  * Servlet implementation class Register
+ * Controller for the register account page.
  */
 @WebServlet("/Register")
 public class Register extends HttpServlet {
@@ -28,6 +29,9 @@ public class Register extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
+	 *      
+	 * fetches the information from the register page and calls the webservice that takes the user information to create the account.
+	 * Renders the response from the web service according to the operation was successful or not.      
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -62,7 +66,6 @@ public class Register extends HttpServlet {
 			Client client = ClientBuilder.newClient();
 			WebTarget target = client.target(baseURI).path("/REST/WebService/createUser");
 			String res = target.request(MediaType.TEXT_PLAIN).put(Entity.json(userDetails), String.class);
-			System.out.println(res);
 			if (res.equals("true")) {
 
 				request.setAttribute("accountname", request.getParameter("accountname"));

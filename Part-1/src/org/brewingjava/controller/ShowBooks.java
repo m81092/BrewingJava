@@ -24,6 +24,7 @@ import javax.ws.rs.core.MediaType;
 
 /**
  * Servlet implementation class ShowDetails
+ * Controller for fetching the data of books according to category selected by the user and displaying it on the page.
  */
 @WebServlet("/ShowBooks")
 public class ShowBooks extends HttpServlet {
@@ -32,14 +33,15 @@ public class ShowBooks extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
+	 *      
+	 * Calls the web service for fetching the data according to the category. 
+	 * Renders the JSON response and present the data on the Homepage.jsp.     
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String category = request.getParameter("category");
 		HttpSession mysession = request.getSession();
 		mysession.setAttribute("category", category);
-		System.out.println(category);
 		String baseURI = "http://localhost:8080/Part-1";
 		Client client = ClientBuilder.newClient();
 		WebTarget target = null;
@@ -50,7 +52,6 @@ public class ShowBooks extends HttpServlet {
 		 target = client.target(baseURI).path("/REST/WebService/Categories").queryParam("category", category);
 		}
 		String result = target.request(MediaType.APPLICATION_JSON).get().readEntity(String.class);
-		System.out.println(result);
 		List<Books> allBooksList = new ArrayList<Books>();
 		try {
 			JSONArray jsonArr = new JSONArray(result);
@@ -75,13 +76,9 @@ public class ShowBooks extends HttpServlet {
 
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		doGet(request, response);
 
 	}
 

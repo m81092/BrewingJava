@@ -22,6 +22,8 @@ import org.brewingjava.model.UserDetails;
 
 /**
  * Servlet implementation class CreateOrder
+ * 
+ * Controller for creating the order. 
  */
 @WebServlet("/CreateOrder")
 public class CreateOrder extends HttpServlet {
@@ -30,6 +32,7 @@ public class CreateOrder extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
+	 *  Calls the Create Order web service that passes the information of the user and the books ordered by the user.
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

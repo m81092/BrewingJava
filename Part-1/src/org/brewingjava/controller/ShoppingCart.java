@@ -22,11 +22,16 @@ import org.json.JSONObject;
 
 /**
  * Servlet implementation class ShoppingCart
+ * 
+ * Controller for the Shopping Cart.
  */
 @WebServlet("/ShoppingCart")
 public class ShoppingCart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
+    /**
+     * Calls the BookInfo web service to fetch the book details for each id of the book passed in the list. 
+     * Creates the list of all the books to be passed on to the shoppingcart.jsp to present it on the page. 
+     */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String baseURI = "http://localhost:8080/Part-1";
 		Client client = ClientBuilder.newClient();
@@ -34,7 +39,6 @@ public class ShoppingCart extends HttpServlet {
 		ArrayList<Books> idList = new ArrayList<Books>();
 		if(session.getAttribute("idList")!=null) {
 			idList = (ArrayList<Books>) session.getAttribute("idList");
-			System.out.println(idList);
 			session.removeAttribute("idList");
 		}
 		WebTarget target;
@@ -45,7 +49,6 @@ public class ShoppingCart extends HttpServlet {
 			for(int j=0;j<idList.size();j++) {
 				target = client.target(baseURI).path("/REST/WebService/BookInfo").queryParam("bookId", idList.get(j).getBookid()).queryParam("event", "CART");
 				result = target.request(MediaType.APPLICATION_JSON).get().readEntity(String.class);
-				System.out.println(result);
 				JSONArray jsonArr = new JSONArray(result);
 				for (int i = 0; i < jsonArr.length(); i++) {
 					JSONObject jsonObj = jsonArr.getJSONObject(i);
