@@ -36,7 +36,6 @@ public class BookDAOImplTest {
 		assertEquals(BOOK_AUTHOR, list.get(0).getAuthor());
 		assertEquals(BOOK_CATEGORY, list.get(0).getCategory());
 		Assert.assertEquals(BOOK_PRICE, list.get(0).getPrice(), 0.0002);
-		assertEquals(null, list.get(0).getStatus());
 		assertEquals(BOOK_TITLE, list.get(0).getTitle());
 	}
 	
@@ -56,7 +55,6 @@ public class BookDAOImplTest {
 		assertEquals(BOOK_AUTHOR, list.get(0).getAuthor());
 		assertEquals(BOOK_CATEGORY, list.get(0).getCategory());
 		Assert.assertEquals(BOOK_PRICE, list.get(0).getPrice(), 0.0002);
-		assertEquals(null, list.get(0).getStatus());
 		assertEquals(BOOK_TITLE, list.get(0).getTitle());
 	}
 	
@@ -74,7 +72,6 @@ public class BookDAOImplTest {
 		assertEquals(BOOK_AUTHOR, book.getAuthor());
 		assertEquals(BOOK_CATEGORY, book.getCategory());
 		Assert.assertEquals(BOOK_PRICE, book.getPrice(), 0.0002);
-		assertEquals(null, book.getStatus());
 		assertEquals(BOOK_TITLE, book.getTitle());
 	}
 }

@@ -13,8 +13,21 @@ import org.brewingjava.model.Books;
 import org.brewingjava.service.ProductService;
 import org.brewingjava.service.ProductServiceImpl;
 
+/**
+ * @author Brewing Java
+ *
+ * class ProductCatalogueService used as 
+ * Web service class to get all books
+ * by category and details of specific 
+ * book. Featured books are part of category.
+ * Book Catalogue
+ */
 @Path("/WebService")
 public class ProductCatalogueService {
+	
+	/**
+	 * ${get all books web service}
+	 */
 	@GET
 	@Path("/AllBooks")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -25,6 +38,9 @@ public class ProductCatalogueService {
 		return ps.getAllBooks();
 	}
 
+	/**
+	 * ${get all books by category web service}
+	 */
 	@GET
 	@Path("/Categories")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -36,6 +52,9 @@ public class ProductCatalogueService {
 		return ps.getBooksByCategory(category);
 		}
 
+	/**
+	 * ${get book detail by id web service}
+	 */
 	@GET
 	@Path("/BookInfo")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)

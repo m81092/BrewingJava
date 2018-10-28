@@ -1,6 +1,7 @@
 package org.brewingjava.webservice;
 
 import javax.ws.rs.Consumes;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -13,9 +14,22 @@ import org.brewingjava.model.UserDetails;
 import org.brewingjava.service.OrderService;
 import org.brewingjava.service.OrderServiceImpl;
 
+/**
+ * @author Brewing Java
+ *
+ * class OrderProcessService used as 
+ * Web service class to create order and get  
+ * all the details with respect to
+ * order and user details are also the part of 
+ * value order processing service.
+ * Login and register web service is also added here.
+ */
 @Path("/WebService")
 public class OrderProcessService {
 
+	/**
+	 * ${create account web service}
+	 */
 	@PUT
 	@Path("/createUser")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -26,6 +40,9 @@ public class OrderProcessService {
 		return os.createAccount(userDetails);
 	}
 	
+	/**
+	 * ${get account web service (login)}
+	 */
 	@GET
 	@Path("/login")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -37,6 +54,9 @@ public class OrderProcessService {
 		return (os.getAccount(username, password) != null) ? os.getAccount(username, password) : null;
 	}
 	
+	/**
+	 * ${create order web service}
+	 */
 	@PUT
 	@Path("/createOrder")
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -47,6 +67,9 @@ public class OrderProcessService {
 		return os.createOrder(purchaseOrder);
 	}
 	
+	/**
+	 * ${confirm order web service}
+	 */
 	@GET
 	@Path("/confirmOrder")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)

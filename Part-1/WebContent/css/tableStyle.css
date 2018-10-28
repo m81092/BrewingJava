@@ -1,4 +1,7 @@
-table {
+/**
+ * Table style sheet 
+ */
+ table {
 	 border-collapse: collapse;
     width: 90%;
 }
