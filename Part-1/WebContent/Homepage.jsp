@@ -13,6 +13,7 @@
 	href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./css/tableStyle.css">
 <style>
 body {
 	font-family: "Roboto", sans-serif
@@ -27,21 +28,14 @@ body {
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <body>
 
-	<nav
-		class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card"
-		style="z-index: 3; width: 250px;" id="mySidebar">
-		<a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img
-			src="./images/Logo.JPG" style="width: 250px; height: 63px;"></a> <a
-			class="w3-bar-item w3-button w3-hide-large w3-large"
-			href="javascript:void(0)" onclick="w3_close()">Close <i
-			class="fa fa-remove"></i></a> <a class="w3-bar-item w3-button w3-teal"
-			href="Welcome.jsp">Home</a> <a class="w3-bar-item w3-button"
-			href="Team.jsp">Team</a> <a class="w3-bar-item w3-button" href="#">Contact
-			US</a> <a class="w3-bar-item w3-button"
-			href="${pageContext.request.contextPath}/ShowBooks?category=All">View
-			All Books</a> <a class="w3-bar-item w3-button"
-			href="${pageContext.request.contextPath}/ShowBooks?category=featured">Featured
-			Books</a>
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-animate-left w3-card" style="z-index:3;width:250px;" id="mySidebar">
+  <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img src="./images/Logo.JPG" style="width:250px; height:63px;"></a>
+  <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
+  <a class="w3-bar-item w3-button w3-teal" href="Welcome.jsp">Home</a>
+  <a class="w3-bar-item w3-button" href="AboutUs.jsp">About Us</a>
+  <a class="w3-bar-item w3-button" href="Team.jsp">Team</a>
+  <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=All">View All Books</a>
+  <a class="w3-bar-item w3-button" href="${pageContext.request.contextPath}/ShowBooks?category=featured">Featured Books</a>
 		<div>
 			<a class="w3-bar-item w3-button" onclick="myAccordion('demo')"
 				href="javascript:void(0)">Categories <i class="fa fa-caret-down"></i></a>
@@ -137,18 +131,15 @@ body {
 			<%
 				if (orderList.size() != 0) {
 			%>
-			<table class="booktable" border="3">
+			<table class="booktable" border="1">
 
 
 				<tr>
-					<td>BookID</td>
-					<td>Title</td>
-					<td>Price</td>
-					<td>Details</td>
-					<td>Action</td>
-
-
-					<!--  <tr><td>BookID</td><td>Title</td><td>Price</td><td>Details</td><td>Action</td>-->
+					<th>BookID</th>
+					<th>Title</th>
+					<th>Price</th>
+					<th>Details</th>
+					<th>Action</th>
 
 					<c:forEach var="items" items="${allBook}">
 						<tr>
@@ -164,7 +155,7 @@ body {
 							<script>
 								function openNewWindow()
 							    {
-							    window.open('${pageContext.request.contextPath}/BookInfo?bookId='+ ${items.bookid})
+							    window.open('${pageContext.request.contextPath}/BookInfo?bookId='+${items.bookid})
 							    }
 								</script>
 
