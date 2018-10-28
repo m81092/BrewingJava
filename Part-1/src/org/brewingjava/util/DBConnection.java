@@ -2,10 +2,6 @@ package org.brewingjava.util;
 
 import javax.sql.DataSource;
 
-/*import org.apache.commons.dbcp2.ConnectionFactory;
-import org.apache.commons.dbcp2.DriverManagerConnectionFactory;
-import org.apache.commons.dbcp.PoolableConnectionFactory;
-import org.apache.commons.dbcp2.PoolingDataSource;*/
 import org.apache.commons.dbcp.ConnectionFactory;
 
 import org.apache.commons.dbcp.DriverManagerConnectionFactory;
@@ -36,7 +32,7 @@ public class DBConnection {
 	}
 
 	/**
-	 * Parameterised constructor
+	 * Parameterized constructor
 	 * @param properties
 	 */
 	private DBConnection(DBConnectionProps properties) {
