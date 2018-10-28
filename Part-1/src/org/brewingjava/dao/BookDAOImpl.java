@@ -132,8 +132,6 @@ public class BookDAOImpl implements BookDAO {
 
 			} else {
 				String status = "No Books available";
-				cat.setStatus(status);
-				booksByCategory.add(cat);
 			}
 			rs.close();
 			stmt.close();
