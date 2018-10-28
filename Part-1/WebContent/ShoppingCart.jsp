@@ -11,7 +11,9 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-teal.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./css/tableStyle.css"><style>
+
 body {font-family: "Roboto", sans-serif}
 .w3-bar-block .w3-bar-item{padding:16px;font-weight:bold}
 </style>
@@ -114,7 +116,7 @@ body {font-family: "Roboto", sans-serif}
 			</p>
 			<br>
 			<form action="${pageContext.request.contextPath}/Checkout">
-				<table class="booktable" border="3">
+				<table class="booktable" border="0">
 					<tr>
 						<th>Title</th>
 						<th>Price($)</th>
@@ -135,12 +137,12 @@ body {font-family: "Roboto", sans-serif}
 								total+=tax;
 								%>
 					<tr>
-						<th>Tax</th>
-						<th><%=tax%></th>
+						<td>Tax</td>
+						<td><%=tax%></td>
 					</tr>
 					<tr>
-						<th>Total</th>
-						<th><%=total%></th>
+						<td><b>Total</b></td>
+						<td><b><%=total%></b></td>
 					</tr>
 				</table>
 				<br>
