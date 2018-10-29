@@ -79,7 +79,8 @@ public class OrderDAOImpl implements OrderDAO {
 					query = "";
 				}
 				int count[] = stmt1.executeBatch();
-				query = "SELECT LAST_INSERT_ID();";
+				QueryId = "FETCH_LATEST_ID";
+				query = PropertyReaderUtil.getInstance().getPropertyValue(QUERIES_PROERTIES_FILE, QueryId);
 				rs = stmt1.executeQuery(query);
 				while (rs.next()) {
 					purchaseOrderID = rs.getInt(1);
