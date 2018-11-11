@@ -17,6 +17,7 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 import org.brewingjava.model.Books;
+import org.brewingjava.util.CommonsUtil;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -33,7 +34,7 @@ public class ShoppingCart extends HttpServlet {
      * Creates the list of all the books to be passed on to the shoppingcart.jsp to present it on the page. 
      */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String baseURI = "http://localhost:8080/Part-1";
+		String baseURI = CommonsUtil.getBaseUrl(request);
 		Client client = ClientBuilder.newClient();
 		HttpSession session = request.getSession();
 		ArrayList<Books> idList = new ArrayList<Books>();

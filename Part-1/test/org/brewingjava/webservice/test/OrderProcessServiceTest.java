@@ -18,7 +18,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
  */
 public class OrderProcessServiceTest {
 
-	private static final String LOGIN_SERVICE = "http://localhost:8080/Part-1/REST/WebService/login?username=test&password=D0Nq6BBoMlrfNFaZePRFWn0QJcJUC8c1jmerGVml1pE=";
+	private static final String LOGIN_SERVICE = "http://localhost:8080/Part-1/REST/WebService/login?username=varun&password=zqks98quCcJGcoZIewCV8UGE+usvZeQyDcd8xh1C/K8=";
 	private static final String CONFIRM_ORDER_SERVICE = "http://localhost:8080/Part-1/REST/WebService/confirmOrder?POId=1";
 	
 	/**

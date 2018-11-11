@@ -20,6 +20,8 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
+import org.brewingjava.util.CommonsUtil;
+
 /**
  * Controller for the  Confirm Order page. 
  *
@@ -37,7 +39,7 @@ public class ConfirmOrder extends HttpServlet {
 		String msg="";
 		try {
 			poId = Integer.parseInt(request.getParameter("purchaseOrderID"));
-			String baseURI = "http://localhost:8080/Part-1";
+			String baseURI = CommonsUtil.getBaseUrl(request);
 			Client client = ClientBuilder.newClient();
 			WebTarget target = null;
 			if (poId != 0) {

@@ -21,6 +21,7 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 import org.brewingjava.model.Books;
+import org.brewingjava.util.CommonsUtil;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -45,7 +46,7 @@ public class BookInfo extends HttpServlet {
 		int bookId = 0;
 		try {
 			bookId = Integer.parseInt(request.getParameter("bookId"));
-			String baseURI = "http://localhost:8080/Part-1";
+			String baseURI = CommonsUtil.getBaseUrl(request);
 			Client client = ClientBuilder.newClient();
 			WebTarget target = null;
 			if (bookId != 0) {
