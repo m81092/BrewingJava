@@ -51,10 +51,13 @@ public class PropertyReaderUtil {
 		String path = "";
 		// check file exists
 		//make changes in your system with your own path
-		if (propertiesFile == "db.properties") {
-			path = "C:\\Users\\Admin\\Downloads\\eclipse\\workspace\\BrewingJava-Mudit\\Part-1\\WebContent\\resources\\db.properties";
-		} else if (propertiesFile == "queries.properties") {
-			path = "C:\\Users\\Admin\\Downloads\\eclipse\\workspace\\BrewingJava-Mudit\\Part-1\\WebContent\\resources\\queries.properties";
+		if (propertiesFile.equalsIgnoreCase("db.properties")) {
+			System.out.println("inside reading property file");
+			//path = "C:\\Users\\Hp\\git\\BrewingJava\\Part-1\\WebContent\\resources\\db.properties";
+			path = "./resources/db.properties";
+		} else if (propertiesFile.equalsIgnoreCase("queries.properties")) {
+			//path = "C:\\Users\\Hp\\git\\BrewingJava\\Part-1\\WebContent\\resources\\queries.properties";
+			path = "./resources/queries.properties";
 		}
 
 		System.out.println("file is here" + new File(".").getAbsoluteFile());
