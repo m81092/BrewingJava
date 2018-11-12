@@ -19,6 +19,7 @@ import javax.ws.rs.core.MediaType;
 import org.brewingjava.model.Books;
 import org.brewingjava.model.PO;
 import org.brewingjava.model.UserDetails;
+import org.brewingjava.util.CommonsUtil;
 
 /**
  * Servlet implementation class CreateOrder
@@ -51,7 +52,7 @@ public class CreateOrder extends HttpServlet {
 		purchaseOrder.setUsername(accountName);
 		purchaseOrder.setCartInfo(cartList);
 
-		String baseURI = "http://localhost:8080/Part-1";
+		String baseURI = CommonsUtil.getBaseUrl(request);
 		Client client = ClientBuilder.newClient();
 		WebTarget target = client.target(baseURI).path("/REST/WebService/createOrder");
 		int purchaseOrderID = Integer.parseInt(target.request(MediaType.TEXT_PLAIN).put(Entity.json(purchaseOrder), String.class));

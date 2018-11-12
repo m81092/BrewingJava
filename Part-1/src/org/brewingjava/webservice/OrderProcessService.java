@@ -45,7 +45,7 @@ public class OrderProcessService {
 	 */
 	@GET
 	@Path("/login")
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public UserDetails getAccount(@QueryParam("username") String username, @QueryParam("password") String password) {
 		

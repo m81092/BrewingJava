@@ -18,6 +18,7 @@ import javax.ws.rs.core.MediaType;
 import org.brewingjava.model.AccountInfo;
 import org.brewingjava.model.UserDetails;
 import org.brewingjava.model.UserInfo;
+import org.brewingjava.util.CommonsUtil;
 import org.brewingjava.util.PasswordEncryptionService;
 import org.json.JSONObject;
 
@@ -50,9 +51,9 @@ public class LoginServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		
-		String baseURI = "http://localhost:8080/Part-1";
+		
+		String baseURI = CommonsUtil.getBaseUrl(request);
 		Client client = ClientBuilder.newClient();
 		WebTarget target = client.target(baseURI).path("/REST/WebService/login").queryParam("username", name).queryParam("password", epass);
 		String result = target.request(MediaType.APPLICATION_JSON).get().readEntity(String.class);

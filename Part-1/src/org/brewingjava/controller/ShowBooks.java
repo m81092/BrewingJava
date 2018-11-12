@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.brewingjava.model.Books;
-
+import org.brewingjava.util.CommonsUtil;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -42,7 +42,8 @@ public class ShowBooks extends HttpServlet {
 		String category = request.getParameter("category");
 		HttpSession mysession = request.getSession();
 		mysession.setAttribute("category", category);
-		String baseURI = "http://localhost:8080/Part-1";
+		//String baseURI = "http://localhost:8080/Part-1";
+		String baseURI = CommonsUtil.getBaseUrl(request);
 		Client client = ClientBuilder.newClient();
 		WebTarget target = null;
 		if (category.equals("All")) {
@@ -80,5 +81,4 @@ public class ShowBooks extends HttpServlet {
 			throws ServletException, IOException {
 
 	}
-
 }

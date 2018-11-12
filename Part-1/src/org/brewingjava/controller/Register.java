@@ -16,6 +16,7 @@ import javax.ws.rs.core.MediaType;
 import org.brewingjava.model.AccountInfo;
 import org.brewingjava.model.UserDetails;
 import org.brewingjava.model.UserInfo;
+import org.brewingjava.util.CommonsUtil;
 import org.brewingjava.util.PasswordEncryptionService;
 
 /**
@@ -62,7 +63,7 @@ public class Register extends HttpServlet {
 			// Create UserDetails class object
 			UserDetails userDetails = new UserDetails(accountInfo, userInfo);
 			
-			String baseURI = "http://localhost:8080/Part-1";
+			String baseURI = CommonsUtil.getBaseUrl(request);
 			Client client = ClientBuilder.newClient();
 			WebTarget target = client.target(baseURI).path("/REST/WebService/createUser");
 			String res = target.request(MediaType.TEXT_PLAIN).put(Entity.json(userDetails), String.class);
