@@ -70,14 +70,16 @@ public class Register extends HttpServlet {
 			if (res.equals("true")) {
 
 				request.setAttribute("accountname", request.getParameter("accountname"));
-				RequestDispatcher dispatcher = request.getRequestDispatcher("Login.jsp");
-				dispatcher.include(request, response);
+				response.sendRedirect("Login.jsp");
+				/*RequestDispatcher dispatcher = request.getRequestDispatcher("Login.jsp");
+				dispatcher.include(request, response);*/
 			} else {
 
 				String error = "This Account name already exists. Try another!";
 				request.setAttribute("error", error);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("Register.jsp");
-				dispatcher.include(request, response);
+				response.sendRedirect("register.jsp");
+				/*RequestDispatcher dispatcher = request.getRequestDispatcher("Register.jsp");
+				dispatcher.include(request, response);*/
 			}
 		}
 	}
