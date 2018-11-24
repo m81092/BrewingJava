@@ -82,7 +82,7 @@ public class LoginServlet extends HttpServlet {
 				userDetails = new UserDetails(accountInfo, userInfo);
 				userDetailList.add(userDetails);
 				mySession.setAttribute("UserDetails", userDetailList);
-				response.sendRedirect("/Part-1/Checkout");
+				response.sendRedirect("/Part-1-0.0.1-SNAPSHOT/Checkout");
 				/*RequestDispatcher dispatcher = request.getRequestDispatcher("/Checkout");
 				dispatcher.include(request, response);*/
 			}catch (Exception e) {
