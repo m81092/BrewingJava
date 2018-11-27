@@ -6,7 +6,7 @@ public class CommonsUtil {
 	
 	public static String getBaseUrl(HttpServletRequest request) {
 		String baseUrl = request.getRequestURL().substring(0, request.getRequestURL().length() - request.getRequestURI().length()) + request.getContextPath();
-		return baseUrl;
+		return baseUrl.replaceAll("https", "http");
 	}
 
 }
