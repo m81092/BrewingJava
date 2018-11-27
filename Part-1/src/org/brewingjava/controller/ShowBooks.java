@@ -46,9 +46,6 @@ public class ShowBooks extends HttpServlet {
 	 * Renders the JSON response and present the data on the Homepage.jsp.     
 	 */
 	
-	static {
-	    disableSslVerification();
-	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String category = request.getParameter("category");
@@ -94,7 +91,7 @@ public class ShowBooks extends HttpServlet {
 
 	}
 	
-	private static void disableSslVerification() {
+	/*private static void disableSslVerification() {
 	    try
 	    {
 	        // Create a trust manager that does not validate certificate chains
@@ -128,5 +125,5 @@ public class ShowBooks extends HttpServlet {
 	    } catch (KeyManagementException e) {
 	        e.printStackTrace();
 	    }
-	}
+	}*/
 }
